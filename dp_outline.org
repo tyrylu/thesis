@@ -1,0 +1,21 @@
+* Introduction
+* Map presentatio approaches
+** Printed maps
+Ideally some historical context, then the mapy.cz project, maybe other
+interesting and related things.
+** Mobile phone apps
+Go through the navigation apps, probably start sometime when the Nokias
+had good enough screen readers, then all the various types of
+Android/iOS app types.
+** Desktop apps
+* Feel the streets
+** Feature overview
+** Technical overview
+** Development history
+* Usability study
+** Study description
+** About the subjects
+** Questions and the answers
+* Conclusion
+** In summary
+** Future work
