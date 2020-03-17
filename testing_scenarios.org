@@ -1,0 +1,17 @@
+* Area selection
+- User runs the app and has to select the given area
+- Area choice will be fixed in this case (Praha or something not in the first half of the alphabet)
+- Possible interesting outcomes: Will the users use first letter navigation in the list? What changes in the format of the area entries they would like?
+* Main window - walking etc.
+- The user should walk a little, also, the direction changind controls should be shown in this scenario
+- Possible interesting outcomes - Is the system understandable enough? How tricky is walking on a road and are the direction commands sufficient to make that easy?
+* Near by objects exploration
+- The user should explore what's around him.
+- Possible interesting outcomes: How informative is the objects list? How overwhelming (or not) are the object properties? How discoverable are the property/object actions? How could the discoverability of object actions improved?
+* Search
+- The user should try to find the nearest shop or something similar, the exact task is not determined yet.
+- Outcomes: How understable are the object categories? What about the UX of the search dialog itself?
+* The find your home task
+- The user should find his home or some other place he chooses
+- That might involve sending a request for a new area (that might delay any time schedules)
+- Outcomes - Whatever the user wants to add, probably
