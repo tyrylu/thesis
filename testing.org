@@ -1,0 +1,29 @@
+* Schedule
+- On the 9th/10th of August, the testing scenarios, methodology etc. should be agreed upon - it should be written before 1st, but there is no time to agree on it in the first week of the month due to time constraints.
+- In the  second/third week of August (might slip to the last week) a pilot testing should be done - preferred subjects - Vojtěch Polášek and someone with Windows (very likely most of them will use that OS)
+- Main testing should occur in September, should finish in the first week of October
+* General notes
+- Subjects - visually impaired people - blind are preferred over partially sighted, they should be at least somewhat capable with a computer (the entry bar for the Linux group is currently much higher as the install is not straight-forward in any way)
+- In person meeting with the subject is preferred, should very likely have a backup solution using some videochat service - needs to be accessible including setting up screen sharing which needs to support audio sharing as well
+- General objective - find out how the people rate the usability, usefulness of the application and gather suggestions for future development
+* Methodology
+- In general, the user will perform some task and then share their opinions
+- Some specific questions will be asked as well
+** Area selection
+- User runs the app and has to select the given area
+- Area choice will be fixed in this case (Praha or something not in the first half of the alphabet)
+- Possible interesting outcomes: Will the users use first letter navigation in the list? What changes in the format of the area entries they would like?
+** Main window - walking etc.
+- The user should walk a little, also, the direction changind controls should be shown in this scenario
+- Possible interesting outcomes - Is the system understandable enough? How tricky is walking on a road and are the direction commands sufficient to make that easy? Should more/less accurate values be shown for degrees, distances and coordinates by default?
+** Near by objects exploration
+- The user should explore what's around him.
+- Possible interesting outcomes: How informative is the objects list? How overwhelming (or not) are the object properties? How discoverable are the property/object actions? How could the discoverability of object actions improved?
+** Search
+- The user should try to find the nearest shop or something similar, the exact task is not determined yet.
+- Outcomes: How understable are the object categories? What about the UX of the search dialog itself?
+** The find your home task
+- The experimental testing could indicate that there is not eough time for this one
+- The user should find his home or some other place he chooses
+- That might involve sending a request for a new area (that might delay any time schedules)
+- Outcomes - Whatever the user wants to add, probably
