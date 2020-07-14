@@ -6,24 +6,32 @@
 - Subjects - visually impaired people - blind are preferred over partially sighted, they should be at least somewhat capable with a computer (the entry bar for the Linux group is currently much higher as the install is not straight-forward in any way)
 - In person meeting with the subject is preferred, should very likely have a backup solution using some videochat service - needs to be accessible including setting up screen sharing which needs to support audio sharing as well
 - General objective - find out how the people rate the usability, usefulness of the application and gather suggestions for future development
-* Methodology
-- In general, the user will perform some task and then share their opinions
-- Some specific questions will be asked as well
-** Area selection
-- User runs the app and has to select the given area
-- Area choice will be fixed in this case (Praha or something not in the first half of the alphabet)
-- Possible interesting outcomes: Will the users use first letter navigation in the list? What changes in the format of the area entries they would like?
-** Main window - walking etc.
-- The user should walk a little, also, the direction changind controls should be shown in this scenario
-- Possible interesting outcomes - Is the system understandable enough? How tricky is walking on a road and are the direction commands sufficient to make that easy? Should more/less accurate values be shown for degrees, distances and coordinates by default?
-** Near by objects exploration
-- The user should explore what's around him.
-- Possible interesting outcomes: How informative is the objects list? How overwhelming (or not) are the object properties? How discoverable are the property/object actions? How could the discoverability of object actions improved?
-** Search
-- The user should try to find the nearest shop or something similar, the exact task is not determined yet.
-- Outcomes: How understable are the object categories? What about the UX of the search dialog itself?
-** The find your home task
-- The experimental testing could indicate that there is not eough time for this one
-- The user should find his home or some other place he chooses
-- That might involve sending a request for a new area (that might delay any time schedules)
-- Outcomes - Whatever the user wants to add, probably
+* Plan
+** Before meeting
+- A subject which agrees with the participation will get a link for the download - Windows users will get a link for a portable installation, Linux users will get at least the client source code, prebuild Rust extension and the requirements file along with install instructions (language depends on the language of the participant)
+- No specific tasks will be given at this point - the participant will be encouraged to try as many things with the application as he sees fit
+- The participants will have at least a week of time for the playing and possible questions (hopefully no new bugs will be found during this period)
+** The meeting
+- Preferrably a personal one - location undecided as of now, preferred requirements - calm environment, Wi-Fi would be a great plus, same applies for a sighted person - in case of unforeseen computer errors etc.
+- The participant will be asked about the confirmation of recording the interview - if declined, the meeting will continue nonetheless, but writing actionable notes might prove somewhat harder
+- Some initial questions will be asked
+  - General classification of their visual impairment - completely blind/partially sighted or something along like that
+  - How would you rate your computer skills
+- The general structure of the meeting will be explained
+*** Part I
+- The participant will be asked about their opinions after the free testing
+- No specific 	questions will be asked yet
+*** Part II
+- The user will be asked whether he wants to try anything - search for basically anything, look for some interesting places etc.
+- Might be skipped if the participant looks like he didn't test anything, e. g. has no experiences with the app and don't seem to be as big a tinkerer
+- Of course if he provides all the feedback in the first part, this might be skipped as well
+*** Part III e. g. the tasks
+- Might not be necessary if the participant does everything on their own
+- If not, some (or all) of the following tasks will be carried out:
+  - Select an area
+  - Walk around, walk on streets and beyond
+  - Do a current location query
+  - Look what's near by
+  - Simple search - e. g. all the near by shops
+  - More complex eśearch e. g. for an address
+*** The questions afterward
