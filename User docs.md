@@ -43,5 +43,4 @@ Dalšími zvuky, se kterými je možné se setkat je zvuk reprezentující tráv
 * Jdeme rovně, až do doby, kdy přijdeme na křižovatku s ulicí Chlupova
 * Tam odbočíme vpravo
 * Dojdeme na křižovatku s ulicí Šumavská, kde odbočíme vpravo
-* Poznámka pro Brna znalé - ano, pochopitelně existuje přímější cesta - po Kounicově v úhlu 157 stupňů a na křižovatce s Šumavskou zabočit vlevo
-* Poznámka pro šťouraly - ano, možnost jít po Kounicově ve směru 157 stupňů opravdu nebyla ohlášena, je to známá chyba
+* Poznámka pro Brna znalé - ano, pochopitelně existuje přímější cesta - po Kounicově směrem, kde je z této křižovatky delší, a pak vlevo po Šumavské, ale přes Chlupovu to je zajímavější. :-)
