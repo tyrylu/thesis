@@ -1,6 +1,6 @@
 ## Testovaná verze softwaru
 Omezení a požadavky na spuštění viz. readme (až se něco jako tohle bude posílat respondentům, ty části se zkopírují/přeloží do češtiny a přiloží k tomu, co dostanou).
-* Binárka pro Windows: https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/35957513.zip
+* Binárka pro Windows: https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/36126049.zip
 * A pro Linux: https://oc.trycht.cz/index.php/s/joiiPSYzanEgNsF
 ## Pár klávesových zkratek do začátku
 Obecně jich není vůbec málo, ale tyto by měly do začátku bohatě stačit. Zkratky dalších funkcí jsou pochopitelně u příslušných položek v menu.
