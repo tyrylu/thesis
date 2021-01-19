@@ -1,48 +1,39 @@
 * Schedule
-- On the 9th/10th of August, the testing scenarios, methodology etc. should be agreed upon - it should be written before 1st, but there is no time to agree on it in the first week of the month due to time constraints.
-- In the  second/third week of August (might slip to the last week) a pilot testing should be done - preferred subjects - Vojtěch Polášek and someone with Windows (very likely most of them will use that OS)
-- Main testing should occur in September, should finish in the first week of October
+- On the 1st, of February the testing scenarios, methodology etc. should be agreed upon - it should be written before 1st, but there is no time to agree on it in the first week of the month due to time constraints.
+- In the first (if second, we might have trouble) week of February a pilot testing should be done - preferred subjects - Vojtěch Polášek and someone with Windows (very likely most of them will use that OS)
+- Main testing should occur in February, first week of March might be acceptable
 * General notes
 - Subjects - visually impaired people - blind are preferred over partially sighted, they should be at least somewhat capable with a computer (the entry bar for the Linux group is currently much higher as the install is not straight-forward in any way)
-- In person meeting with the subject is preferred, should very likely have a backup solution using some videochat service - needs to be accessible including setting up screen sharing which needs to support audio sharing as well
+- Very likely a Jitsi meet call (thanks, Covid-19).
 - General objective - find out how the people rate the usability, usefulness of the application and gather suggestions for future development
 * Plan
 ** Before meeting
-- A subject which agrees with the participation will get a link for the download - Windows users will get a link for a portable installation, Linux users will get at least the client source code, prebuild Rust extension and the requirements file along with install instructions (language depends on the language of the participant)
-- No specific tasks will be given at this point - the participant will be encouraged to try as many things with the application as he sees fit
-- The participants will have at least a week of time for the playing and possible questions (hopefully no new bugs will be found during this period)
+- The subject will get the user docs (including download links and the scenarios)
+- He'll be encouraged to try the scenarios and whatever he sees fit
+- The participants will have at least a week of time for their own testing and possible questions (hopefully no new bugs will be found during this period)
 - Will know about the meeting and its future recording and the recording's deletion timeframe and related things
 ** The meeting
 - Duration approx. one hour
-- Preferrably a personal one - location undecided as of now, preferred requirements - calm environment, Wi-Fi would be a great plus, same applies for a sighted person - in case of unforeseen computer errors etc.
+- Very likely a Jitsi meet call, preferrably with Chromium based browser so we can have a recording of the computer audio as well
 - The participant will be asked about the confirmation of recording the interview - if declined, the meeting will continue nonetheless, but writing actionable notes might prove somewhat harder
 - The general structure of the meeting will be explained
 - Some initial questions will be asked
-  - General classification of their visual impairment - completely blind/partially sighted or something along like that
+  - General classification of their visual impairment - completely blind/partially sighted or something like that
   - How would you rate your computer skills
   - Did you use similar apps (desktop/mobile) and how often/how?
+  - A rough age classification (not sure whether the subjects are age diverse enough so this metric matters)
 *** Part I
 - The participant will be asked about their opinions after the free testing
 - No specific 	questions will be asked yet
-*** Part II
+*** Part II - Application explanation, basic testing scenarios
 - A basic explanation of the app
 - Will explain basic concepts - area selection, walking, near by queries, simple search etc.
-- Will use a given area as an example - which one would be the best is not determined yet, but Brnou could be a good candidate
+- The scenario from the user docs will be used for demonstration purposes
 - If the first part indicates that the participant used the app enough, this part might be skipped entirely
 *** Part III
-- The user will be asked whether he wants to try anything - search for basically anything, look for some interesting places or just play with the application etc.
-- Might be skipped if the participant looks like he didn't test anything, e. g. has no experiences with the app and don't seem to be as big a tinkerer
-- Of course if he provides all the feedback in the first part, this might be skipped as well
-*** Part IV e. g. the tasks
-- Might not be necessary if the participant does everything on their own
-- If not, some (or all) of the following tasks will be carried out:
-  - Select an area
-  - Walk around, walk on streets and beyond
-  - Do a current location query
-  - Look what's near by
-  - Simple search - e. g. all the near by shops
-  - More complex eśearch e. g. for an address
-  - Try to find a path to a place - only if the participant seems likely to tinker
+- The participant will be asked whether he wants to try anything he did not try during the week, ask any questions etc.
+- Might be skipped if the participant looks like he didn't test anything, e. g. has no experiences with the app and don't seems to be as big a tinkerer
+- Of course if he provides all the feedback in the first or second part, this might be skipped as well
 *** The questions
 - They might be answered during the interview - or at least some of them
 - Will try to quantify the learnability, efficiency, memorability, number of error conditions and user satisfaction
