@@ -35,8 +35,7 @@
 - Might be skipped if the participant looks like he didn't test anything, e. g. has no experiences with the app and don't seems to be as big a tinkerer
 - Of course if he provides all the feedback in the first or second part, this might be skipped as well
 *** The questions
-- They might be answered during the interview - or at least some of them
-- Will try to quantify the learnability, efficiency, memorability, number of error conditions and user satisfaction
+- Some per area questions, see below for more details
 - These will not have a numeric answer for the survey data
 - After the specific area questions, the System usability scale will be used to evaluate the application as a whole
 **** Areas of interest for the area specific questions
@@ -45,3 +44,19 @@
 - Main window - including the menu structure, shortcuts, walking behaviors etc.
 - The near by objects dialog + the actions on objects
 - The search UI
+**** Area specific questions
+The following questions will be asked during the interview for each area (i would prefer to ask them rather than deducing the answers). For some areas (see below), there are more specific questions as well.
+- How hard was to learn the specific part of the application?
+- How would you make the area more easy to use?
+- How hard was to remember the specific area, and what was hard about it?
+- How was the experience during error conditions?
+- How satisfied you were with the area?
+***** Main window
+Some of these might not be asked directly, the user might provide the answer first
+- A curious pondering whether a 180 degree turn would be really useful and how much
+- When turning manually, would the user rather hear a clock like direction, north/west/etc. direction or the degrees reading?
+- When announcing interesting objects, is the current behavior sufficient or do we want some more configuration (not announcing some kinds of objects etc.)
+- Is it useful to have the ctrl+shift+l command?
+***** Near by objects dialog
+- Which object actions would you find useful?
+- How would you improve the discoverability of the object/property actions? Yeah, they should be in the manual, but maybe there might be some other ways?
