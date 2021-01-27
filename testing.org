@@ -5,7 +5,10 @@
 * General notes
 - Subjects - visually impaired people - blind are preferred over partially sighted, they should be at least somewhat capable with a computer (the entry bar for the Linux group is currently much higher as the install is not straight-forward in any way)
 - Very likely a Jitsi meet call (thanks, Covid-19).
-- General objective - find out how the people rate the usability, usefulness of the application and gather suggestions for future development
+* Objectives
+- For each of the key application areas find out how memorable, efficient to use, easy to learn and so on (see below for details) the area actually is
+- Also gather suggestions for usability improvements of the area
+- Quantitatively evaluate the usability of the application using the System usability Scale (see below for the questions)
 * Plan
 ** Before meeting
 - The subject will get the user docs (including download links and the scenarios)
@@ -60,3 +63,16 @@ Some of these might not be asked directly, the user might provide the answer fir
 ***** Near by objects dialog
 - Which object actions would you find useful?
 - How would you improve the discoverability of the object/property actions? Yeah, they should be in the manual, but maybe there might be some other ways?
+**** Overall scoring - System usability Scale
+The following questions will be asked, with answers on a 5 level scale starting from strongly disagree to strongly agree:
+1. I think that I would like to use Feel the Streets frequently.
+2. I found Feel the Streets unnecessarily complex.
+3. I thought Feel the Streets was easy to use.
+4. I think that I would need the support of a technical person to be able to use Feel the Streets.
+5. I found the various functions in Feel the Streets were well integrated.
+6. I thought there was too much inconsistency in Feel the Streets.
+7. I would imagine that most people would learn to use Feel the Streets very quickly.
+8. I found Feel the Streets very cumbersome to use.
+9. I felt very confident using Feel the Streets.
+10. I needed to learn a lot of things before I could get going with Feel the Streets.
+For the scoring methodology and evaluation of the resulting metric see for example https://www.usability.gov/how-to-and-tools/methods/system-usability-scale.html
