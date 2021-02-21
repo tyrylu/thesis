@@ -1,13 +1,16 @@
-## Testovaná verze softwaru
-Omezení a požadavky na spuštění viz. readme (až se něco jako tohle bude posílat respondentům, ty části se zkopírují/přeloží do češtiny a přiloží k tomu, co dostanou).
-* Binárka pro Windows: https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/36126049.zip
-* A pro Linux: https://oc.trycht.cz/index.php/s/joiiPSYzanEgNsF
+## Stažení
+* Binárka pro Windows: https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/39492398.zip
+* A pro Linux: https://oc.trycht.cz/index.php/s/mtf325GGZajYYGX
 ## Požadavky na systém
 Aplikace aspoň při prvním spuštění vyžaduje připojení k internetu, při následných (pokud tedy nechcete stáhnout aktuální data oblasti nebo novou oblast) už ne.
 ### Windows
 Aplikace funguje na Windows 10 64-bit. Na starších Windows fungovat může, ale nebylo to testované, 64-bitový operační systém je ale vyžadován v každém případě.
 
+Pokud se při spuštění najde běžící odečítač, použije se pro vyslovování hlášek ten, jinak se použije výchozí Sapi 5 hlas. Ten lze změnit, ale dostat se do toho správného okna není úplně triviální, nejjednodušší je asi do dialogu spustit nebo do vyhledávacího pole ve start menu vložit následující cestu: C:\Windows\System32\Speech\SpeechUX\sapi.cpl
+### Linux
+Aplikace byla testována na Fedoře 33, na jiných distribucích může, ale nemusí binární verze fungovat. Dodávaná binárka vyžaduje běžící X server, t. j. pod Waylandem fungovat nebude.
 
+Jako hlasový výstup se používá Speech dispatcher.
 ## Pár klávesových zkratek do začátku
 Obecně jich není vůbec málo, ale tyto by měly do začátku bohatě stačit. Zkratky dalších funkcí jsou pochopitelně u příslušných položek v menu.
 ### Pohyb
@@ -32,6 +35,7 @@ I tuto volbu lze vypnout, což se může hodit, pokud chcete například dojít 
 
 Poslední volbou ovlivňující pohyb jako takový je "Automaticky opravit směr, pokud se pokusíte opustit poslední cestu". Pokud je tato volba zapnuta, což ve výchozím stavu je, bude při pokusu o opuštění poslední cesty opraven váš směr tak, aby odpovídal cestě, na které se nacházíte.
 ## Počáteční pozice
+Samozřejmě se můžete podívat, kamkoliv chcete, ale aby rozhovor probíhal tak nějak srovnatelně, ocenil bych projití pár testovacích scénářů. Jejich popis následuje:
 * V seznamu oblastí vybereme "Brno - testovací"
 * Po stažení provedeme skok na souřadnice (klávesa j), a to na: Zeměpisná délka: 16,5929657, zeměpisná šířka: 49,2117972 (ctrl+v v oknech pro zadání souřadnic funguje)
 * Otočíme se pomocí ctrl+r o 67 stupňů
