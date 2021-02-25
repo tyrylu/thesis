@@ -1,0 +1,78 @@
+* Úvodem
+- Přivítání, poděkování za účast
+- Souhlasí účastník se záznamem?
+- Pokud ano, spustit nahrávání
+- Pokud ne, nedá se nic dělat, pokračujeme obecnými otázkami, ale záznam nemáme (pokusit se o poznámky, ale výsledky nebudou asi žádný zázrak)
+* Obecné otázky o respondentovi
+- Hrubá klasifikace věku (škatulky nejvíc  po pěti letech, ideálně radši po deseti, ale mohli by všichni skončit v jedné).
+- Jaká je vaše zraková vada (úplná nevidomost/světlocit/částečná ztráta zraku/něco jiného - aspoň větu o tom něčem jiném)?
+- Jak hodnotíte vaše schopnosti práce s počítačem (začátečník/mírně pokročilý/středně pokročilý/pokročilý/klidně ať to specifikují jinak pokud jako že do těch škatulek nebudou chtít, ale nerozmazávat to, zas tak důležité to není/stejně to v té škatulce skončí)?
+- Používáte nějaké navigační aplikace na mobilním teefonu/desktopu?
+- Pokud ano:
+  - Jak často?
+  - Jak tyto aplikace využíváte?
+* O testování
+- Co s aplikací tázaný již zkoušel?
+- Pokud se rozpovídá o tom, kde všude byl a co všechno viděl, spousta ukázek/společných procházení aplikace lze přeskočit.
+- Dost věcí půjde přeskočit i v případě, že prošel pouze testovací scénáře.
+- Co si dosud o aplikaci myslíte? Nemá smysl, pokud s ní v zásadě nepracoval.
+* Pokud se ukázalo, že ji v zásadě neviděl
+- Projít testovací scénáře, + ukázat aspoň zákadní hledání podle jména
+* Pokud ji viděl a pracoval s ní
+- Chce tazatel něco s aplikací zkusit, na co si třeba sám netroufal?
+- Pokud ano, nemělo by se to příliš protáhnout - dát na to tak maximálně 20 minut.
+- Jinak se pokračuje otázkami
+* Otázky
+- Obecně se nepočítá s tím, že by se kladly úplně doslovně, ale každá se objeví a i pořadí zůstane tak nějak stejné (pořadí oblastí určitě, jednotlivé otázky nejspíš rovněž, ale když se jedna dvě prohodí, nestane se nic tak strašného).
+- Pokud na některou otázku už odpověděl dostatečně jasně, nemá smysl ji pokládat znovu.
+** Výběr oblasti
+- Jak bylo složité se tuto část aplikace naučit?
+- Jak by se podle vašeho názoru dala tato část aplikace udělat jednodušší na použití?
+- Jak bylo těžké si tuto část zapamatovat? A co bylo nejtěžší?
+- Co si myslíte o ošetření chybových stavů?
+- Jak jste s touto částí byli spokojení?
+** Žádost o novou oblast
+- Použil(a) jste tuto část aplikace?
+- Pokud ne, zběžně ji ukázat.
+- Jak bylo složité se tuto část aplikace naučit?
+- Jak by se podle vašeho názoru dala tato část aplikace udělat jednodušší na použití?
+- Jak bylo těžké si tuto část zapamatovat? A co bylo nejtěžší?
+- Co si myslíte o ošetření chybových stavů?
+- Jak jste s touto částí byli spokojení?
+** Hlavní okno
+- Jak bylo složité se tuto část aplikace naučit?
+- Jak by se podle vašeho názoru dala tato část aplikace udělat jednodušší na použití?
+- Jak bylo těžké si tuto část zapamatovat? A co bylo nejtěžší?
+- Co si myslíte o ošetření chybových stavů?
+- Jak jste s touto částí byli spokojení?
+- Pomohlo by přidání funkce otočení o 180 stupňů?
+- Je při ručním otáčení vyhovující oznamování stupňů, nebo by bylo lepší ho nahradit něčím jiným (styl hodin nebo tak něco)?
+- Jak jste spokojeni s oznamováním zajímavých objektů (chtělo by to podle vás větší konfigurovatelnost)?
+- Využili jste někdy zkratku ctrl+shift+l?
+** Prohlížení seznamu objektů
+- Jak bylo složité se tuto část aplikace naučit?
+- Jak by se podle vašeho názoru dala tato část aplikace udělat jednodušší na použití?
+- Jak bylo těžké si tuto část zapamatovat? A co bylo nejtěžší?
+- Jak jste s touto částí byli spokojení?
+- Všimli jste si omožnosti nad objekty provádět akce?
+- Pokud ano, jak bylo složité si jich všimnout a jak by se dalo zjednodušit jejich nalezení?
+- Jinak mu je ukázat a zeptat se na předchozí otázku.
+- Všechny nejspíš neviděl, takže mu ve stručnosti představit ty, keré ještě nepotkal.
+- Jaké další by se mohly hodit?
+** O ztraceních se
+- Pokud se vám povedlo se ztratit, jaká informace by vám pomohla se zas nalézt?
+** System usability scale
+- Odpovědi na škále 1 až 5 kde 1 je vůbec nesouhlasím a 5 je určitě souhlasím
+1. Mslím si, že budu Feel the Streets často používat.
+2. Feel the streets je příliš složitá aplikace.
+3. Podle mého názoru je Feel the Streets jednoduchá aplikace na pochopení a používání.
+4. Domnívám se, že bych při používání Feel the Streets potřeboval pomoc technicky zaměřeného člověka.
+5. Podle mého názoru je většina funkcí Feel the Streets poměrně dobře integrovaná.
+6. Podle mého názoru není Feel the Streets příliš konzistentní.
+7. Podle mého názoru se většina lidí naučí používat Feel the Streets docela rychle.
+8. Podle mého názoru je Feel the Streets na používání neohrabaná aplikace.
+9. Při používání Feel the Streets jsem si byl jistý tím, co dělat.
+10.  Než jsem mohl(a) začít Feel the Streets používat, musel(a) jsem se naučit hodně věcí.
+* Závěr
+- Chcete ještě něco dodat?
+- Nahrávání se vypne, je možné, že se pak začne řešit všechno možné, ale to už je tak nějak jedno.
