@@ -1,5 +1,7 @@
+# Dokumentace Feel the Streets
+Ještě jednou díky za ochotu. A abyste se úplně neztratili, tak tady máte pár informací, které by se mohly hodit.
 ## Stažení
-* Binárka pro Windows: https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/39492398.zip
+* Binárka pro Windows: https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/47181451.zip
 * A pro Linux: https://oc.trycht.cz/index.php/s/mtf325GGZajYYGX
 ## Požadavky na systém
 Aplikace aspoň při prvním spuštění vyžaduje připojení k internetu, při následných (pokud tedy nechcete stáhnout aktuální data oblasti nebo novou oblast) už ne.

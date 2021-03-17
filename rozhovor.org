@@ -7,7 +7,7 @@
 - Hrubá klasifikace věku (škatulky nejvíc  po pěti letech, ideálně radši po deseti, ale mohli by všichni skončit v jedné).
 - Jaká je vaše zraková vada (úplná nevidomost/světlocit/částečná ztráta zraku/něco jiného - aspoň větu o tom něčem jiném)?
 - Jak hodnotíte vaše schopnosti práce s počítačem (začátečník/mírně pokročilý/středně pokročilý/pokročilý/klidně ať to specifikují jinak pokud jako že do těch škatulek nebudou chtít, ale nerozmazávat to, zas tak důležité to není/stejně to v té škatulce skončí)?
-- Používáte nějaké navigační aplikace na mobilním teefonu/desktopu?
+- Používáte nějaké navigační aplikace na mobilním telefonu/desktopu?
 - Pokud ano:
   - Jak často?
   - Jak tyto aplikace využíváte?
@@ -57,13 +57,13 @@
 - Všimli jste si omožnosti nad objekty provádět akce?
 - Pokud ano, jak bylo složité si jich všimnout a jak by se dalo zjednodušit jejich nalezení?
 - Jinak mu je ukázat a zeptat se na předchozí otázku.
-- Všechny nejspíš neviděl, takže mu ve stručnosti představit ty, keré ještě nepotkal.
+- Všechny nejspíš neviděl, takže mu ve stručnosti představit ty, které ještě nepotkal.
 - Jaké další by se mohly hodit?
 ** O ztraceních se
 - Pokud se vám povedlo se ztratit, jaká informace by vám pomohla se zas nalézt?
 ** System usability scale
 - Odpovědi na škále 1 až 5 kde 1 je vůbec nesouhlasím a 5 je určitě souhlasím
-1. Mslím si, že budu Feel the Streets často používat.
+1. Myslím si, že budu Feel the Streets často používat.
 2. Feel the streets je příliš složitá aplikace.
 3. Podle mého názoru je Feel the Streets jednoduchá aplikace na pochopení a používání.
 4. Domnívám se, že bych při používání Feel the Streets potřeboval pomoc technicky zaměřeného člověka.
@@ -72,7 +72,7 @@
 7. Podle mého názoru se většina lidí naučí používat Feel the Streets docela rychle.
 8. Podle mého názoru je Feel the Streets na používání neohrabaná aplikace.
 9. Při používání Feel the Streets jsem si byl jistý tím, co dělat.
-10.  Než jsem mohl(a) začít Feel the Streets používat, musel(a) jsem se naučit hodně věcí.
+10  Než jsem mohl(a) začít Feel the Streets používat, musel(a) jsem se naučit hodně věcí.
 * Závěr
 - Chcete ještě něco dodat?
 - Nahrávání se vypne, je možné, že se pak začne řešit všechno možné, ale to už je tak nějak jedno.
