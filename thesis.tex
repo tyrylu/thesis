@@ -36,9 +36,55 @@ This section explores the various mobile phone apps used for navigation by visua
 \section{Desktop apps}
 In this section, the few desktop applications for navigation purposes are explored.
 \chapter{Feel the streets}
-This chapter describes the implementation of Feel the streets, an application for browsing Open Street Maps data by visually impaired people, its features, implementation decisions and some noteworthy events in the pplication development.
+This chapter describes the implementation of Feel the streets, an application for browsing Open Street Maps data by visually impaired people, its features, implementation decisions and some noteworthy events in the application development.
 \section{Feature overview}
-This section describes the currently implemented features of Feel the Streets.
+From the user's perspective, Feel the Streets is a desktop application which, when launched, allows the user to browse OpenStreetMap maps without sight.
+\subsection{Area selection}
+After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This list is usually retrieved from the Feel the Streets server, so it includes all the available areas, but when there is no network connectivity, the locally available areas are shown instead.
+
+The areas list shows the area's name, last modification and creation times formatted according to the user's locale preferences, the area size and its state. The state represents the status of the area's database and it usually reports that the area is updated. Other states exist as well, namely states for an area which is just being created, for which we are just now retrieving the incremental changes or we are applying them. A special concept of frozen areas exists, these areas can be downloaded, but after creation, no changes are applyed on them, which is useful for research reproducibility.
+
+From the area selection window the user can also request an area which is not yet available. If he does so, he is prompted for the area's name and if there are multiple candidates, he is then offered the list of the areas to specify which one he actualy means. This selection process is helped by including all the area properties in the candidate details window.
+
+By selecting an area a set of steps starts. If he selected area is not yet downloaded to the user's computer, the download is performed. If it is, the application checks for all the changes which occurred to the area between the last check and now and applies them. After these steps, the user ends up in the main window.
+\subsection{the main window}
+The main window of the application is seemingly simple - just an empty window with a menubar on top. Despite this, it is the central piece of the user interface of the application.
+
+This is the window where the actual map exploration occurs. Because of that, it contains all the relevant commands.
+
+The first group of commands allows the user to move in the environment. It allows him to do a forward and backward step, turn around in 5 and 90 degree increments, rotate by a given amount and jump to a particular set of GPS coordinates.
+
+The next group of commands allows the user to determine his location. He can request a short summary of it, or he can request a more detailed view of it using the near by objects window, which is described in a subsequent subsection. The user can also request a list of near by objects. Usually some objects are not considered (like routes and similar relatively big objects), but the user can request the location or near by objects without ignoring these.
+
+The next group of commands provides various additional information about the application's state. These additional commands include reporting the user's current GPS coordinates, his direction or they allow him to browse the history of spoken messages during the current application run, the speech history is not saved between restarts of the application.
+
+There is also a set of commands which allows toggling some of the application settings.
+\subsection{Search}
+The application also allows performing searches in the data. There are two search facilities.
+
+The first is a simple search based on a partial name match. The user can enter a part of the desired name and every object which has that particular substring in its name tag is returned.
+
+When the name search is not sufficiently detailed, the user can use the advanced search. In this mode he is first required to select which kind of object he wants to search (everything with an address, shops, buildings etc). After the selection, he can specify additional conditions based on the selected entity's fields. For strings it is possible to use exact or partial matches, for numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical and operator between them.
+
+In both of the search modes the results are displayed using the same window which is used for the near by objects.
+\subsection{The objects list window}
+This window is used for displaying a list of objects. This list can come from a near by query, a search, or it can be a result of a parent/child query as well.
+
+The window shows a list of objects represented as short descriptions of them, in each case it contains the entity class of it and some details (like the name, amenity type) for some of the classes. In addition, when an object is selected, all the properties (basically OpenStreetMap tags when not counting some renaming of the tag names) are displayed. In addition, the user can expand a part of the properties which contains the revision information including the last changed date, the user who did the change, the changeset number and this section also shows the id of the object which is the OpenStreetMap id prefixed by a letter (n for nodes, w for ways and r for relations) to allow the user to communicate exactly which object might require some fixes, for example.
+
+The window also allows performing additional actions of some of the objects. The more useful of these actions include opening a website related to the object or opening its Wikipedia entry. The actions also allow viewing the parents (e. g. the relations or ways which contain the given object) or the object's children. From the parents, it is for example possible to determine the public transport line related to a railway.
+\subsection{Navigational sounds}
+During navigation, the application plys some sounds to help the user in visualizing the relationships between the object positions and distances.
+
+As a first clue, it plays sounds for some objects, currently for land areas, shops and trash cans. These sounds are played on the correct 3d cartesian coordinates so the relationships between them are preserved.
+
+In addition to these sounds, the application also plays sounds for crossings.
+
+Both of these groups of sounds can be turned on and off, if desired.
+\subsection{Automatic announcements of interesting objects}
+To help the user discover potentially interesting objects, the application automatically announces some of the near by entities. This announcement uses much shorter distance than the near by objects scan, because for now, the object is announced regardless of its reachability, so it might be possible that an object is announced even if it is behind some other buildings, for example.
+
+These announcements can of course be turned off using a configuratio option.
 \section{Technical overview}
 This section describes the currently used technologies which are used by the Feel the Streets client and server. The technologies have changed quite extensively during the development, so the Development history section then presents the various choices which were made during the lifetime of the application.
 \section{Development history}
