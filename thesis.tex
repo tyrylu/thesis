@@ -88,7 +88,7 @@ These announcements can of course be turned off using a configuration option.
 \section{Technical overview}
 This section describes the currently used technologies which are used by the Feel the Streets client and server. The technologies have changed quite extensively during the development, so the Development history section then presents the various choices which were made during the lifetime of the application.
 
-As of now (commit f316b17d633abe29dfece0a83731defe491fe5a5), the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through python bindings.
+As of now (commit f316b17d63), the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through python bindings.
 \subsection{THe client}
 The client is the main application which all the users interact. It handles downloading of the area databases, applying updates and browsing the respecive areas.
 
@@ -114,12 +114,85 @@ The server uses compression extensively to minimize the storage requirements. Th
 \subsection{The shared library}
 The handling of area databases is actually implemented in a shared library, called osm_db, which is called from the server code and from Python as well. To allow calling the library from Python, creating a binding library was necessary. Fortunately, by using the Pyo3 Rust library, that efford was relatively straightforward. The Python library does not expose the entire public API of osm_db, only the parts which the client application requires, which means basically the complete query API and a way to apply database changes.
 \section{Development history}
-This section presents the development history of Feel the Streets, the various approaches used and their advantages and disadvantages. It also mentions some of the accessibility issues which are further described in the Issuses encountered along the way section.
+This section presents the development history of Feel the Streets, the various approaches used and their advantages and disadvantages. It also mentions some of the accessibility issues which are further described in the issues encountered along the way section. This section does not describe each commit of the Feel the Streets repository, it mentions only the more important ones.
+\subsection{The beginnings}
+The first commit of the Feel the Streets project occurred on the 18th of August 2017. At this time, the application's GUI used the Wx widgets library and there was no server component. The area database access was handled using the sqlalchemy library and it used the sqlalchemy's table inheritance features, so there was a separate table for each entity class.
+
+The next commit, which was quite huge, added the initial implementation of the database update logic.
+
+In commit 683215bbe1, the search functionality was added.
+\subsection{Table inheritance removal}
+It turned out, mainly because of the search functionality, which required quite huge joins and it managed to cross the Sqlite3's maximum column count for a query result as well, that the approach which used a separate table for each entity was not sustainable. As a result, in commit 3a02c10710 the area database structure was changed so all the entities were stored in a single table with the entity properties stored in a json object. This storage approach survived to the current version of Feel the Streets, except for some minor modifications. The application representation stayed largely similar, the entity classes kept a Python class, but these classes existed only for the application and used the Pydantic data validation library.
+\subsection{Bookmarks appear}
+In commit dbb8a71b2b the initial support for bookmarks was added. The bookmarks were stored in the area database, which was changed in commit 30d56506d9 to allow safe area redownloads. Bookmarks underwent The last change of the bookmark representation occurred in commit 49bc7331ae which added the direction the user was facing when creating the bookmark which was not stored before.
+\subsection{The server is born}
+Because of the need to update the area databases incrementally and not downloading them each time, commit 8fe9a7548f introduced a concept of semantic changes of OSM objects. The following commit introduced the server component and moved the update logic there and in commit fab61d9f61 the server API was introduced.
+
+When the server API was in place, commit d791a35bad allowed the users to select a map. 
+
+And some commits later, when the server's capability to run an update of all area databases was deemed stable enough, commit b2fd5c4943 implemented the client side of area updates.
+\subsection{Object actions}
+In commit 62a1454247 the framework for executing actions on object was introduced. Some commits later, the wikipedia and wikidata open actions were implemented along with other website like things which could e opened, like the ruian details of a czech building.
+\subsection{The rustification efford}
+Because of the languages used, the server memory consumption and speed was not ideal. To improve the situation, a quite drastic measurement was taken starting from commit 67b194c60a, the entire server component was small piece at a time rewritten into Rust. That required rethinking the way how the entity properties and generator property mappings are stored, so the server used a few yaml files to store the entity classes and their properties, the enums inherent in the data and the translation transformations. The server rewrite efford was merged into master in commit 42a9e4762a.
+
+In commit b5b9ea13a1 the creation of python bindings of osm_db has started. That allowed getting rid of the python entity classes and access to the area database was unified.
+\subsection{Area names are not enough}
+Up until commit acf47daa00 the server assumed that areas will have unique names. The fact that it might not be true was not the reason for the changes in the mentioned commit, the reason was just a curiosity whether it is possible to generate an area database for Antwerpen and finding out that the previous entity retrieval query chose the wrong area for it. As a result, the ids of the OSM areas began to be stored instead.
+
+This was then used in commit ab8940113c which allowed the user to select an area when the requested area name was not unambiguous.
+\subsection{The move to OpenAL}
+In commit 21d703b0e4 the entire sound subsystem was changed from using the Fmod library to OpenAL. The reasons for the change included much easier installations under Linux - the OpenAL library was in all the needed package repositories and usage of the OpenAL's HRTF capabilities became possible as well.
+
+The previously mentioned HRTF support was not used until commit 7f6997cd54, however.
+\subsection{Changing the GUI library}
+While doing Linux testing of Feel the Streets, it turned out that the Wx widgets tree control completely lacks accessibility on that platform. Rather than trying to fix it and push that change through review, a change to a different GUI library was chosen as the solution. Qt was chosen as it was reasonably accessible on all platforms. The rewrite started in commit 864a478d3e and was mainly finished a commit after.
+\subsection{Continuous integration and deployment}
+During the Rust rewrite, a continuous integration configuration was started in commit 78cb752449. When it was created, it only built the source code, but deployment was also added so after a successful build the binaries were pushed to the server where the API ran. This work was finished in commit 90d4e4afec. This version of the CI process was running only on Linux, however.
+
+That changed in commit 3117283f7d and some time later, namely in commit 42c673ef9b we were building something resembling a Windows binary.
+
+Some months later, Travis CI policy to ward open source repositories began to change, so in commit acc0e75618 the Travis CI configuration was dropped after the GitHub Actions configuration mainly worked.
+\subsection{Interesting objects appear}
+Mainly due to some discussions with the thesis advisor, the commit 9e861a7780 introduced the concept of interesting objects. The subsequent commits implemented announcing these and moving until one is found.
+\subsection{Drop the synthetic ID}
+Mainly due to the need to conserve any space, possible, commit 1978dfa944 dropped auto-incrementing ids for entities in the entity databases and started using the id of the OSM entity prefixed by its type instead.
+
+To make the interesting objects more useful, the commit ffe2566d94 added a way for interesting objects to emit a sound.
+\subsection{Keeping the OSM relationships}
+Up until commit 64a5a5a650 the processing step did not preserve the relationships, so it was not possible to determine which nodes were part of a way or relation. This fact was deemed useful enough for future improvements that the relationships were added to the area databases.
+
+After that, commit 5dd07d459f added a client side possibility to view the parents and children of an OSM object.
+
+In addition to the relationships inherent from the OSM data, commit 6d65d9421c extended the entities relationships to allow arbitrary relationship types like streets of an entity and addresses as well. 
+\subsection{Making crossings useful}
+To be as helpful as possible, in commit 58f932d6a4 the application started describing crossings when the user entered them. Making this at least somewhat right was not an easy task, so the exact details are described in the Issues encountered along the way section.
+
+To help the user find them more easily, in commit 3348fc5772 a sound which played on their positions was added.
+\subsection{Getting rid of one object relational mapper}
+When profiling the startup times of the Feel the Streets client, it turned out that using the Sqlalchemy library for interactions with the database which stored bookmarks and last locations added a significant startup time cost. So in commit 2e5e6438ea Sqlalchemy was replaced by direct database calls.
+\subsection{Avoiding footways}
+Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section.
+\subsection{Making things smaller}
+To be as space efficient as possible, commit 18cf5ad1bd added compression for raw OSM objects which resulted from a query. It also disabled removing this cache. That allowed update times to shorter, because when computing a geometry of an object we did not need to request the entities which comprised the parent's geometry (e. g. all nodes for a way etc.) if they did not change.
+
+To make some more things smaller, commit e3894ed98a introduced compression for the semantic changes so they weren't published uncompressed to the change queues.
+\subsection{Frozen areas}
+To help the upcoming usability study be as reproducibžýle ažřs possible, commit 7f17848c42 introduced a concept of a frozen area which does not receive updates. Subsequent commits teached the rest of the codebase about them and allowing freezing already existing areas.
+\subsection{Message of the day}
+To allow informing the testers of a possible important update, commit de86753ebe added a concept of a message of the day and the next one added the client capabilities.
+\subsection{Fixing the sound positioning}
+Just after starting the user study, one of the testers discovered a pretty serious sound positioning related issue which sparked a chain of commit starting with commit a9b92a9704 and ending by commit 0930afcecb. As this issue deserve a more thorough description, it is described in the encountered issues section as well.
 \section{Issues encountered along the way}
 This section describes the various issues encountered during the development of Feel the Streets. Many of them were related to the OSM data or the data model, but there were some accessibility related issues as well.
 \subsection{Representing crossings}
 \subsection{Footways}
 \subsection{Accessibility issues}
+Despite it not being as common, some accessibility issues were discovered along the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further, the workaround was deemed sufficient.
+
+The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments.
+\subsection{Sound positioning issues}
+
 \chapter{Usability study}
 This chapter presents the study which was carried between visually impaired users concerning the usability of Feel the streets
 \section{Study description}
