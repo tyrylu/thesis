@@ -186,6 +186,23 @@ Just after starting the user study, one of the testers discovered a pretty serio
 \section{Issues encountered along the way}
 This section describes the various issues encountered during the development of Feel the Streets. Many of them were related to the OSM data or the data model, but there were some accessibility related issues as well.
 \subsection{Representing crossings}
+During much of the development of Feel the Streets, when an user entered a crossing, only the standard messages for entered roads were announced. That was deemed unsuitable and not informational rich, so a special message was added to the application. That resulted in a series of bug fixes for various corner cases which this section describes.
+
+The first bunch of issues was related to the announcements of the ways you could turn on a road. Due to a broken computation, the possibility of letf turns was hidden for a time. Also, the application reported turns which turned the user about 0 degrees as well, which was not necessary.
+
+Another issue with the crossing announcements logic was that you were notified about a crossing, but the fact that the road which lead you to it actually continued was hidden from the user. That was remedied in commit 0e127d6900. Of course, the additio was not flawless, it turned out that filtering turns about zero degrees does not help when you want to know for how long you can go along the current road, that's the reason why commit 1046631dae exists.
+
+Another bug related to the crossing announcements was actually in the logic which determined which objects are currently intersecting with your position. Up until that time, the spatial intersection query for quickly ruling most of the entities through a R Tree based index assumed a rectangle without size. That however caused an inability to enter the crossing entity when it lay on the geometric intersection of two roads. This issue was fixed in commit 8cbc40c987.
+
+Of course, real world crossings can have more than two roads meet in the crossing. The continuation announcements logic did not account for that, however, so it had to be changed and what the user entered had to be taken into account. These changes happened in commit 7f9edf1034.
+
+Some crossings posed another challenge. For these a road continued more or less straight but with a different name. Up until commit d9aebc79fc, this event was announced as crossing of a road. This revision however changed the logic such that these events were announced as road continuations with a changed name.
+
+When the user entered a road until commit c5221a8783, the road announcement logic only took into account the roads which the user entered. However, these entry points usualy weren't in the point where the geometric intersection of the roads actually lay, so there could be more roads which crossed there, but the user did not enter them yet (mainly roads with pretty sharp turn angles). This commit began actively searching for all the crossing roads and in commit c9748062d7, the user was actually moved to the geometric crossing so the entity entering machinery had all the data it needed to produce the correct messages.
+
+Commit 66f6813d78 fixed another set of crossing reporting issues. The first was related to the type of crossing where you enter it, a differently named road continues for example left, and the right turn is a road with the same name as the one you used to enter the crossing. In this case, the user should be informed about the turn, but until this commit, the duplicate name filtering logic, which allowed the user to not know about roads split because of a different set of tags prevented the announcement. On the other hand, entering a crossing with two roads of the same name was not filtering the second as well, so this commit fixed that case as well.
+
+When you enter  a crossing in the real world, it is obvious that you can not continue in the current direction, but the Feel the Streets users were not notified about that fact unil commit 1ecfecb491 which added these announcements. In commit 93443975d8 the message was made more specific and started to mention the road which was ending on the crossing.
 \subsection{Footways}
 \subsection{Accessibility issues}
 Despite it not being as common, some accessibility issues were discovered along the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further, the workaround was deemed sufficient.
