@@ -111,8 +111,12 @@ For storing the area changes a Rabbitmq server is used. It allows to keep the qu
 To keep the number of additional components as low as possible, Rabbitmq is also used for background tasks storage and for background task scheduling. The scheduling uses the message's time to live and it instruct Rabbitmq to put the message to the ready messages queue after the TTL expires.
 
 The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them to the Rabbitmq queue. The compression uses the Zstd compression algorithm which allows, among other things, to use a pretrained compression dictionary for compression, which gives much better results than compressing the individual messages on its own - it gave an improvement at least of 50% in message sizes on average.
+
+To help discover new kinds of amenities and other enum like tags during the processing of areas and to find other anomalies in the assumed schema of the OSM data (type violations, unknown properties etc.), a record of these events is logged during the operation and it is stored for further analysis. The processing application however is not implemented yet. Or more correctly, the features were lost during the Rust rewrite which is described in a following section.
 \subsection{The shared library}
 The handling of area databases is actually implemented in a shared library, called osm_db, which is called from the server code and from Python as well. To allow calling the library from Python, creating a binding library was necessary. Fortunately, by using the Pyo3 Rust library, that efford was relatively straightforward. The Python library does not expose the entire public API of osm_db, only the parts which the client application requires, which means basically the complete query API and a way to apply database changes.
+\subsection{The addministrative command line application}
+To allow performing some maintenance and related tasks for the server, such as requesting clients to perform redownload of an area, doing a rename of a field and some more actions, a command line application which interacted with the server side area databases and queues was implemented.
 \section{Development history}
 This section presents the development history of Feel the Streets, the various approaches used and their advantages and disadvantages. It also mentions some of the accessibility issues which are further described in the issues encountered along the way section. This section does not describe each commit of the Feel the Streets repository, it mentions only the more important ones.
 \subsection{The beginnings}
@@ -124,7 +128,7 @@ In commit 683215bbe1, the search functionality was added.
 \subsection{Table inheritance removal}
 It turned out, mainly because of the search functionality, which required quite huge joins and it managed to cross the Sqlite3's maximum column count for a query result as well, that the approach which used a separate table for each entity was not sustainable. As a result, in commit 3a02c10710 the area database structure was changed so all the entities were stored in a single table with the entity properties stored in a json object. This storage approach survived to the current version of Feel the Streets, except for some minor modifications. The application representation stayed largely similar, the entity classes kept a Python class, but these classes existed only for the application and used the Pydantic data validation library.
 \subsection{Bookmarks appear}
-In commit dbb8a71b2b the initial support for bookmarks was added. The bookmarks were stored in the area database, which was changed in commit 30d56506d9 to allow safe area redownloads. Bookmarks underwent The last change of the bookmark representation occurred in commit 49bc7331ae which added the direction the user was facing when creating the bookmark which was not stored before.
+In commit dbb8a71b2b the initial support for bookmarks was added. The bookmarks were stored in the area database, which was changed in commit 30d56506d9 to allow safe area redownloads. To accomplish this, a database stored in the user's application data directory was introduced. Bookmarks underwent The last change of the bookmark representation occurred in commit 49bc7331ae which added the direction the user was facing when creating the bookmark which was not stored before.
 \subsection{The server is born}
 Because of the need to update the area databases incrementally and not downloading them each time, commit 8fe9a7548f introduced a concept of semantic changes of OSM objects. The following commit introduced the server component and moved the update logic there and in commit fab61d9f61 the server API was introduced.
 
@@ -136,7 +140,9 @@ In commit 62a1454247 the framework for executing actions on object was introduce
 \subsection{The rustification efford}
 Because of the languages used, the server memory consumption and speed was not ideal. To improve the situation, a quite drastic measurement was taken starting from commit 67b194c60a, the entire server component was small piece at a time rewritten into Rust. That required rethinking the way how the entity properties and generator property mappings are stored, so the server used a few yaml files to store the entity classes and their properties, the enums inherent in the data and the translation transformations. The server rewrite efford was merged into master in commit 42a9e4762a.
 
-In commit b5b9ea13a1 the creation of python bindings of osm_db has started. That allowed getting rid of the python entity classes and access to the area database was unified.
+In commit b5b9ea13a1 the creation of python bindings of osm_db has started. That allowed getting rid of the python entity classes and access to the area database was unified at last.
+
+Along with the rewrite the administrative application was rewritten as well, however not all features were implemented, for example, generating missing OSM enum members from a record of the missing values was not yet implemented despite the support for logging the schema violations during creation and update requests is in place.
 \subsection{Area names are not enough}
 Up until commit acf47daa00 the server assumed that areas will have unique names. The fact that it might not be true was not the reason for the changes in the mentioned commit, the reason was just a curiosity whether it is possible to generate an area database for Antwerpen and finding out that the previous entity retrieval query chose the wrong area for it. As a result, the ids of the OSM areas began to be stored instead.
 
@@ -172,13 +178,13 @@ To help the user find them more easily, in commit 3348fc5772 a sound which playe
 \subsection{Getting rid of one object relational mapper}
 When profiling the startup times of the Feel the Streets client, it turned out that using the Sqlalchemy library for interactions with the database which stored bookmarks and last locations added a significant startup time cost. So in commit 2e5e6438ea Sqlalchemy was replaced by direct database calls.
 \subsection{Avoiding footways}
-Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section.
+Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section in more detail.
 \subsection{Making things smaller}
 To be as space efficient as possible, commit 18cf5ad1bd added compression for raw OSM objects which resulted from a query. It also disabled removing this cache. That allowed update times to shorter, because when computing a geometry of an object we did not need to request the entities which comprised the parent's geometry (e. g. all nodes for a way etc.) if they did not change.
 
 To make some more things smaller, commit e3894ed98a introduced compression for the semantic changes so they weren't published uncompressed to the change queues.
 \subsection{Frozen areas}
-To help the upcoming usability study be as reproducibžýle ažřs possible, commit 7f17848c42 introduced a concept of a frozen area which does not receive updates. Subsequent commits teached the rest of the codebase about them and allowing freezing already existing areas.
+To help the upcoming usability study be as reproducible as possible, commit 7f17848c42 introduced a concept of a frozen area which does not receive updates during the normal areas update procedure. Subsequent commits teached the rest of the codebase about them and allowing freezing already existing areas using the administrative command line interface.
 \subsection{Message of the day}
 To allow informing the testers of a possible important update, commit de86753ebe added a concept of a message of the day and the next one added the client capabilities.
 \subsection{Fixing the sound positioning}
@@ -204,12 +210,19 @@ Commit 66f6813d78 fixed another set of crossing reporting issues. The first was 
 
 When you enter  a crossing in the real world, it is obvious that you can not continue in the current direction, but the Feel the Streets users were not notified about that fact unil commit 1ecfecb491 which added these announcements. In commit 93443975d8 the message was made more specific and started to mention the road which was ending on the crossing.
 \subsection{Footways}
+Another area of behavior which changed quite a lot was footway handling. As footways do not usually have names in the OpenStreetMap data, they were quite confusing, at least for the thesis supervisor, so the footway avoidance logic was added - see the development history for more details.
+
+It turned out that disallowing entering of all footways was not the right move, so commit 539f09b71e allowed entering footways when the current object was a footway. That was not enough, unfortunately. It turned out that roads sometimes can cross footways so it is not uncommon to be on a road and a parallel footway at the same time, so commit 6662cd7da0 added this exception. The last movement behavior which was complicated by a footway was fixed in commit 3c9656a20e. In this case, when the user had to cross a footway because he was nearing a crossing, for example, this was not previously allowed even if the user's intent was clear. SO in this commit it was allowed when the user was near enough to the cener of some road which was not a footway.
+
+To help the user in making sense of the footway situation, commit babb5deff8 added a capability to announce the closest road or address.
 \subsection{Accessibility issues}
 Despite it not being as common, some accessibility issues were discovered along the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further, the workaround was deemed sufficient.
 
 The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments.
 \subsection{Sound positioning issues}
+During the first day of testing, one of the testers discovered a set of serious issues related to the sound ue positioning and behavior of the sounds in general. Firstly, the sounds did not keep the relative angles to each other when transformed from GPS coordinate to cartesian space. It turned out that using the ECEF projection was usable, but it did not keep spatial relationships. To fix this, commit f204bc8c02 changed the used projection to an exact transverse mercator one. This rewrite also allowed untangling the weird coordinate system mapping.
 
+Another issue were audio artifacts which manifested when turning around or approaching a sound source. The sound position was jumping in audibly bigger steps than anticipated and it could even jump in the opposite direction than the user expected. It turned out that usage of coordinates ranging around three or four millions caused some internal rounding issues in the OpenAL library. First attempt on fixing these was commit 49cf08e235 which rounded them to a few decimal places, however that did not help. Even if one of the coordinates was small as a result of the mercator projection being centered on the point of the default start location that did not help in fixing the issues, the one large coordinate was likely still causing the same rounding problems. The final solution was implemented in commit e67526d984 which took the default start location as the coordinate system's origin so the coordinates were quite small, at least in reasonable distances from the origin.
 \chapter{Usability study}
 This chapter presents the study which was carried between visually impaired users concerning the usability of Feel the streets
 \section{Study description}
