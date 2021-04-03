@@ -224,15 +224,52 @@ During the first day of testing, one of the testers discovered a set of serious 
 
 Another issue were audio artifacts which manifested when turning around or approaching a sound source. The sound position was jumping in audibly bigger steps than anticipated and it could even jump in the opposite direction than the user expected. It turned out that usage of coordinates ranging around three or four millions caused some internal rounding issues in the OpenAL library. First attempt on fixing these was commit 49cf08e235 which rounded them to a few decimal places, however that did not help. Even if one of the coordinates was small as a result of the mercator projection being centered on the point of the default start location that did not help in fixing the issues, the one large coordinate was likely still causing the same rounding problems. The final solution was implemented in commit e67526d984 which took the default start location as the coordinate system's origin so the coordinates were quite small, at least in reasonable distances from the origin.
 \chapter{Usability study}
-This chapter presents the study which was carried between visually impaired users concerning the usability of Feel the streets
+Having an application which offers some great functions but is only usable by the application's author is not something which this application did not have as a goal. To discover what is the usability of the application like and what improvements could be made a study was performed in a group of visually impaired users.
 \section{Study description}
-This section briefly describes the study and its goals
+The study's main goals were to analyze the usability of various parts of the application and to gather possible improvement suggestions.
 \section{About the subjects}
-This section describes the subjects and general reasons for the particular selection.
+The study was undertaken on a group of visually impaired people from Czech republic. The people vere all practically or totally blind and their ages ranged from approximately 15 to 30 years. The people were contacted first around july of 2020, however further needed changes required moving the start of the study to march of 2021. Out of 15 confirmed subjects from the Julyinquiry, 10 actualy managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
 \section{Methodology}
-This section describes the methodology of the study and gives a reasoning for choosing the particular methods.
+The study consisted of two parts. In the first the participants which agreed with their participation were send an e-mail with some user documentation and scenarios to try while testing Feel the streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else thy wanted to.
+
+The second part consisted of a virtual meeting with the participant. The meetings were recorded with agreement of the participants. During the meeting a set of questions was asked. The questions basically explored the various application areas (area selection, request for a new area, main window and the near by objects window) and explored the ease of learning, possible improvements and other aspects, see the following section for more detailed description of the questions. After the area specific questions the system usability scale (we want a citation there) was used to summaryze the application's usability.
 \section{The questions and the answers}
 In this section, the questions are presented, along with the summarized answers.
+\subsection{General questions}
+These questions were mainly concerned about the user's rough age classification, their visual impairment and computer skills.
+\subsubsection{What's your age rounded to 5 years}
+The study did not require finer age groups as the computer skills and previous usage of navigation applications plays a bigger role in the efficiency with which the application can be used. The age distribution is shown in the below table.
+\begin{table}
+\caption{Age distribution of the study participants}
+\begin{tabularx}{\textwidth}{ |X|X| }
+Age range & Number of participants \\
+\hline
+6-10 & 1 \\
+11-15 & 1 \\
+16-20 & 1 \\
+21-25  & 1 \\
+26-30 & 4 \\
+30-35 & 1 \\
+36-40 & 1 \\
+\end{tabularx}
+\end{table}
+As can be seen from the above table, most of them are in the 26 to 30 years group, the other groups have a single representative each.
+\subsubsection{What's your visual impairment}
+Out of all the participants 6 could see some light. Of these, two could use the visual information for a very limited form of navigation (e. g. could see a near by obstacle).
+\subsubsection{How would you rate your computer skills?}
+Because Feel the Streets is not one of the simplest applications you can see, the overall user efficiency might be quite dependent on their overall computer skills. That is the reason for the computer skills question. The people could think of any classification they liked. The following table summarizes their answers.
+\begin{table}
+\caption{The results of the computer skills question}
+\begin{tabularx}{\textwidth}{ |X|X| }
+Classification & Number of participants \\
+\hline
+Advanced & 6 \\
+averagely advanced & 2 \\
+above average & 1 \\
+I can Google anything i need & 1 \\
+\end{tabularx}
+\end{table}
+Because of the source of the candidates the data show above average number of advanced computer users. However this does not have any correlation in how positive the users rated the application.
 \chapter{Conclusion}
 \section{In summary}
 \section{Future work}
