@@ -33,7 +33,18 @@ This chapter describes the various approaches which were used to present maps to
 This section describes the usage of printed maps.
 \section{Mobile phone apps}
 This section explores the various mobile phone apps used for navigation by visually impaired people as well as the usability of standard map applications on the respective mobile phone operating systems.
+\subsection{Google maps}
+\subsection{Apple maps}
+\subsection{Lazarillo}
+\subsection{Where am i}
+\subsection{Naviterier}
+\subsection{Osmant}
+\subsection{Dotwalker}
+\subsection{Right here}
+\subsection{Ariadne GPS}
+
 \section{Desktop apps}
+\subsection{Plánovač tras Google}
 In this section, the few desktop applications for navigation purposes are explored.
 \chapter{Feel the streets}
 This chapter describes the implementation of Feel the streets, an application for browsing Open Street Maps data by visually impaired people, its features, implementation decisions and some noteworthy events in the application development.
@@ -230,7 +241,9 @@ The study's main goals were to analyze the usability of various parts of the app
 \section{About the subjects}
 The study was undertaken on a group of visually impaired people from Czech republic. The people vere all practically or totally blind and their ages ranged from approximately 15 to 30 years. The people were contacted first around july of 2020, however further needed changes required moving the start of the study to march of 2021. Out of 15 confirmed subjects from the Julyinquiry, 10 actualy managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
 \section{Methodology}
-The study consisted of two parts. In the first the participants which agreed with their participation were send an e-mail with some user documentation and scenarios to try while testing Feel the streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else thy wanted to.
+The study consisted of two parts. In the first the participants which agreed with their participation were send an e-mail with some user documentation and scenarios to try while testing Feel the streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else they wanted to.
+
+There were two testing scenarios. Both of them started from a predefined location in Brno. In the first the users were asked to go straight until the next crossing of two roads. The second let the users through a few crossings near a restaurant.
 
 The second part consisted of a virtual meeting with the participant. The meetings were recorded with agreement of the participants. During the meeting a set of questions was asked. The questions basically explored the various application areas (area selection, request for a new area, main window and the near by objects window) and explored the ease of learning, possible improvements and other aspects, see the following section for more detailed description of the questions. After the area specific questions the system usability scale (we want a citation there) was used to summaryze the application's usability.
 \section{The questions and the answers}
@@ -270,6 +283,79 @@ I can Google anything i need & 1 \\
 \end{tabularx}
 \end{table}
 Because of the source of the candidates the data show above average number of advanced computer users. However this does not have any correlation in how positive the users rated the application.
+\subsection{Usage of other navigation applications}
+In this section, the subjects were asked which other navigation applications they use and how often. The ways in which they used them were also asked.
+\subsubsection{Which navigation applications do you use}
+Only 4 of the participants responded that they use only a single navigation application. The applications which were used alone were Google and Apple maps, Blindsquare and Lazarillo. Other mentioned applications included Where am I, Dotwalker, Osmant, right here, Naviterier, Ariadne GPS and Plánovač tras Google.
+
+Out of the applications, Blindsquare was mentioned 5 times, Google and Apple maps 4 times, Lazarillo three times and Plánovač tras Google two times. The rest of the applications was mentioned only once.
+\subsubsection{How often do you use them and how}
+When asked how often the users used the applications, one responded that he uses the applications often, the "I use the applications every day" answer was also mentioned once. Two respondents replied that they use these applications once a week.
+
+The five remaining answers which claimed that they use these applications rarely deserve further comment. Two of these were more specific stating that GPS related inaccuracies which render the turn by turn directions not accurate enough prevented them from using the applications more often.
+
+Only the users which used the applications more than a week were able to provide descriptions how they use them. They use them when going through an unknown route or when they want to look around, however, Feel the Streets has in their opinion better spatialization capabilities.
+\subsection{Generally about Feel the Streets}
+These questions generally explored what the participants tried with Feel the Streets and also gathered general opinions.
+\subsubsection{What did you try}
+Every of the participants tried both of the testing scenarios.
+
+Also, every of the participant tried something else. What they tried was somewhat diverse, but generally they were looking for their homes with various levels of success.
+\subsubsection{What do you generally think}
+The opinions were largely positive. Three users mentioned that fixing some things would make the application even better. One respondent even called the application a great innovation. Two of the users called the application great, however one of them was afraid about the continued development of the application which is, according to his opinion, needed. One user mentioned that such an application was missing on the market to which a diffrent user added that the application will surely help the visually impaired in showing an unknown area. Every opinion was not so optimistic, however. One user called the application a nice project and one user mentioned a missing documentation clarification even in this preliminary question.
+\subsection{Area selection}
+These questions were related to the first screen which the user encounters, the area selection screen.
+\subsubsection{How was it hard to learn}
+Everyone said that learning this window was easy. One person called the window very easy, however, from the responses it could likely be said about all the users.
+\subsubsection{How could this area be made easier to use}
+This particular window did not receive much improvement requests, however, there actually were five suggestions.
+
+In the first making the request a new area shortcut unique was requested which will surely be addressed as this is only an error in the czech localization files.
+
+The second feature request offered that it would be useful to be able to return to the area selection window even without restarting the whole application.
+
+Another user was unsure whether a separate request area button is needed and would be fine if the edit box would be in the main area selection window.
+
+One of the other users looked farthet to the future and noticed that when the number of areas grow, it might be very useful to group them by continent, country or region.
+
+The same user also thought about a much more sophisticated download management user interface which would allow you starting multiple area downloads, pausing them and similar.
+
+He also noticed that the area states should be localized which is true but was not done due to the fact that getting the translation template generation machinery to pick up these strings is not straightforward.
+
+The last suggestion was more related to the sound design and noted that because the numbering of areas in the list is not announced, the user is not notified when he reached the end of the areas list. To remedy this, adding a sound when the user reaches the edge of the list was offered as a solution.
+\subsubsection{How was it hard to remember and what was hardest}
+In this, all the participants agreed that remembering this area was not hard at all.
+\subsubsection{How satisfied you were with this part of the application}
+All the participants were satisfied, the suggestions which they made were only suggestions and did not change the user experience.
+\subsection{New area request UI}
+\subsubsection{Did you try this functionality}
+\subsubsection{How was it hard to learn}
+\subsubsection{How could this area be made easier to use}
+\subsubsection{How was it hard to remember and what was hardest}
+\subsubsection{What would you say about error states handling}
+\subsubsection{How satisfied you were with this part of the application}
+\subsection{The main window}
+\subsubsection{How was it hard to learn}
+\subsubsection{How could this area be made easier to use}
+\subsubsection{How was it hard to remember and what was hardest}
+\subsubsection{What would you say about error states handling}
+\subsubsection{How satisfied you were with this part of the application}
+\subsubsection{Would adding a 180 degree turn command help}
+\subsubsection{Is announcing degrees sufficient during manual direction changes}
+\subsubsection{How are you satisfied with announcements of interesting objects}
+\subsubsection{Did you use the ctrl+shift+l command}
+\subsection{Objects browser}
+\subsubsection{How was it hard to learn}
+\subsubsection{How could this area be made easier to use}
+\subsubsection{How was it hard to remember and what was hardest}
+\subsubsection{How satisfied you were with this part of the application}
+\subsubsection{Did you notice the object actions}
+\subsubsection{Which other actions would be useful}
+\subsection{About getting lost}
+\\subsubsection{If you managed to get lost, which information would help in finding your way}
+\subsection{System usability scale}
+\subsection{Final questions}
+\subsubsection{Do you want to add anything}
 \chapter{Conclusion}
 \section{In summary}
 \section{Future work}
