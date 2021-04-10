@@ -230,6 +230,8 @@ To help the user in making sense of the footway situation, commit babb5deff8 add
 Despite it not being as common, some accessibility issues were discovered along the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further, the workaround was deemed sufficient.
 
 The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments.
+
+During the user study a pretty weird behavior of a QT application was discovered. When a QT application had a console window (e. g. it was not marked as a GUI only app) and you launched it from file explorer or another way when a separate console window could not be reused, it behaved quite differently in some aspects regarding the accessibility support. The main issues of this behavior were that any movement inside a text field was not announced by screen readers, the user had to first expand a combobox before interacting with the items (so it behaved like a combobox under Linux) and screen readers did not announce content of QMessageBox windows. The root cause of this issue was not investigated further because it was much easier to remove the console window for the application.
 \subsection{Sound positioning issues}
 During the first day of testing, one of the testers discovered a set of serious issues related to the sound ue positioning and behavior of the sounds in general. Firstly, the sounds did not keep the relative angles to each other when transformed from GPS coordinate to cartesian space. It turned out that using the ECEF projection was usable, but it did not keep spatial relationships. To fix this, commit f204bc8c02 changed the used projection to an exact transverse mercator one. This rewrite also allowed untangling the weird coordinate system mapping.
 
@@ -316,7 +318,7 @@ The second feature request offered that it would be useful to be able to return 
 
 Another user was unsure whether a separate request area button is needed and would be fine if the edit box would be in the main area selection window.
 
-One of the other users looked farthet to the future and noticed that when the number of areas grow, it might be very useful to group them by continent, country or region.
+One of the other users looked farther to the future and noticed that when the number of areas grow, it might be very useful to group them by continent, country or region.
 
 The same user also thought about a much more sophisticated download management user interface which would allow you starting multiple area downloads, pausing them and similar.
 
@@ -324,38 +326,181 @@ He also noticed that the area states should be localized which is true but was n
 
 The last suggestion was more related to the sound design and noted that because the numbering of areas in the list is not announced, the user is not notified when he reached the end of the areas list. To remedy this, adding a sound when the user reaches the edge of the list was offered as a solution.
 \subsubsection{How was it hard to remember and what was hardest}
-In this, all the participants agreed that remembering this area was not hard at all.
+According to the responses there was not any issue remembering this window.
 \subsubsection{How satisfied you were with this part of the application}
-All the participants were satisfied, the suggestions which they made were only suggestions and did not change the user experience.
+All the participants were satisfied, the suggestions which they made were only suggestions and would not change the user experience much, maybe except for the sophisticated downloads interface.
 \subsection{New area request UI}
+The next set of question was related to the area requests interface.
 \subsubsection{Did you try this functionality}
+Only three participants used the functionality during their testing. The remaining ones did not, however they tried it during the meeting except for two which could not try it due to the fact that they were not near a computer.
 \subsubsection{How was it hard to learn}
+When the users tried the functionality all of them called the interface easy. One of them however hoped for better area selection heuristics, for example for hiding areas which an user would not want to download, but on the other hand he would want to download city districts which is not working in the current search model.
 \subsubsection{How could this area be made easier to use}
+There were only three suggestions, each person brought one of them.
+
+The first suggestion was related to the fact that as of now, after the area is successfully requested it does not appear in the areas list before the application is restarted. That confused the user and should be fixed.
+
+ANother suggestion called for adding country filters to the area search. 
+
+And the last feature request requested some sort of autocomplete fnctionality for area names.
 \subsubsection{How was it hard to remember and what was hardest}
+All the users did not have any issues remembering this particular user interface.
 \subsubsection{What would you say about error states handling}
+When an error occurred, for example an area was not found, all the users found the handling of the event intuitive and understandable.
 \subsubsection{How satisfied you were with this part of the application}
+All users were satisfied with this application area and did not find the lack of their suggested functionality limiting.
 \subsection{The main window}
+This part of the study explored various usability of the main window and related features like the actual navigation.
 \subsubsection{How was it hard to learn}
+Learning this particular window was much more difficult than the previous areas, at least for some users.
+
+For one the number of keyboard shortcuts posed a challenge, so he rated the learnability as somewhat hard.
+
+For another one, the fact that in the real world not all angles are 90 or 45 degrees apart posed a difficulty and made changing his direction somewhat more cumbersome.
+
+In another case the representation of the relative direction was pointed out as a potential source of something that you have to think about.
+
+In another case the user approved of showing the shortcuts in the menus so the learning was not hard.
+
+Four of the respondents classified the learnability as okay despite that for one of them the current location command was not working for some reason.
+
+There was even a case of an user who classified the window's learnability as easy.
 \subsubsection{How could this area be made easier to use}
+For this window, the number of suggestions was much bigger, some of these even repeated.
+
+Three users requested a way how to make a side step, e. g. a step in the perpendicular direction without turning.
+
+There were three users for whom the second window with the console output was confusing. As it turned out, the window was not only a nuisance for some but it also caused (maybe indirectly) some accessibility related issues, see details in the accessibility issues section.
+
+For two users, the turn about command was confusing and they suggested that replacing it with a set direction command would be less complex for users to handle.
+
+There were also two cases of suggestions which wanted a simpler way for address based searches. They basically wanted a text input where they could write the address and the parsing would be done by the application.
+
+Another user noticed that the current main menu lacks the standard system menu which is basically in every other Windows GUI application and suggested adding it for consistency reasons.
+
+One user wondered whether it would not be useful to add 45 degree turn commands, however from how he formulated the suggestion he was not certain that they would be infact useful.
+
+Another user suggested adding a mode which is basically the opposite of the currently implemented behavior where the application prevents you leaving roads, so it would not allow the user to leave footways instead.
+
+There was an user who brought multiple improvement suggestions. The first was related to the fact that the program menu has only a single item which looks somewhat weird, as he put it. In his second suggestion, he came up with a suggestion how to make the main window not so empty and at least partially useful for sighted people by adding a read only text field where the current location, maybe with a configurable number of previous locations would be shown with the current GPS coordinates.
+
+The same user also thought that the current 5 degree turns could be changed to 10 or maybe even 15 degree ones.
+
+His last suggestion was related to the search results window. He noted that in the search case after you move to an object the window could be closed automatically.
 \subsubsection{How was it hard to remember and what was hardest}
+The memorability story reflects the learnability results quite well. For all people except one it was okay, one noted the number of keyboard commands.
 \subsubsection{What would you say about error states handling}
+Despite there being a few error states like disallowed leaving of some roads, all people found the behavior okay.
+
+One user thought that he would remove the longer error messages as he found them unnecessary.
 \subsubsection{How satisfied you were with this part of the application}
+The reactions were largely positive. In one case the participant responded that he see no problem in using the window as is now. ´The remaining nine users said that it is okay, one with the addition that getting used to the fact that it is more complex than some audio game windows takes some time.
 \subsubsection{Would adding a 180 degree turn command help}
+The response for this question was in nine cases a definitive yes. Only one thought that doing two 90 degree turns is okay.
+
+There was an user who managed to talk about the potential 180 degree turn command's shortcut for at least five minutes.
 \subsubsection{Is announcing degrees sufficient during manual direction changes}
+The responses for this question were also easy to interpret. Nine people found the current announcements during a manual turn okay and did not offer any suggestions for improvements.
+
+One user found the behavior okay but added that he would add a special otification when the user reaches a well known direction (north, west, south or east).
 \subsubsection{How are you satisfied with announcements of interesting objects}
+When asked how the users are satisfied with the behavior of interesting object announcements, five replied that they would make them more configurable and likely allow the user to select exactly which objects should be treated as interesting.
+
+Making the criteria for interesting objects configurable would solve at least three more specific issues. One user found trash cans not interesting, another one found the inclusion of street lamps questionable instead. There was also an user who would like to be stopped because of each near by address.
+
+It would also likely necessitate creation of an config window which one user also noted.
+
+Two users noted that using relative degrees from the user's current direction adds unnecessary mental load and they would use clock positions instead. They would also allow the user to choose how the angles should be represented. One would also use the chosen relative degree representation as the input for the turn about functionality.
+
+There were also users which commented the sounds of the interesting objects. One would add more specific sounds and another would add a default sound for any interesting objects to make it clear for the user when he arrives in an area with many interesting objects.
+
+Another sound related suggestion offered to make a specific sound when the user reaches a crossing.
+
+For now the interesting objects start making sounds in the same distance as they are announced. That was noticed by an user which recommended to make both distances configurable separately.
+
+One  user was confused why the map contains multiple stop entities for a stop which has physically two platforms.
 \subsubsection{Did you use the ctrl+shift+l command}
+Six users did not use it and when presented with it did not find it missing. Four others tried it, but only because they were testing everything they could.
 \subsection{Objects browser}
+The next set of questions was related to the window which shows a list of objects.
 \subsubsection{How was it hard to learn}
+The answers showed that learning this particular window was not hard. Three users called it easy, four called it okay, one had to learn a little before he could call it that, however. Two users called it pretty easy, even. The last user just said that he liked the window.
 \subsubsection{How could this area be made easier to use}
+This window did not receive as many sugestions as the main one. Six users did not have any suggestions.
+
+One wanted to be able to browse object description, distance and direction separately.
+
+Another user wanted to be able to perform a context dependent ctrl+c command depending on the focused control - either the object description or a single property.
+
+The last suggestion was related to the behavior of the object actions. For now, only actions which are applicable to the currently selected objects are shown. The one user would rather want to see all of them but disabled when not applicable.
 \subsubsection{How was it hard to remember and what was hardest}
+The memorability was in 9 cases okay, but in one case the user had an issue with remembering the shortcuts which would open the commands.
 \subsubsection{How satisfied you were with this part of the application}
+The satisfaction was okay in all cases.
 \subsubsection{Did you notice the object actions}
+The discoverability of the object actions was rather poor, only 4 users noticed them, the rest did not.
+\subsubsection{What would make them more discoverable}
+When asked how the users would make the menu more obvious four of them answered that they would announce its presence in a help string, or in the window's title.
+
+Another four users would rather remove the main menu and add context menus to the appropriate places instead.
+
+One user which also suggested the context menu offered another way - add the actions as buttons after the properties tree view.
+
+The last way how to handle the discoverability situation which turned out was that a button would be added which, when pressed would show the object actions.
 \subsubsection{Which other actions would be useful}
+When asked which other actions would be useful, two people suggested adding an action which would turn you wards to the selected object.
+
+One other person would add a command which would report the GPS coordinates of an object.
+
+ANother suggestion was related to the information about stops and similar objects. It is possible to discover the lines which use that stop, but the presentation is not much useful, so adding something better would be useful.
+
+Another user would be really happy if it would be possible to add indoor maps for some objects, especially buildings.
+
+Another, somewhat related suggestions were related to restaurants and shops. THe gist of the suggestion is that the action would at least open a reservation interface for restaurants or some sort of a purchase interface for shops.
 \subsection{About getting lost}
+These questions explored whether the users got lost and if yes, how it would be possible to help them in finding their way.
+\subsubsection{Did the user managed to get lost}
+All of the test subjects got lost at least once.
 \\subsubsection{If you managed to get lost, which information would help in finding your way}
+When asked what would help them find their way, two replied that a history of visited streets which would allow returning to the given street would help.
+
+Another suggestion which appeared twice was a concept of a tracked object. Such object would make a sound and there would be a command which would tell you your distance and direction to it.
+
+Somewhat similar suggestion was a concept of a ephemeral bookmark. That bookmark would not be saved in the database, would not have a name and there would be a command which would allow jumping to these bookmarks.
+
+Another facility which was suggested by one user was a concept of a radar like scan which would tell the user near by objects by a sound and read their names.
+
+The last two users did not bring any new tools to not get lost. One was confused by the automatic direction corrections and the second responded that getting lost was only is fault.
 \subsection{System usability scale}
-\subsection{Final questions}
-\subsubsection{Do you want to add anything}
+To help classify the usability in a numeric way, the system usability scale was used.
+
+In average, the application received a system usability score of 81.25. The best achieved score vas 97.5 and the worst was 65.
+
+\subsection{Do you want to add anything}
+When the users answered everything else, they had a chance to add whatever they wanted. The users however said everything they wanted during the previous questions, so this part of the interview did not bring any new information.
+\subsection{Feature requests}
+
+During the interview the users brought some feature requests which did not fit anywwhere else.
+
+Two users would like to see support for navigation along a route.
+
+One user wanted to add a speaker test.
+
+There was also an user who wanted to replace the stop speech command key by the ctrl key which is used basically by all screen readers.
+
+ A somewhat more ambitious suggestion was to add some sort of visual presentation of the map, or, to make things more interesting, a 3D map export functionality.
+
+Three bugs were also discovered. One was related to some inconcistencies of window titles, the second was related to the behavior when a sound device disappears or the default output device is changed. And the last was was related to the fact that the stop speech command sometimes does not work under Linux.
+\subsection{Other notes}
+This section presents a few notes which did not fit anywhere else.
+
+Six users were annoyed about the behavior of the Qt spin boxes.
+
+One user noted that he likes benches in the map data, another one liked bookmarks instead.
+
+One user noted that it would be useful to document the default step length.
+
+And one did not look enough in the menu and did not notice the search commands.
 \chapter{Conclusion}
 \section{In summary}
 \section{Future work}
