@@ -101,7 +101,7 @@ This section describes the currently used technologies which are used by the Fee
 
 As of now (commit f316b17d63), the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through python bindings.
 \subsection{THe client}
-The client is the main application which all the users interact. It handles downloading of the area databases, applying updates and browsing the respecive areas.
+The client is the main application which all the users interact. It handles downloading of the area databases, applying updates and browsing the respective areas.
 
 The client application is written in the Python programming language. Python was chosen mainly because it was familiar and had good library support for all the subsystems.
 
@@ -111,7 +111,7 @@ For the sound engine, the client application uses OpenAL and the HRTF extension.
 \subsection{The server}
 The server mainly handles management of area databases. It handles the area creation requests from the clients and to help the clients keep their local databases updated it also creates a list of changes which the clients can download afterwards.
 
-It is written in the Rust programmng language, mainly for speed and memory usage reasons. The static typing helped the development as well, it was not so uncommon to find an error which a statically typed language would prevent.
+It is written in the Rust programming language, mainly for speed and memory usage reasons. The static typing helped the development as well, it was not so uncommon to find an error which a statically typed language would prevent.
 
 For storage of the area databases the Sqlite3 library is used. To perform the needed geospatial queries, the Spatialite extension is being used.
 
