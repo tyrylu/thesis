@@ -100,12 +100,12 @@ These announcements can of course be turned off using a configuration option.
 This section describes the currently used technologies which are used by the Feel the Streets client and server. The technologies have changed quite extensively during the development, so the Development history section then presents the various choices which were made during the lifetime of the application.
 
 As of now (commit f316b17d63), the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through python bindings.
-\subsection{THe client}
-The client is the main application which all the users interact. It handles downloading of the area databases, applying updates and browsing the respective areas.
+\subsection{The client}
+The client is the main application which all the users interact with. It handles downloading of the area databases, applying updates and browsing the respective areas.
 
-The client application is written in the Python programming language. Python was chosen mainly because it was familiar and had good library support for all the subsystems.
+The client application is written in the Python programming language \parencite{python}. Python was chosen mainly because it was familiar and had good library support for all the subsystems.
 
-For the user interface, the Qt library is being used as it has the best cross platform accessibility story despite some mainly Windows specific issues.
+For the user interface, the Qt library \parencite{qt} is being used as it has the best cross platform accessibility story despite some mainly Windows specific issues.
 
 For the sound engine, the client application uses OpenAL and the HRTF extension. That means that the OpenAL Soft library is required.
 \subsection{The server}
@@ -394,7 +394,7 @@ Despite there being a few error states like disallowed leaving of some roads, al
 
 One user thought that he would remove the longer error messages as he found them unnecessary.
 \subsubsection{How satisfied you were with this part of the application}
-The reactions were largely positive. In one case the participant responded that he see no problem in using the window as is now. ´The remaining nine users said that it is okay, one with the addition that getting used to the fact that it is more complex than some audio game windows takes some time.
+The reactions were largely positive. In one case the participant responded that he see no problem in using the window as is now. The remaining nine users said that it is okay, one with the addition that getting used to the fact that it is more complex than some audio game windows takes some time.
 \subsubsection{Would adding a 180 degree turn command help}
 The response for this question was in nine cases a definitive yes. Only one thought that doing two 90 degree turns is okay.
 
