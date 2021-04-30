@@ -107,31 +107,31 @@ The client application is written in the Python programming language \parencite{
 
 For the user interface, the Qt library \parencite{qt} is being used as it has the best cross platform accessibility story despite some mainly Windows specific issues.
 
-For the sound engine, the client application uses OpenAL and the HRTF extension. That means that the OpenAL Soft library is required.
+For the sound engine, the client application uses OpenAL and the HRTF extension. That means that the OpenAL Soft library \parencite{openalsoft} is required.
 \subsection{The server}
 The server mainly handles management of area databases. It handles the area creation requests from the clients and to help the clients keep their local databases updated it also creates a list of changes which the clients can download afterwards.
 
-It is written in the Rust programming language, mainly for speed and memory usage reasons. The static typing helped the development as well, it was not so uncommon to find an error which a statically typed language would prevent.
+It is written in the Rust programming language \parencite{rust}, mainly for speed and memory usage reasons. The static typing helped the development as well, it was not so uncommon to find an error which a statically typed language would prevent.
 
-For storage of the area databases the Sqlite3 library is used. To perform the needed geospatial queries, the Spatialite extension is being used.
+For storage of the area databases the SQLite3 library \parencite{sqlite} is used. To perform the needed geospatial queries, the SpatiaLite extension \parencite{spatialite} is being used.
 
 For communication with the client application the server exposes a HTTP API for area lists, download requests and similar functionality. 
 
-For storing the area changes a Rabbitmq server is used. It allows to keep the queue semantics quite easily. The clients do not have full administrative access to the Rabbitmq server when connecting, they are limited by an access control list and the connection is also secured using Transport layer security.
+For storing the area changes a RabbitMQ \parencite{rabbitmq} server is used. It allows to keep the queue semantics quite easily. The clients do not have full administrative access to the Rabbitmq server when connecting, they are limited by an access control list and the connection is also secured using Transport layer security.
 
-To keep the number of additional components as low as possible, Rabbitmq is also used for background tasks storage and for background task scheduling. The scheduling uses the message's time to live and it instruct Rabbitmq to put the message to the ready messages queue after the TTL expires.
+To keep the number of additional components as low as possible, RabbitMQ is also used for background tasks storage and for background task scheduling. The scheduling uses the message's time to live and it instruct RabbitMQ to put the message to the ready messages queue after the TTL expires.
 
-The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them to the Rabbitmq queue. The compression uses the Zstd compression algorithm which allows, among other things, to use a pretrained compression dictionary for compression, which gives much better results than compressing the individual messages on its own - it gave an improvement at least of 50\% in message sizes on average.
+The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them to the Rabbitmq queue. The compression uses the Zstdandard compression algorithm \parencite{zstd} which allows, among other things, to use a pretrained compression dictionary for compression, which gives much better results than compressing the individual messages on its own - it gave an improvement at least of 50\% in message sizes on average.
 
 To help discover new kinds of amenities and other enum like tags during the processing of areas and to find other anomalies in the assumed schema of the OSM data (type violations, unknown properties etc.), a record of these events is logged during the operation and it is stored for further analysis. The processing application however is not implemented yet. Or more correctly, the features were lost during the Rust rewrite which is described in a following section.
 \subsection{The shared library}
-The handling of area databases is actually implemented in a shared library, called osm\_db, which is called from the server code and from Python as well. To allow calling the library from Python, creating a binding library was necessary. Fortunately, by using the Pyo3 Rust library, that efford was relatively straightforward. The Python library does not expose the entire public API of osm\_db, only the parts which the client application requires, which means basically the complete query API and a way to apply database changes.
+The handling of area databases is actually implemented in a shared library, called osm\_db, which is called from the server code and from Python as well. To allow calling the library from Python, creating a binding library was necessary. Fortunately, by using the Pyo3 Rust library \parencite{pyo3}, that efford was relatively straightforward. The Python library does not expose the entire public API of osm\_db, only the parts which the client application requires, which means basically the complete query API and a way to apply database changes.
 \subsection{The addministrative command line application}
 To allow performing some maintenance and related tasks for the server, such as requesting clients to perform redownload of an area, doing a rename of a field and some more actions, a command line application which interacted with the server side area databases and queues was implemented.
 \section{Development history}
 This section presents the development history of Feel the Streets, the various approaches used and their advantages and disadvantages. It also mentions some of the accessibility issues which are further described in the issues encountered along the way section. This section does not describe each commit of the Feel the Streets repository, it mentions only the more important ones.
 \subsection{The beginnings}
-The first commit of the Feel the Streets project occurred on the 18th of August 2017. At this time, the application's GUI used the Wx widgets library and there was no server component. The area database access was handled using the sqlalchemy library and it used the sqlalchemy's table inheritance features, so there was a separate table for each entity class.
+The first commit of the Feel the Streets project occurred on the 18th of August 2017. At this time, the application's GUI used the wxWidgets library \parencite{wx} and there was no server component. The area database access was handled using the SQLAlchemy library and it used the sqlalchemy's table inheritance features, so there was a separate table for each entity class.
 
 The next commit, which was quite huge, added the initial implementation of the database update logic.
 
@@ -159,7 +159,7 @@ Up until commit acf47daa00 the server assumed that areas will have unique names.
 
 This was then used in commit ab8940113c which allowed the user to select an area when the requested area name was not unambiguous.
 \subsection{The move to OpenAL}
-In commit 21d703b0e4 the entire sound subsystem was changed from using the Fmod library to OpenAL. The reasons for the change included much easier installations under Linux - the OpenAL library was in all the needed package repositories and usage of the OpenAL's HRTF capabilities became possible as well.
+In commit 21d703b0e4 the entire sound subsystem was changed from using the FMOD library \parencite{fmod} to OpenAL. The reasons for the change included much easier installations under Linux - the OpenAL library was in all the needed package repositories and usage of the OpenAL's HRTF capabilities became possible as well.
 
 The previously mentioned HRTF support was not used until commit 7f6997cd54, however.
 \subsection{Changing the GUI library}
