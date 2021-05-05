@@ -32,21 +32,45 @@ This chapter describes the various approaches which were used to present maps to
 \section{Printed maps}
 This section describes the usage of printed maps.
 \section{Mobile phone apps}
-This section explores the various mobile phone apps used for navigation by visually impaired people as well as the usability of standard map applications on the respective mobile phone operating systems.
+As smartphones started being ubiquitous in the population of visually impaired people, some special applications for the respective operating systems were created. Also, the developers of the standard navigation applications did not forget accessibility completely, so this section describes the most common applications used by visually impaired people on the two major smartphone operating systems.
 \subsection{Google maps}
-\subsection{Apple maps}
-\subsection{BlindSquare}
-\subsection{Lazarillo}
-\subsection{Where Am I}
-\subsection{Naviterier}
-\subsection{Osmand}
-\subsection{Dotwalker}
-\subsection{Right Hear}
-\subsection{Ariadne GPS}
-\section{Desktop apps}
-In this section, the few desktop applications for navigation purposes are explored.
-\subsection{Plánovač tras Google}
+Google Maps \parencite{googlemaps} is a map application created by Google. It started as a web application and was also ported to various smartphone operating systems including Android and iOs. The application supports displaying the map, searching for near by places in various categories, navigation features and some other related functions like, for example, adding place reviews and location sharing between users. Google had somewhat longer time to get a good coverage of the world, so the data are generally regarded as better than Apple's, but it processes more personal data from the users \parencite{mapcomp}.
 
+From a perspective of a visually impaired user, the interface is quite accessible, except for the area displaying the actual graphical map. The navigation functionality is also quite usable thanks to quite specific voice prompts along the planned route.
+\subsection{Apple maps}
+Apple Maps \parencite{applemaps} is a mapping application used by Apple in their operating systems. The basic features - map exploration, searching by name or category, exploring the graphical map, are there as well.
+
+For visually impaired users the application is fully accessible. It even allows the visually impaired user to look around the map so he can get a feel about spatial relationships of streets.
+\subsection{BlindSquare}
+BlindSquare \parencite{blindsquare} is an application primarily for visually impaired users on the iOs operating system. The application uses Foursquare and OpenStreetMap to help the user determine its current location and to find out what is near by.
+
+The application supports reporting the current address based on the user's GPS location, reporting near by crossings and other venues. It also allows searching by name or category. The application can also automatically report new near by objects. BlindSquare also supports adding user specified bookmarks. For navigation to a point of interest BlindSquare uses third-party applications on the user's device.
+\subsection{Lazarillo}
+Lazarillo \parencite{lazarillo} is somewhat similar to BlindSquare. However, Lazarillo is available for Android and iOs operating systems. The basic BlindSquare featres like near places discovery, search, favourite places are there. In addition to these features, Lazarillo allows to set a tracked object and monitor your distance to it in real time. It also has some business related features for indoor navigation, sharing accessibility related information etc.
+\subsection{Where Am I}
+Where am I \parencite{whereami} is an Android application allowing the user to determine his location, copy its GPS coordinates and calculate distances between arbitrary two locations.
+\subsection{Naviterier}
+Naviterier \parencite{naviterier} is an application which provides specially tailored routes for visually impaired users. These routes contain much more details (crossing and corner descriptions, curp information etc.) which allow the visually impaired to walk the planned route. The application is available as a web application which can show the entire planned route and as mobile applications for Android and iOs.
+
+Because planning for visually impaired users requires much more details than is available in OpenStreetMap or Google Maps, for example, the application has good enough data coverage only in Prague and the best results can be only achieved in the city's centre. In the centre, the application uses data from the ROUTE4ALL platform \parencite{route4all}, in the rest of the supported areas it uses traditional map data and human curation of the details needed for navigation purposes of visually impaired.
+\subsection{OsmAnd}
+OsmAnd \parencite{osmand} is an offline application for Android and iOs supporting offline map browsing and navigation. It uses OpenStreetMap as its source of data and supports map viewing, searching for points of interest, adding favourite places and it can also optionally display specialized overlays.
+
+The accessibility of the application (at least on iOs) is not ideal, according to personal experiences, but search and route planning is usable.
+\subsection{Dotwalker}
+Dotwalker \parencite{dotwalker} is an Android application helping visually impaired users look around and navigate along a route. The user can view near by points in various categories or add its own and import a route either from directions from Google Maps or from OpenStreetMap. The application supports offline operation except for the import operations from online sources.
+
+The application also shows the current compas direction and allows sharing the current location between users.
+\subsection{Right Hear}
+Right Hear \parencite{righthear} is an application for Android and iOs which is primarily designated to help the visually impaired people navigate inside buildings. That is accomplished through usage of a network of Bluetooth beacons which contain information relevant to the user in the particular place. The application also supports outdoor navigation, it very likely uses OpenStreetMap data, because the website specifies that it uses open-source map data.
+\subsection{Ariadne GPS}
+AriadneGPS \parencite{ariadnegps} is another iOs application which allows a visually impaired  user to explore his surroundings and save points of interest. The applicaion allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only´shows streets, addresses and intersections, however the user can turn on a mode which shows more features, for example parks. The data source is unfortunately not specified anywhere on the author's website or in the App Store description.
+\section{Desktop apps}
+Despite the usage of desktops being quite common, not much navigation related applications is accessible on the desktop operating systems. The web interfaces of various services can be used with various degrees of success, however the usable features are limited to route searches.
+
+This section thus describes the single application mentioned in the research.
+\subsection{Plánovač tras Google}
+This czech only application \parencite{ptg} allows the users to do a route search using the Google's route search API. The route is then displayed as an accessible list of individual route steps. The search can be constrained by the mode of transport, whether pulblic transport can be used, etc. The application also allows to display the known places around a location using the Google's places API.
 \chapter{Feel the streets}
 This chapter describes the implementation of Feel the streets, an application for browsing Open Street Maps data by visually impaired people, its features, implementation decisions and some noteworthy events in the application development.
 \section{Feature overview}
@@ -239,10 +263,10 @@ During the first day of testing, one of the testers discovered a set of serious 
 Another issue were audio artifacts which manifested when turning around or approaching a sound source. The sound position was jumping in audibly bigger steps than anticipated and it could even jump in the opposite direction than the user expected. It turned out that usage of coordinates ranging around three or four millions caused some internal rounding issues in the OpenAL library. First attempt on fixing these was commit 49cf08e235 which rounded them to a few decimal places, however that did not help. Even if one of the coordinates was small as a result of the mercator projection being centered on the point of the default start location that did not help in fixing the issues, the one large coordinate was likely still causing the same rounding problems. The final solution was implemented in commit e67526d984 which took the default start location as the coordinate system's origin so the coordinates were quite small, at least in reasonable distances from the origin.
 \chapter{Usability study}
 Having an application which offers some great functions but is only usable by the application's author is not something which this application did not have as a goal. To discover what is the usability of the application like and what improvements could be made a study was performed in a group of visually impaired users.
-\section{Study description}
+
 The study's main goals were to analyze the usability of various parts of the application and to gather possible improvement suggestions.
 \section{About the subjects}
-The study was undertaken on a group of visually impaired people from Czech republic. The people vere all practically or totally blind and their ages ranged from approximately 15 to 30 years. The people were contacted first around july of 2020, however further needed changes required moving the start of the study to march of 2021. Out of 15 confirmed subjects from the Julyinquiry, 10 actualy managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
+The study was undertaken on a group of visually impaired people from Czech republic. The people vere all practically or totally blind and their ages ranged from approximately 15 to 40 years. The people were contacted first around july of 2020, however further needed changes required moving the start of the study to march of 2021. Out of 15 confirmed subjects from the Julyinquiry, 10 actualy managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
 \section{Methodology}
 The study consisted of two parts. In the first the participants which agreed with their participation were send an e-mail with some user documentation and scenarios to try while testing Feel the streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else they wanted to. The testing scenarios required the users to launch the application, select a particular area and go through a specified route. Note that the users did not have to go anywhere physically, working with the application was sufficient to complete the scenarios.
 
@@ -250,7 +274,7 @@ Both of the testing scenarios started on the same location. The first scenario l
 
 The second part consisted of a virtual meeting with the participant. The meetings were recorded with agreement of the test subjects. During the meeting a set of questions was asked.
 
-The questions were grouped into five categories. The first consisted of some general questions related to the gender, age, visual impairment and computer skills of the participant. The second group of questions was related to the navigation applications which the participants are using. The third set of questions explored how the participants used Feel the Streets and what they generally think. The fourth group of questions was related to the various application areas. For each, the participants were asked how hard was it to learn, how the learning could be made easier, what was hardest to remember and how satisfied the participants actually were. For some areas additional questions were asked. The sections which were analyzed using the area specific questions were the area selection window, the new area request window, the main window and the near by objects window. After the area specific questions, as the last group of questions, the system usability scale (we want a citation there) was used to summaryze the application's usability.
+The questions were grouped into five categories. The first consisted of some general questions related to the age, visual impairment and computer skills of the participant. The second group of questions was related to the navigation applications which the participants are using. The third set of questions explored how the participants used Feel the Streets and what they generally think. The fourth group of questions was related to the various application areas. For each, the participants were asked how hard was it to learn, how the learning could be made easier, what was hardest to remember and how satisfied the participants actually were. For some areas additional questions were asked. The sections which were analyzed using the area specific questions were the area selection window, the new area request window, the main window and the near by objects window. After the area specific questions, as the last group of questions, the system usability scale (we want a citation there) was used to summaryze the application's usability.
 
 There was also a point where the participants could add anything else, however nobody wanted to add anything significant, so this part of the study will not be analyzed any further.
 \section{Results of the interviews}
@@ -296,9 +320,26 @@ Because of the source of the candidates the data show above average number of ad
 \subsection{Usage of other navigation applications}
 In this section, the subjects were asked which other navigation applications they use and how often and how.
 
-When asked which navigation applications the subjects used, only 4 of the participants responded that they use only a single navigation application, namely P1, P2, P3 and P9. The applications which were used alone were Google and Apple maps, Blindsquare and Lazarillo. Other mentioned applications included Where am I, Dotwalker, OsmAnd, right hear, Naviterier, Ariadne GPS and Plánovač tras Google.
+When asked which navigation applications the subjects used, only 4 of the participants responded that they use only a single navigation application, namely P1, P2, P3 and P9. The applications which were used alone were Google and Apple maps, Blindsquare and Lazarillo. Other mentioned applications included Where am I, Dotwalker, OsmAnd, right hear, Naviterier, Ariadne GPS and Plánovač tras Google. The applications with the subjects which used them are shown in the following table.
 
-Out of the applications, Blindsquare was mentioned 4 times by participants P2, P4, P8, and P10, Google and Apple maps 4 times (Google maps by participants P3, P4, P5 and P6, Apple maps by participants P5, P6, P9 and P10), Lazarillo three times by participants P1, P7 and P10 and Plánovač tras Google two times by participants P6 and P8. The rest of the applications was mentioned only once. OsmAnd, Right hear and Dotwalker by participant P6, Naviterier and Where am I by participant P4, Ariadne GPS by participant P10.
+\begin{table}
+\caption{Usage of navigation applications}
+\begin{tabularx}{\textwidth}{|X|X|}
+Application & Used by participants
+\hline
+BlindSquare & P2, P4, P8 and P10
+Google Maps & P3, P4, P5 and P6
+Apple Maps & P5, P6, P9 and P10
+Lazarillo & P1, P7 and P10
+Plánovač tras Google & P6 and P8
+OsmAnd & P6
+Right hear & P6
+Dotwalker & P6
+Naviterier & P4
+Where am I & P4
+AriadneGPS & P10
+\end{tabularx}
+\end{table}
 
 When asked how often the users used the applications, one responded that he uses the applications often, namely participant P1. The "I use the applications every day" answer was also mentioned once, namely by participant P7. Two respondents replied that they use these applications once a week, namely .
 
@@ -481,6 +522,8 @@ The  remaining users did not bring any new suggestions how to improve the chance
 To help classify the usability in a numeric way, the system usability scale was used.
 
 In average, the application received a system usability score of 81.25. The best achieved score vas 97.5 and the worst was 65.
+
+The worst usability scale is slightly below the recommended score for an usable application, however when the average is taken into account, the application is quite usable according to the results.
 
 \subsection{Feature requests}
 During the interview the users brought some feature requests which did not fit anywhere else.
