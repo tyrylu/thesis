@@ -28,7 +28,7 @@
 \begin{document}
 \chapter{Introduction}
 \chapter{Map presentation approaches}
-This chapter describes the various approaches which can be used to present maps to visually impaired people, mainly focusing on tactile maps and various applications for smart phones and desktop operating systems.
+Using a map is one of the more common approaches when a person wants to learn an unknown area. For visually impaired people it poses a challenge, however, because it is necessary to represent the map somehow. It is possible to describe the area verbally, which is commonly done, however sometimes a more map like approach is useful as well. So this chapter describes the various approaches which can be used to present maps to visually impaired people, mainly focusing on tactile maps and various applications for smart phones and desktop operating systems.
 \section{Printed maps}
 According to \parencite{orientation_aids_from_foundations}, tactile maps are considered the most effective representation for ifnformation related to an unknown space. On the other hand, this kind of maps is nontrivial to create and often requires manual work.
 
@@ -76,7 +76,9 @@ This section thus describes the single application mentioned in the research.
 \subsection{Plánovač tras Google}
 This czech only application \parencite{ptg} allows the users to do a route search using the Google's route search API. The route is then displayed as an accessible list of individual route steps. The search can be constrained by the mode of transport, whether pulblic transport can be used, etc. The application also allows to display the known places around a location using the Google's places API.
 \chapter{Feel the streets}
-This chapter describes the implementation of Feel the streets, an application for browsing Open Street Maps data by visually impaired people, its features, implementation decisions and some noteworthy events in the application development.
+As can be seen from the previous chapter, when a visually impaired user wants to accessibly browse a map on a desktop operating system and use features more advanced than route planning, the choices are not good or the applications are somewhat hard to use.
+
+That is the reason why Feel the Streets was born and i spent quite a lot of time writing it. Therefore this chapter describes the application features and then it describes the development history and the various architectural changes along the way.
 \section{Feature overview}
 From the user's perspective, Feel the Streets is a desktop application which, when launched, allows the user to browse OpenStreetMap maps without sight.
 \subsection{Area selection}
@@ -128,7 +130,7 @@ These announcements can of course be turned off using a configuration option.
 \section{Technical overview}
 This section describes the currently used technologies which are used by the Feel the Streets client and server. The technologies have changed quite extensively during the development, so the Development history section then presents the various choices which were made during the lifetime of the application.
 
-As of now (commit f316b17d63), the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through python bindings.
+As of now - commit f316b17d63, which can be found along with the entire development history at \parencite{fts_repo}, the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through python bindings.
 \subsection{The client}
 The client is the main application which all the users interact with. It handles downloading of the area databases, applying updates and browsing the respective areas.
 
@@ -315,17 +317,17 @@ When asked which navigation applications the subjects used, only 4 of the partic
 \begin{tabularx}{\textwidth}{|X|X|}
 Application & Used by participants \\
 \hline
-BlindSquare & P2, P4, P8 and P10 \\
-Google Maps & P3, P4, P5 and P6 \\
-Apple Maps & P5, P6, P9 and P10 \\
-Lazarillo & P1, P7 and P10 \\
-Plánovač tras Google & P6 and P8 \\
-OsmAnd & P6 \\
-Right hear & P6 \\
-Dotwalker & P6 \\
-Naviterier & P4 \\
-Where am I & P4 \\
-AriadneGPS & P10 \\
+BlindSquare \parencite{blindsquare} & P2, P4, P8 and P10 \\
+Google Maps \parencite{googlemaps} & P3, P4, P5 and P6 \\
+Apple Maps \parencite{applemaps} & P5, P6, P9 and P10 \\
+Lazarillo \parencite{lazarillo} & P1, P7 and P10 \\
+Plánovač tras Google \parencite{ptg} & P6 and P8 \\
+OsmAnd \parencite{osmand} & P6 \\
+Right hear \parencite{righthear} & P6 \\
+Dotwalker \parencite{dotwalker} & P6 \\
+Naviterier \parencite{naviterier} & P4 \\
+Where am I \parencite{whereami} & P4 \\
+AriadneGPS \parencite{ariadnegps} & P10 \\
 \end{tabularx}
 \end{table}
 
