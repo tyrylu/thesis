@@ -17,6 +17,8 @@
 \usepackage{tabu}
 \usepackage{algorithm2e}
 \SetAlCapSkip{3mm}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
 \thesislong{abstract}{
 
 }
@@ -44,7 +46,7 @@ From a perspective of a visually impaired user, the interface is quite accessibl
 \subsection{Apple maps}
 Apple Maps \parencite{applemaps} is a mapping application used by Apple in their operating systems. The basic features - map exploration, searching by name or category, exploring the graphical map, are there as well.
 
-For visually impaired users, the application is fully accessible. It even allows the visually impaired user to look around the map so he can get a feel about spatial relationships of streets.
+For visually impaired users, the application is fully accessible. It even allows the visually impaired user to look around the map so he can get a feel about spatial relationships of streets. This feature allows a visually impaired user to slide the finger on the screen and be notified about the current street under it.
 \subsection{BlindSquare}
 BlindSquare \parencite{blindsquare} is an application primarily for visually impaired users on the iOS operating system. The application uses Foursquare and OpenStreetMap to help the user determine its current location and to find out what is nearby.
 
@@ -60,7 +62,7 @@ Because planning for visually impaired users requires much more details than is 
 \subsection{OsmAnd}
 OsmAnd \parencite{osmand} is an offline application for Android and iOS supporting offline map browsing and navigation. It uses OpenStreetMap as its source of data and supports map viewing, searching for points of interest, adding favourite places and it can also optionally display specialized overlays.
 
-The accessibility of the application (at least on iOS) is not ideal, according to personal experiences, but search and route planning is usable.
+The accessibility of the application on iOS, according o personal experiences, is not ideal, there are some wrongly labeled buttons and related small issues, but the application is usable, at least route planning and similar features. The situation on the Android operating system is, according to a talk with a friend, much better, there, all elements have correct labels.
 \subsection{Dotwalker}
 Dotwalker \parencite{dotwalker} is an Android application helping visually impaired users look around and navigate along a route. The user can view nearby points in various categories or add its own and import a route either from directions from Google Maps or from OpenStreetMap. The application supports offline operation except for the import operations from online sources.
 
@@ -68,21 +70,30 @@ The application also shows the current compas direction and allows sharing the c
 \subsection{Right Hear}
 Right Hear \parencite{righthear} is an application for Android and iOS which is primarily designated to help the visually impaired people navigate inside buildings. That is accomplished through usage of a network of Bluetooth beacons which contain information relevant to the user in the particular place. The application also supports outdoor navigation, it very likely uses OpenStreetMap data, because the website specifies that it uses open-source map data.
 \subsection{Ariadne GPS}
-AriadneGPS \parencite{ariadnegps} is another iOS application which allows a visually impaired user to explore his surroundings and save points of interest. The applicaion allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only shows streets, addresses and intersections, however the user can turn on a mode which shows more features, for example parks. The data source is unfortunately not specified anywhere on the author's website or in the App Store description.
+AriadneGPS \parencite{ariadnegps} is a paid iOS application which allows a visually impaired user to explore his surroundings and save points of interest and navigate to them or be notified when the points are in range. The application allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only shows streets, addresses and intersections, however the user can turn on a mode which shows more features, for example parks. From a cursory personal analysis it appears that AriadneGPS uses both Apple Maps and Google Maps as its sources. Unfortunately, it does not allow displaying more details about the places and does not allow searching for known points of interest (shops, restaurants and similar).
 \section{Desktop apps}
 Despite the usage of desktops being quite common, not much navigation related applications is accessible on the desktop operating systems. The web interfaces of various services can be used with various degrees of success, however the usable features are limited to route searches.
 
 This section thus describes the single application mentioned in the research.
 \subsection{Plánovač tras Google}
 This czech only application \parencite{ptg} allows the users to do a route search using the Google's route search API. The route is then displayed as an accessible list of individual route steps. The search can be constrained by the mode of transport, whether pulblic transport can be used, etc. The application also allows to display the known places around a location using the Google's places API.
+\section{Summary}
+As was shown in this chapter, navigation applications for smartphone operating systems are usable, however presenting the actual map is nonetheless a challenge. The source of the data is often a commercial offering, which might be an issue for some users.
 \chapter{Feel the streets}
 As can be seen from the previous chapter, when a visually impaired user wants to accessibly browse a map on a desktop operating system and use features more advanced than route planning, the choices are not good or the applications are somewhat hard to use.
 
 That is the reason why Feel the Streets was born and I spent quite a lot of time writing it. Therefore this chapter describes the application features and then it describes the development history and the various architectural changes along the way.
+
+The main reasons for writing Feel the Streets were that none of the applications mentioned in the previous chapter could provide the desired map exploration experience on a desktop operating system. To add to that, making the application cross-platform could expand the userbase as well. And the last reason was that the presentation of OpenStreetMap data for a visually impaired person was not much useful, so this application changes that and makes the data accessible.
 \section{Feature overview}
 From the user's perspective, Feel the Streets is a desktop application which, when launched, allows the user to browse OpenStreetMap maps without sight.
 \subsection{Area selection}
-After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This list is usually retrieved from the Feel the Streets server, so it includes all the available areas, but when there is no network connectivity, the locally available areas are shown instead.
+After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This window is shown in the below figure.
+\begin{figure}[h]
+\caption{The area selection window of Feel the Streets}
+\includegraphics{areas-list}
+\end{figure}
+The areas list is usually retrieved from the Feel the Streets server, so it includes all the available areas, but when there is no network connectivity, the locally available areas are shown instead.
 
 The areas list shows the area's name, last modification and creation times formatted according to the user's locale preferences, the area size and its state. The state represents the status of the area's database and it usually reports that the area is updated. Other states exist as well, namely states for an area which is just being created, for which we are just now retrieving the incremental changes or we are applying them. A special concept of frozen areas exists, these areas can be downloaded, but after creation, no changes are applyed on them, which is useful for research reproducibility.
 
@@ -90,7 +101,13 @@ From the area selection window the user can also request an area which is not ye
 
 By selecting an area a set of steps starts. If he selected area is not yet downloaded to the user's computer, the download is performed. If it is, the application checks for all the changes which occurred to the area between the last check and now and applies them. After these steps, the user ends up in the main window.
 \subsection{The main window}
-The main window of the application is seemingly simple - just an empty window with a menubar on top. Despite this, it is the central piece of the user interface of the application.
+
+The main window of the application is seemingly simple - just an empty window with a menubar on top. Despite this, it is the central piece of the user interface of the application. It is shown, along with the near by objects window, which is described in the next section, in the following figure.
+\begin{figure}[h]
+\caption{The main window of Feel the Streets along with the near by objects window}
+\includegraphics{feel-the-streets}
+\label{fig:fts}
+\end{figure}
 
 This is the window where the actual map exploration occurs. Because of that, it contains all the relevant commands.
 
@@ -110,7 +127,7 @@ When the name search is not sufficiently detailed, the user can use the advanced
 
 In both of the search modes the results are displayed using the same window which is used for the nearby objects.
 \subsection{The objects list window}
-This window is used for displaying a list of objects. This list can come from a nearby query, a search, or it can be a result of a parent/child query as well.
+This window is used for displaying a list of objects. This list can come from a nearby query, a search, or it can be a result of a parent/child query as well. It is shown in figure \ref{fig:fts}.
 
 The window shows a list of objects represented as short descriptions of them, in each case it contains the entity class of it and some details (like the name, amenity type) for some of the classes. In addition, when an object is selected, all the properties (basically OpenStreetMap tags when not counting some renaming of the tag names) are displayed. In addition, the user can expand a part of the properties which contains the revision information including the last changed date, the user who did the change, the changeset number and this section also shows the id of the object which is the OpenStreetMap id prefixed by a letter (n for nodes, w for ways and r for relations) to allow the user to communicate exactly which object might require some fixes, for example.
 
@@ -164,7 +181,7 @@ This section presents the development history of Feel the Streets, the various a
 \subsection{The beginnings}
 The first commit of the Feel the Streets project occurred on the 18th of August 2017. At this time, the application's GUI used the wxWidgets library \parencite{wx} and there was no server component. The area database access was handled using the SQLAlchemy library and it used the sqlalchemy's table inheritance features, so there was a separate table for each entity class.
 
-The next commit, which was quite huge, added the initial implementation of the database update logic.
+The initial implementation of the database update logic was added in the next commit.
 
 In commit 683215bbe1, the search functionality was added.
 \subsection{Table inheritance removal}
@@ -234,23 +251,23 @@ Just after starting the user study, one of the testers discovered a pretty serio
 \section{Issues encountered along the way}
 This section describes the various issues encountered during the development of Feel the Streets. Many of them were related to the OSM data or the data model, but there were some accessibility related issues as well.
 \subsection{Representing crossings}
-During much of the development of Feel the Streets, when an user entered a crossing, only the standard messages for entered roads were announced. That was deemed unsuitable and not informational rich, so a special message was added to the application. That resulted in a series of bug fixes for various corner cases which this section describes.
+During much of the development of Feel the Streets, when an user entered a crossing, only the standard messages for entered roads were announced. That was deemed unsuitable and not informationally rich enough, so a special message was added to the application. That resulted in a series of bug fixes for various corner cases which this section describes.
 
-The first bunch of issues was related to the announcements of the ways you could turn on a road. Due to a broken computation, the possibility of left turns was hidden for a time. Also, the application reported turns which turned the user about 0 degrees as well, which was not necessary.
+The first bunch of issues was related to the announcements of the ways you could turn on a road. Due to a broken computation, the possibility of left turns was hidden for a time. Also, the application reported turns which turned the user about 0 degrees as well, which was unnecessary and confusing.
 
-Another issue with the crossing announcements logic was that you were notified about a crossing, but the fact that the road which lead you to it actually continued was hidden from the user. That was remedied in commit 0e127d6900. Of course, the addition was not flawless, it turned out that filtering turns about zero degrees does not help when you want to know for how long you can go along the current road, that's the reason why commit 1046631dae exists.
+Another issue with the crossing announcements logic was that you were notified about a crossing, but the fact that the road which lead you to it actually continued was hidden from the user. That was remedied in commit 0e127d6900. Addition of this feature was not flawless, it turned out that filtering turns about zero degrees does not help when you want to know for how long you can go along the current road, that's the reason why commit 1046631dae exists.
 
 Another bug related to the crossing announcements was actually in the logic which determined which objects are currently intersecting with your position. Up until that time, the spatial intersection query for quickly ruling most of the entities through a R Tree based index assumed a rectangle without size. That however caused an inability to enter the crossing entity when it lay on the geometric intersection of two roads. This issue was fixed in commit 8cbc40c987.
 
-Of course, real world crossings can have more than two roads meet in the crossing. The continuation announcements logic did not account for that, however, so it had to be changed and what the user entered had to be taken into account. These changes happened in commit 7f9edf1034.
+Up until commit 7f9edf1034, the announcements generation logic did not account for crossings which consisted of more than two unique roads meeting on the crossing. To fix that, commit 7f9edf1034 introduced a contextual announcement which took into account which road the user used to enter the crossing.
 
 Some crossings posed another challenge. For these a road continued more or less straight but with a different name. Up until commit d9aebc79fc, this event was announced as crossing of a road. This revision however changed the logic such that these events were announced as road continuations with a changed name.
 
-When the user entered a road until commit c5221a8783, the road announcement logic only took into account the roads which the user entered. However, these entry points usualy weren't in the point where the geometric intersection of the roads actually lay, so there could be more roads which crossed there, but the user did not enter them yet (mainly roads with pretty sharp turn angles). This commit began actively searching for all the crossing roads and in commit c9748062d7, the user was actually moved to the geometric crossing so the entity entering machinery had all the data it needed to produce the correct messages.
+When the user entered a road until commit c5221a8783, the road announcement logic only took into account the roads which the user entered. However, these entry points usually weren't in the point where the geometric intersection of the roads actually lay, so there could be more roads which crossed there, but the user did not enter them yet (mainly roads with pretty sharp turn angles). This commit began actively searching for all the crossing roads and in commit c9748062d7, the user was actually moved to the geometric crossing so the entity entering machinery had all the data it needed to produce the correct messages.
 
-Commit 66f6813d78 fixed another set of crossing reporting issues. The first was related to the type of crossing where you enter it, a differently named road continues for example left, and the right turn is a road with the same name as the one you used to enter the crossing. In this case, the user should be informed about the turn, but until this commit, the duplicate name filtering logic, which allowed the user to not know about roads split because of a different set of tags prevented the announcement. On the other hand, entering a crossing with two roads of the same name was not filtering the second as well, so this commit fixed that case as well.
+Commit 66f6813d78 fixed another set of crossing reporting issues. The first was related to the type of crossing where you enter it, a differently named road continues for example left, and the right turn is a road with the same name as the one you used to enter the crossing. In this case, the user should be informed about the turn, but until this commit, the duplicate name filtering logic, which allowed the user to not know about roads split because of a different set of tags prevented the announcement. On the other hand, entering a crossing with two roads of the same name was not filtering the second as well, so this commit fixed that case too.
 
-When you enter  a crossing in the real world, it is obvious that you can not continue in the current direction, but the Feel the Streets users were not notified about that fact unil commit 1ecfecb491 which added these announcements. In commit 93443975d8 the message was made more specific and started to mention the road which was ending on the crossing.
+Until commit 1ecfecb491 the Feel the Streets user did not have a way how to know, except for a manual exploration, that the road which he used to get to the crossing ends on it. In commit 93443975d8 the message was made more specific and started to mention the road which was ending on the crossing.
 \subsection{Footways}
 Another area of behavior which changed quite a lot was footway handling. As footways do not usually have names in the OpenStreetMap data, they were quite confusing, at least for the thesis supervisor, so the footway avoidance logic was added - see the development history for more details.
 
@@ -258,9 +275,9 @@ It turned out that disallowing entering of all footways was not the right move, 
 
 To help the user in making sense of the footway situation, commit babb5deff8 added a capability to announce the closest road or address.
 \subsection{Accessibility issues}
-Despite it not being as common, some accessibility issues were discovered along the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further, the workaround was deemed sufficient.
+Despite it not being as common, some accessibility issues were discovered along the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA (Non visual desktop access, a Windows screen reader \parencite{nvda}) behavior related to announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further, the workaround was deemed sufficient.
 
-The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments.
+The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments. To help fix the problem, communication with the Qt developers was started, however no implementation work related to this issue happened as of May been done, the issue will not be a one line fix, it will require some additions to Qt's internal accessibility framework as it ha no notion of an expand or collapse action.
 
 During the user study a pretty weird behavior of a QT application was discovered. When a QT application had a console window (e. g. it was not marked as a GUI only app) and you launched it from file explorer or another way when a separate console window could not be reused, it behaved quite differently in some aspects regarding the accessibility support. The main issues of this behavior were that any movement inside a text field was not announced by screen readers, the user had to first expand a combobox before interacting with the items (so it behaved like a combobox under Linux) and screen readers did not announce content of QMessageBox windows. The root cause of this issue was not investigated further because it was much easier to remove the console window for the application.
 \subsection{Sound positioning issues}
@@ -536,8 +553,27 @@ One user, namely P9, noted that he likes benches in the map data, another one li
 One user noted that it would be useful to document the default step length, namely participant P9.
 
 And one did not look enough in the menu and did not notice the search commands, namely P1.
+\section{Summary}
+As was noted by the subjects, Feel the Streets is already quite usable. However, there are features which would help them. One of the more common features is a context menu with the object actions which had been already implemented, however the subjects were not shown the enhanced version. Implementing sidesteps should help as well, as this kind of movement was also requested quite often.
 \chapter{Conclusion}
-\section{In summary}
+This thesis first explored the available approaches which can help the visually impaired understand a map. It mentioned printed maps and the related effords in automated printed map generation and then it covered the available applications.
+
+The situation for smartphone users is that there are usable navigation applications and some applications make discovering the user's surroundings pretty easy, however the applications either use commercial data sources, don't provide all the details for power users or have some accessibility issues (see OsmAnd for example).
+
+And the situation on desktop operating systems is worse, the research did identify only applications for the Windows operating system and the functionality was limited.
+
+To help change the status quo, in the next chapter the Feel the Streets application was introduced. First, the application's advantages were described. In the following section, the features of the application were introduced along with the related screenshots.
+
+The following section described the technical details of the application. It described the technology decisions along with explanations for the respective choices and then the following sections described the history and the reasons which let to the mentioned changes.
+
+The next section described issues encountered, mainly issues related to interpreting the OpenStreetMap data and some accessibility related issues.
+
+The following chapter described the survey which analyzed the usability of the application. The first section of this chapter described the chosen subjects, the next one described the methodology and the next section presented the results.
 \section{Future work}
+As was eminent from the study results, the users of Feel the Streets see the application as a beneficial tool and want it to continue development. So, in future, the user feedback will be addressed, most of the user requested features will be implemented at some point.
+
+However, to make the application even more widely known, there are plans to present Feel the Streets at various confrences and similar events for the visually impaired.
+
+Having an accessible OpenStreetMap browser is definitely useful, however having a way to do at least tag edits for existing OpenStreetMap objects would be very useful as well, because sometimes the visually impaired people might know some area really well and would like to add, for example, information about tactile pavings or similar accessibility features. So, in the longer term, it is also planned to implement basic OpenStreetMap data editing. It is not planned to allow modifying the geometries, however, as that would be very hard for a visually impaired person.
 \printbibliography
 \end{document}
