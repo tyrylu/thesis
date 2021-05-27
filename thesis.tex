@@ -92,7 +92,7 @@ From the user's perspective, Feel the Streets is a desktop application that, whe
 After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This window is shown in the below figure.
 \begin{figure}[h]
 \caption{The area selection window of Feel the Streets}
-\includegraphics{areas-list}
+\includegraphics{fts-areas}
 \end{figure}
 The areas list is usually retrieved from the Feel the Streets server, so it includes all the available areas. Still, when there is no network connectivity, the locally available areas are shown instead.
 
@@ -124,7 +124,11 @@ The application also allows performing searches in the data. There are two searc
 
 The first is a simple search based on a partial name match. The user can enter a part of the desired name, and every object with that particular substring in its name tag is returned.
 
-When the name search is not sufficiently detailed, the user can use the advanced search. In this mode, he is first required to select which kind of object he wants to search - everything with an address, shops, buildings, and more. After the selection, he can specify additional conditions based on the selected entity's fields. For strings, it is possible to use exact or partial matches. For numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical and operator between them.
+When the name search is not sufficiently detailed, the user can use the advanced search. In this mode, he is first required to select which kind of object he wants to search - everything with an address, shops, buildings, and more. After the selection, he can specify additional conditions based on the selected entity's fields. For strings, it is possible to use exact or partial matches. For numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical and operator between them. This window is shown in the next figure.
+\begin{figure}
+\caption{Advanced search for an amenity filtered to universities}
+\includegraphics{fts-amenity-university
+\end{figure}
 
 In both of the search modes, the results are displayed using the same window which is used for the nearby objects.
 \subsection{The objects list window}
