@@ -255,7 +255,7 @@ To allow informing the testers of a possible important update, commit de86753ebe
 Just after starting the user study, one of the testers discovered a pretty serious sound positioning-related issue which sparked a chain of commit starting with commit a9b92a9704 and ending by commit 0930afcecb. As this issue deserve a more thorough description, it is described in the encountered issues section as well.
 \section{Issues encountered along the way}
 This section describes the various issues encountered during the development of Feel the Streets. Many of them were related to the OSM data or the data model, but there were some accessibility-related issues as well.
-\subsection{Representing crossings}
+\subsection{Representing crossings} \label{ref:crossings}
 During much of the development of Feel the Streets, when a user entered a crossing, only the standard messages for entered roads were announced. That was deemed unsuitable and not informationally rich enough, so a special message was added to the application. That resulted in a series of bug fixes for various corner cases, which this section describes.
 
 The first bunch of issues was related to the announcements of the ways you could turn on a road. Due to a broken computation, the possibility of left turns was hidden for a time. Also, the application reported turns that turned the user about 0 degrees as well, which was unnecessary and confusing.
@@ -273,13 +273,13 @@ When the user entered a road until commit c5221a8783, the road announcement logi
 Commit 66f6813d78 fixed another set of crossing reporting issues. The first was related to the type of crossing where you enter it; a differently named road continues, for example, left, and the right turn is a road with the same name as the one you used to enter the crossing. In this case, the user should be informed about the turn, but until this commit, the duplicate name filtering logic, which allowed the user to not know about roads split because a different set of tags prevented the announcement. On the other hand, entering a crossing with two roads of the same name was not filtering the second as well, so this commit fixed that case too.
 
 Until commit 1ecfecb491, the Feel the Streets user did not have a way how to know, except for a manual exploration, that the road he used to get to the crossing ends on it. In commit 93443975d8, the message was made more specific and mentioned the road that was ending on the crossing.
-\subsection{Footways}
+\subsection{Footways} \label{ref:footways}
 Another area of behavior that changed quite a lot was footway handling. As footways do not usually have names in the OpenStreetMap data, they were quite confusing, at least for the thesis supervisor, so the footway avoidance logic was added - see the development history for more details.
 
 It turned out that disallowing entering of all footways was not the right move, so commit 539f09b71e allowed entering footways when the current object was a footway. That was not enough, unfortunately. It turned out that roads sometimes can cross footways, so it is not uncommon to be on the road and a parallel footway at the same time, so commit 6662cd7da0 added this exception. The last movement behavior, which was complicated by a footway, was fixed in commit 3c9656a20e. In this case, when the user had to cross a footway because he was nearing a crossing, for example, this was not previously allowed even if the user's intent was clear. SO in this commit, it was allowed when the user was near enough to the center of some road which was not a footway.
 
 To help the user in making sense of the footway situation, commit babb5deff8 added a capability to announce the closest road or address.
-\subsection{Accessibility issues}
+\subsection{Accessibility issues} \label{ref:accessibility}
 Despite it not being as common, some accessibility issues were discovered along with the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA (Nonvisual desktop access, a Windows screen reader \parencite{nvda}) behavior related to announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further. The workaround was deemed sufficient.
 
 The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling, which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments. To help fix the problem, communication with the Qt developers was started. However, no implementation work related to this issue happened as of May. The issue will not be a one-line fix. It will require some additions to Qt's internal accessibility framework as it has no notion of an expansion or collapse action.
@@ -571,7 +571,7 @@ To help change the status quo, in the next chapter, the Feel the Streets applica
 
 The following section described the technical details of the application. It described the technology decisions along with explanations for the individual choices, and then the following sections described the history and the reasons which led to the mentioned changes.
 
-The following section described issues encountered, mainly issues related to interpreting the OpenStreetMap data and some accessibility-related issues.
+The following section described issues encountered, mainly issues related to interpreting the OpenStreetMap data, the most complex were footway handling \ref{ref:footways} and crossing reporting \ref{ref:crossings}, and it also described accessibility-related issues, mainly Qt behvior bugs, see \ref{accessibility} for more details..
 
 The following chapter described the survey, which analyzed the usability of the application. The first section of this chapter described the chosen subjects, the next one described the methodology, and the next section presented the results.
 \section{Future work}
