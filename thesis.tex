@@ -30,6 +30,16 @@ I would like to thank all my thesis advisors for their beneficial tips and for t
 \setcounter{tocdepth}{2}
 \begin{document}
 \chapter{Introduction}
+Being a visually impaired individual poses many challenges in day-to-day life. One of the more obvious ones is the inability to navigate in unknown areas relatively easily.
+
+When a sighted person is faced with the challenge of going through an unknown route, he can see it quite well most of the time, or, when the route is more complex, he can use a map. However, when visually impaired, this approach is not easy either.
+
+In the second chapter, this thesis explores the choices for a visually impaired person related to map exploration and navigation.
+The third chapter presents Feel the Streets, the main reason for the existence of this thesis. It explores the motivations, implemented features, used technologies, and the history which led to the current state. It also talks about some issues which were encountered during the development.
+
+The fourth chapter presents a study that was done on a group of visually impaired people and was related to the usability of the presented application.
+
+The fifth chapter summarizes the conclusions and presents the future work which is necessary to make the application more successful than a one-person project for hobby purposes. The last part of the thesis presents the appendices which did not fit into the structure but are nonetheless useful in understanding the results of the work.
 \chapter{Map presentation approaches}
 Using a map is one of the more common approaches when a person wants to learn an unknown area. However, it poses a challenge for visually impaired people because it is necessary to represent the map somehow. It is possible to describe the area verbally, which is commonly done. However, sometimes a more map-like approach is helpful as well. So this chapter describes the various approaches which can be used to present maps to visually impaired people, mainly focusing on tactile maps and various applications for smartphones and desktop operating systems.
 \section{Printed maps}
@@ -39,7 +49,7 @@ To help in creating tactile maps, Mapy.cz now allows export to a format which is
 
 Another system allowing to create a tactile map from OpenStreetMap data is \parencite{tactile_osm_maps}. It also allows to specify the starting point of the map and also the zoom level used for rendering. The rendering tries to show important features for the visually impaired, such as tactile paving.
 \section{Mobile phone apps}
-As smartphones started being ubiquitous in the population of visually impaired people, some special applications for the respective operating systems were created. Also, the standard navigation applications developers did not forget accessibility completely, so this section describes the most common applications used by visually impaired people on the two major smartphone operating systems.
+As smartphones started being ubiquitous in the population of visually impaired people, some special applications for the respective operating systems were created. Also, the standard navigation applications developers did not completely forget accessibility, so this section describes the most common applications used by visually impaired people on the two major smartphone operating systems.
 \subsection{Google maps}
 Google Maps \parencite{googlemaps} is a map application created by Google. It started as a web application and was also ported to various smartphone operating systems, including Android and iOS. The application supports displaying the map, searching for nearby places in various categories, navigation features, and other related functions, such as adding place reviews and location sharing between users. Google had a somewhat longer time to get good coverage of the world, so the data are generally regarded as better than Apple's, but it processes more personal data from the users \parencite{mapcomp}.
 
@@ -47,7 +57,7 @@ From a visually impaired user perspective, the interface is quite accessible, ex
 \subsection{Apple maps}
 Apple Maps \parencite{applemaps} is a mapping application used by Apple in their operating systems. The basic features - map exploration, searching by name or category, exploring the graphical map, are there as well.
 
-For visually impaired users, the application is fully accessible. It even allows the visually impaired user to look around the map to get a feel about spatial relationships of streets. This feature allows a visually impaired user to slide the finger on the screen and be notified about the current street under it.
+For visually impaired users, the application is fully accessible. It even allows the visually impaired user to look around the map to get a feel about the spatial relationships of streets. This feature allows a visually impaired user to slide the finger on the screen and be notified about the current street under it.
 \subsection{BlindSquare}
 BlindSquare \parencite{blindsquare} is an application primarily for visually impaired users on the iOS operating system. The application uses Foursquare and OpenStreetMap to help the user determine its current location and to find out what is nearby.
 
@@ -57,7 +67,7 @@ Lazarillo \parencite{lazarillo} is somewhat similar to BlindSquare. However, Laz
 \subsection{Where Am I}
 Where am I \parencite{whereami} is an Android application allowing the user to determine his location, copy his GPS coordinates and calculate distances between arbitrary two locations.
 \subsection{Naviterier}
-Naviterier \parencite{naviterier} is an application that provides specially tailored routes for visually impaired users. These routes contain many more details (crossing and corner descriptions, curb information, and similar hints), allowing the visually impaired to walk the planned route with fewer surprises than with a traditional navigation application. The application is available as a web application that can show the entire planned route and as mobile applications for Android and iOS.
+Naviterier \parencite{naviterier} is an application that provides specially tailored routes for visually impaired users. These routes contain many more details (crossing and corner descriptions, curb information, and similar hints), allowing the visually impaired to walk the planned route with fewer surprises than with a traditional navigation application. The application is available as a web application that can show the entire planned route and as a mobile application for Android and iOS.
 
 Because planning for visually impaired users requires much more details than is available in OpenStreetMap or Google Maps, the application has good enough data coverage only in Prague. The best results can only be achieved in the city's center, where the application has the most complete data coverage. In the center, the application uses data from the ROUTE4ALL platform \parencite{route4all}. In the rest of the supported areas, it uses traditional map data and human curation of the details needed for navigation purposes of the visually impaired.
 \subsection{OsmAnd}
@@ -69,9 +79,9 @@ Dotwalker \parencite{dotwalker} is an Android application helping visually impai
 
 The application also shows the current compass direction and allows sharing the current location between users.
 \subsection{Right Hear}
-RightHear \parencite{righthear} is an application for Android and iOS that is primarily designated to help visually impaired people navigate buildings. That is accomplished using a network of Bluetooth beacons that contain information relevant to the user in the particular place. The application also supports outdoor navigation. It very likely uses OpenStreetMap data because the website specifies that it uses open-source map data.
+RightHear \parencite{righthear} is an application for Android and iOS that is primarily designated to help visually impaired people navigate buildings. That is accomplished using a network of Bluetooth beacons that contain information relevant to the user in a particular place. The application also supports outdoor navigation. It very likely uses OpenStreetMap data because the website specifies that it uses open-source map data.
 \subsection{Ariadne GPS}
-AriadneGPS \parencite{ariadnegps} is a paid iOS application that allows a visually impaired user to explore his surroundings and save points of interest and navigate to them, or be notified when the points are in range. The application allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only shows streets, addresses, and intersections. However, the user can turn on a mode that shows more features, for example, parks. A cursory personal analysis shows that AriadneGPS uses both Apple Maps and Google Maps as its sources. Unfortunately, it does not allow displaying more details about the places and does not allow searching for known points of interest (shops, restaurants, and similar).
+AriadneGPS \parencite{ariadnegps} is a paid iOS application that allows a visually impaired user to explore his surroundings and save points of interest and navigate to them or be notified when the points are in range. The application allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only shows streets, addresses, and intersections. However, the user can turn on a mode that shows more features, for example, parks. A cursory personal analysis shows that AriadneGPS uses both Apple Maps and Google Maps as its sources. Unfortunately, it does not allow displaying more details about the places and does not allow searching for known points of interest (shops, restaurants, and similar).
 \section{Desktop apps}
 Despite the Usage of desktops being quite common, not many navigation-related applications are accessible on desktop operating systems. The web interfaces of various services can be used with various degrees of success. However, the functional features are limited to route searches.
 
@@ -80,7 +90,7 @@ This section thus describes the single application mentioned in the research.
 This Czech-only application \parencite{ptg} allows the users to do a route search using Google's route search API. The route is then displayed as an accessible list of individual route steps. The search can be constrained by the mode of transport, whether public transport can be used, and similar parameters. The application also allows displaying the known places around a location using Google's places API.
 \section{Summary}
 As was shown in this chapter, navigation applications for smartphone operating systems are usable. However, presenting the actual map is nonetheless a challenge. The data source is often a commercial offering, which might be an issue for some users.
-\chapter{Feel the streets}
+\chapter{Feel the streets} \label{ref:fts}
 As can be seen from the previous chapter, when a visually impaired user wants to browse a map on a desktop operating system accessibly and use features more advanced than route planning, the choices are not good, or the applications are somewhat hard to use.
 
 That is the reason why Feel the Streets was born, and I spent quite a lot of time writing it. Therefore this chapter describes the application features and then describes the development history and the various architectural changes along the way.
@@ -91,7 +101,7 @@ From the user's perspective, Feel the Streets is a desktop application that, whe
 \subsection{Area selection}
 After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This window is shown in the below figure.
 \begin{figure}[h]
-\caption{The area selection window of Feel the Streets}
+\caption{The area selection window of Feel the Streets}[h]
 \includegraphics{fts-areas}
 \end{figure}
 The areas list is usually retrieved from the Feel the Streets server, so it includes all the available areas. Still, when there is no network connectivity, the locally available areas are shown instead.
@@ -126,7 +136,7 @@ The first is a simple search based on a partial name match. The user can enter a
 
 When the name search is not sufficiently detailed, the user can use the advanced search. In this mode, he is first required to select which kind of object he wants to search - everything with an address, shops, buildings, and more. After the selection, he can specify additional conditions based on the selected entity's fields. For strings, it is possible to use exact or partial matches. For numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical and operator between them. This window is shown in the next figure.
 \begin{figure}
-\caption{Advanced search for an amenity filtered to universities}
+\caption{Advanced search of amenities filtered to universities}
 \includegraphics{fts-amenity-university}
 \end{figure}
 
@@ -176,12 +186,12 @@ To keep the number of additional components as low as possible, RabbitMQ is also
 
 The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them in the Rabbitmq queue. The compression uses the Zstdandard compression algorithm \parencite{zstd} which allows, among other things, to use a pre-trained compression dictionary for compression, which gives much better results than compressing the individual messages on its own - it gave an improvement of at least of 50\% in message sizes on average.
 
-To help discover new kinds of amenities and another enum like tags during the processing of areas and to find other anomalies in the assumed schema of the OSM data (type violations, unknown properties, and others), a record of these events is logged during the operation and it is stored for further analysis. The processing application, however, is not implemented yet. Or more correctly, the features were lost during the Rust rewrite, which is described in the following section.
+To help discover new kinds of amenities and another enum like tags during the processing of areas and to find other anomalies in the assumed schema of the OSM data (type violations, unknown properties, and others), a record of these events is logged during the operation and it is stored for further analysis. The processing application, however, is not implemented yet. Or, more correctly, the features were lost during the Rust rewrite, which is described in the following section.
 \subsection{The shared library}
 The handling of area databases is actually implemented in a shared library, called osm\_db, which is called from the server code and from Python as well. To allow calling the library from Python, creating a binding library was necessary. Fortunately, by using the Pyo3 Rust library \parencite{pyo3}, that effort was relatively straightforward. The Python library does not expose the entire public API of osm\_db, only the parts which the client application requires, which means basically the complete query API and a way to apply database changes.
 \subsection{The administrative command-line application}
 To allow performing some maintenance and related tasks for the server, such as requesting clients to perform redownload of an area, making a rename of a field, and some more actions, a command-line application that interacted with the server-side area databases and queues was implemented.
-\section{Development history}
+\section{Development history} \label{ref:devhistory}
 This section presents the development history of Feel the Streets, the various approaches used, and their advantages and disadvantages. It also mentions some of the accessibility issues, which are further described in the issues encountered along the way section. This section does not describe each commit of the Feel the Streets repository. It mentions only the more important ones.
 \subsection{The beginnings}
 The first commit of the Feel the Streets project occurred on the 18th of August 2017. At this time, the application's GUI used the wxWidgets library \parencite{wx}, and there was no server component. The area database access was handled using the SQLAlchemy library, and it used the sqlalchemy's table inheritance features, so there was a separate table for each entity class.
@@ -305,7 +315,7 @@ The second part consisted of a virtual meeting with the participant. The meeting
 The questions were grouped into five categories. The first consisted of some general questions related to the age, visual impairment, and computer skills of the participant. The second group of questions was related to the navigation applications which the participants are using. The third set of questions explored how the participants used Feel the Streets and what they generally think. The fourth group of questions was related to the various application areas. For each, the participants were asked how hard it was to learn, how the learning could be made easier, what was hardest to remember, and how satisfied the participants actually were. For some areas, additional questions were asked. The sections which were analyzed using the area-specific questions were the area selection window, the new area request window, the main window, and the nearby objects window. After the area-specific questions, as the last group of questions, the system usability scale \parencite{brooke1996} was used to summarize the application's usability.
 
 At the end of the interview, the participants were also asked whether they want to add anything else. However, nobody wanted to add anything significant, so this part of the study will not be analyzed any further.
-\section{Results of the interviews}
+\section{Interviews results}
 This section presents the summarized results from the personal interviews. When a particular person is referenced in the following subsections, an identifier is used instead of their name or initials.
 \subsection{Questions about the participant}
 The purpose of these questions was to classify the participants somehow.
@@ -318,7 +328,7 @@ When asked about their visual impairment, out of all the participants, P1, P2, P
 
 Because Feel the Streets is not one of the simplest applications, the overall user efficiency might be quite dependent on their overall computer skills. That is the reason why the participants were asked to rate their computer skills. The people could think of any classification they liked. The following table summarizes their answers.
 \begin{table}
-\caption{The results of the computer skills question}
+\caption{The results of the skills question}
 \begin{tabularx}{\textwidth}{ |X|X| }
 Classification & Number of participants \\
 \hline
@@ -328,7 +338,7 @@ above average & 1 \\
 I can Google anything I need & 1 \\
 \end{tabularx}
 \end{table}
-Because of the source of the candidates, the data show an above-average number of advanced computer users. However, this does not have any correlation in how positive the users rated the application.
+Because of the source of the candidates, the data show an above-average number of advanced computer users. However, this does not have any correlation with how positively the users rated the application.
 \subsection{Usage of other navigation applications}
 In this section, the subjects were asked which other navigation applications they use and how often and how.
 
@@ -393,7 +403,7 @@ The same applied when the users were asked about their satisfaction with the win
 \subsection{New area request UI}
 The next set of questions was related to the area requests interface.
 
-Only three participants (P1, P2, and P10) used the functionality during the testing period before the meeting. The remaining ones did not. However, they tried it during the meeting except for two (P7 and P8), which could not try it due to the fact that they were not near a computer.
+Only three participants (P1, P2, and P10) used the functionality during the testing period before the meeting. The remaining ones did not. However, they tried it during the meeting except for two (P7 and P8), which could not try the functionality due to the fact that they were not near a computer.
 
 When the users tried the functionality, all of them called the interface easy to learn and use. One of them, namely P9, however, hoped for better area selection heuristics, for example, for hiding areas which a user would not want to download, but on the other hand, he would want to download city districts that are not working in the current search model well and must be addressed in the future.
 
@@ -403,7 +413,7 @@ The first suggestion was related to the fact that as of now after the area is su
 
 Another suggestion, brought by participant P1, called for adding country filters to the area search. 
 
-And lastly, participant P5 requested adding some form of area names autocompletion functionality.
+And lastly, participant P5 requested adding some form of area name auto-completion functionality.
 
 Because of the relatively low complexity of the interface, there were no issues in remembering it.
 
@@ -457,7 +467,7 @@ Participant P2 thought that removing the longer form of the error messages when 
 
 When asked how the participants were satisfied, the reactions were largely positive. In one case, the participant responded that he sees no problem using the window as is now, namely participant P10. The remaining nine users said that it is okay. Participant P5 added that getting used to the fact that it is more complex than some audio game windows takes some time.
 
-When asked whether adding a 180-degree turn command would help, the response was in nine cases a definitive yes. Only participant P5 thought that doing two 90 degree turns is okay.
+When asked whether adding a 180-degree turn command would help, the response was, in nine cases, a definitive yes. Only participant P5 thought that doing two 90 degree turns is okay.
 
 There was a user who managed to talk about the potential 180-degree turn command's shortcut for at least five minutes, which was participant P9.
 
@@ -479,7 +489,7 @@ Another sound-related suggestion offered to make a specific sound when the user 
 
 For now, the interesting objects start making sounds at the same distance as they are announced. That was noticed by user P2, which recommended making both distances configurable separately.
 
-One user was confused why the map contains multiple stop entities for a stop that has physically two platforms, namely P4.
+One user was confused why the map contains multiple stop entities for a stop that physically has two platforms, namely P4.
 
 When asked whether the participant used the ctrl+shift+l command, e. g. the slow version of the show the current location in the objects browser window command, it turned out that six users did not use it and, when presented with it, did not find it missing. Four others tried it (P2, P6, P9, and P10), but only because they were testing everything they could. That implies that removing this particular shortcut would not be missed much.
 \subsection{Objects browser}
@@ -505,7 +515,7 @@ Another four users (P2, P6, P9, and P10, would rather remove the main menu and a
 
 Participant P2, who also suggested the context menu, offered another way - add the actions as buttons after the properties tree view.
 
-The last way how to handle the discoverability situation, which was suggested, was that a button would be added which, when pressed, would show the object actions. This particular way was suggested by participant P10.
+The last way how to handle the discoverability situation, which was suggested, was that a button would be added which, when pressed, would show the object's actions. This particular way was suggested by participant P10.
 
 When asked which other actions would be useful, two people (P9 and P10) suggested adding an action that would turn your point of view wards to the selected object.
 
@@ -527,7 +537,7 @@ Another suggestion that appeared twice was a concept of a tracked object. Such a
 
 A somewhat similar suggestion was a concept of an ephemeral bookmark. That bookmark would not be saved in the database, would not have a name, and there would be a command which would allow jumping to these bookmarks. This was suggested by participant P6.
 
-Another facility that one user suggested was a concept of a radar-like scan which would tell the user nearby objects by sound and read their names. This feature was suggested by participant P2.
+Another facility that one user suggested was a concept of a radar-like scan that would tell the user nearby objects by sound and read their names. This feature was suggested by participant P2.
 
 The remaining users did not bring any new suggestions on how to improve the chance not to get lost.
 \subsection{System usability scale}
@@ -567,13 +577,13 @@ The situation for smartphone users is that there are usable navigation applicati
 
 And the situation on desktop operating systems is worse, the research did identify only applications for the Windows operating system, and the functionality was limited.
 
-To help change the status quo, in the next chapter, the Feel the Streets application was introduced. First, the application's advantages were described. In the following section, the features of the application were introduced along with the related screenshots.
+To help change the status quo, in chapter \ref{ref:fts}, the Feel the Streets application was introduced. First, the application's advantages were described. In the following section, the features of the application were introduced, along with the related screenshots.
 
-The following section described the technical details of the application. It described the technology decisions along with explanations for the individual choices, and then the following sections described the history and the reasons which led to the mentioned changes.
+In section \ref{ref:devhistory} the technical details of the application were described in more detail. This section described the technology decisions along with explanations for the individual choices, and then the following sections described the history and the reasons which led to the mentioned changes.
 
-The following section described issues encountered, mainly issues related to interpreting the OpenStreetMap data, the most complex were footway handling \ref{ref:footways} and crossing reporting \ref{ref:crossings}, and it also described accessibility-related issues, mainly Qt behvior bugs, see \ref{accessibility} for more details..
+The following section described issues encountered, mainly issues related to interpreting the OpenStreetMap data, the most complex were footway handling described in section \ref{ref:footways} and crossing reporting described in section \ref{ref:crossings}, and it also described accessibility-related issues, mainly Qt behavior bugs, see section \ref{ref:accessibility} for more details.
 
-The following chapter described the survey, which analyzed the usability of the application. The first section of this chapter described the chosen subjects, the next one described the methodology, and the next section presented the results.
+The following chapter described the survey, which analyzed the usability of the application. The first section of this chapter described the chosen subjects, the next one described the methodology, and the next section presented the largely positive results.
 \section{Future work}
 As was eminent from the study results, the users of Feel the Streets see the application as a beneficial tool and want it to continue development. So, in the future, the user feedback will be addressed, most of the user-requested features will be implemented at some point.
 
