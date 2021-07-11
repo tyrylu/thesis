@@ -94,7 +94,7 @@ This section thus describes the single application mentioned in the research.
 \subsection{Plánovač tras Google}
 This Czech-only application \parencite{ptg} allows the users to do a route search using Google's route search API. The route is then displayed as an accessible list of individual route steps. The search can be constrained by the mode of transport, whether public transport can be used, and similar parameters. The application also allows displaying the known places around a location using Google's places API.
 \section{Summary}
-As was shown in this chapter, navigation applications for smartphone operating systems are usable. However, presenting the actual map is nonetheless a challenge. The data source is often a commercial offering, which might be an issue for some users.
+As was shown in this chapter, navigation applications for smartphone operating systems are usable. The user can perform basic operations like searching for a route, browsing near by places and in some cases it is also possible to get a basic understanding of the spatial relationships of the area shown by the map. However, presenting the actual map is nonetheless a challenge. The data source is often a commercial offering, which might be an issue for some users.
 \chapter{Feel the streets} \label{ref:fts}
 As can be seen from the previous chapter, when a visually impaired user wants to browse a map on a desktop operating system accessibly and use features more advanced than route planning, the choices are not good, or the applications are somewhat hard to use.
 
@@ -304,12 +304,12 @@ During the user study, a pretty weird behavior of a QT application was discovere
 During the first day of testing, one of the testers discovered a set of serious issues related to the sound cue positioning and behavior of the sounds in general. Firstly, the sounds did not keep the relative angles to each other when transformed from GPS coordinate to cartesian space. It turned out that using the ECEF projection was usable, but it did not keep spatial relationships. To fix this, commit f204bc8c02 changed the used projection to an exact transverse Mercator one. This rewrite also allowed untangling the weird coordinate system mapping.
 
 Another issue was audio artifacts which manifested when turning around or approaching a sound source. The sound position was jumping in audibly bigger steps than anticipated, and it could even jump in the opposite direction than the user expected. It turned out that the Usage of coordinates ranging around three or four million caused some internal rounding issues in the OpenAL library. The first attempt at fixing these was commit 49cf08e235, which rounded them to a few decimal places. However, that did not help. Even if one of the coordinates was small as a result of the Mercator projection being centered on the point of the default start location, that did not help in fixing the issues. The one large coordinate was likely still causing the same rounding problems. The final solution was implemented in commit e67526d984, which took the default start location as the coordinate system's origin, so the coordinates were quite small, at least at reasonable distances from the origin.
-\chapter{Usability study}
+\chapter{Usability testing}
 Having an application that offers some great functions but is only usable by the application's author is not something that this application did not have as a goal. To discover the usability of the application and what improvements could be made, a study was performed on a group of visually impaired users.
 
 The study's main goals were to analyze the usability of various parts of the application and to gather possible improvement suggestions.
-\section{About the subjects}
-The study was undertaken on a group of visually impaired people from the Czech Republic. The people were all practically or totally blind, and their ages ranged from approximately 15 to 40 years. The people were contacted first around July of 2020. However, further needed changes required moving the start of the study to the march of 2021. Out of 15 confirmed subjects from the Julyinquiry, 10 actually managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
+\section{About the participants}
+The study was undertaken on a group of visually impaired people from the Czech Republic. The people were all practically or totally blind, and their ages ranged from approximately 15 to 40 years. The people were contacted first around July of 2020. However, further needed changes required moving the start of the study to the march of 2021. Out of 15 confirmed subjects from the July inquiry, 10 actually managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
 \section{Methodology}
 The study consisted of two parts. In the first, the participants who agreed with their participation were sent an e-mail with some user documentation and scenarios to try while testing Feel the streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else they wanted to. The testing scenarios required the users to launch the application, select a particular area and go through a specified route. Note that the users did not have to go anywhere physically. Working with the application was sufficient to complete the scenarios.
 
@@ -317,7 +317,7 @@ Both of the testing scenarios started in the same location. The first scenario l
 
 The second part consisted of a virtual meeting with the participant. The meetings were recorded with the agreement of the test subjects. During the meeting, a set of questions was asked.
 
-The questions were grouped into five categories. The first consisted of some general questions related to the age, visual impairment, and computer skills of the participant. The second group of questions was related to the navigation applications which the participants are using. The third set of questions explored how the participants used Feel the Streets and what they generally think. The fourth group of questions was related to the various application areas. For each, the participants were asked how hard it was to learn, how the learning could be made easier, what was hardest to remember, and how satisfied the participants actually were. For some areas, additional questions were asked. The sections which were analyzed using the area-specific questions were the area selection window, the new area request window, the main window, and the nearby objects window. After the area-specific questions, as the last group of questions, the system usability scale \parencite{brooke1996} was used to summarize the application's usability.
+The questions were grouped into five categories. The first consisted of some general questions related to the age, visual impairment, and computer skills of the participant. The second group of questions was related to the navigation applications which the participants are using. The third set of questions explored how the participants used Feel the Streets and what they generally think. The fourth group of questions was related to the various application areas. For each, the participants were asked how hard it was to learn, how the learning could be made easier, what was hardest to remember, and how satisfied the participants actually were. For some areas, additional questions were asked. The sections which were analyzed using the area-specific questions were the area selection window, the new area request window, the main window, and the nearby objects window. After the area-specific questions, as the last group of questions, the System usability scale \parencite{brooke1996} was used to summarize the application's usability.
 
 At the end of the interview, the participants were also asked whether they want to add anything else. However, nobody wanted to add anything significant, so this part of the study will not be analyzed any further.
 \section{Interviews results}
@@ -333,7 +333,7 @@ When asked about their visual impairment, out of all the participants, P1, P2, P
 
 Because Feel the Streets is not one of the simplest applications, the overall user efficiency might be quite dependent on their overall computer skills. That is the reason why the participants were asked to rate their computer skills. The people could think of any classification they liked. The following table summarizes their answers.
 \begin{table}
-\caption{The results of the skills question}
+\caption{The results of the computer skills question}
 \begin{tabularx}{\textwidth}{ |X|X| }
 Classification & Number of participants \\
 \hline
@@ -546,7 +546,7 @@ Another facility that one user suggested was a concept of a radar-like scan that
 
 The remaining users did not bring any new suggestions on how to improve the chance not to get lost.
 \subsection{System usability scale}
-To help classify the usability in a numeric way, the system usability scale was used.
+To help classify the usability in a numeric way, the System usability scale was used.
 
 On average, the application received a system usability score of 81.25. The best-achieved score was 97.5, and the worst was 65.
 
@@ -659,7 +659,7 @@ This section contains the complete list of the survey questions in the order in 
 \item Which information would help you finding where you were?
 \end{itemize}
 \subsection{System usability scale}
-The following list of questions was used to get the numerical results for the system usability scale.
+The following list of questions was used to get the numerical results for the System usability scale.
 \begin{enumerate}
 \item I think that I would like to use Feel the Streets frequently.
 \item I found Feel the Streets unnecessarily complex.
@@ -673,5 +673,5 @@ The following list of questions was used to get the numerical results for the sy
 \item I needed to learn a lot of things before I could get going with Feel the Streets.
 \end{enumerate}
 \section{Attached appendices}
-This section describes the other attachments in the thesis archive. The file \emph{sus.xlsx} contains the results of the system usability scale survey along with the calculated scores and the relevant formulas. The file \emph{dp\_subject\_mail.txt} contains text of the email which was sent to the participants, note that the text is only in the Czech language. Also in Czech, the file \emph{user\_docs.html} contains the documentation which was available to the survey participants.
+This section describes the other attachments in the thesis archive. The file \emph{sus.xlsx} contains the results of the System usability scale survey along with the calculated scores and the relevant formulas. The file \emph{dp\_subject\_mail.txt} contains text of the email which was sent to the participants, note that the text is only in the Czech language. Also in Czech, the file \emph{user\_docs.html} contains the documentation which was available to the survey participants.
 \end{document}
