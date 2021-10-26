@@ -2,7 +2,7 @@
 \thesissetup{faculty=fi}
 \thesissetup{author=Bc. Lukáš Tyrychtr,id=422294, departmentEn = Faculty of Informatics, programmeEn = Applied Informatics, fieldEn = Applied Informatics, assignment = {}}
 \thesissetup{type= mgr}
-\thesissetup{title=Feel the streets - a visually impaired user access to OSM maps}
+\thesissetup{title=Feel the Streets - a visually impaired user access to OSM maps}
 \thesissetup{keywords = {visually impaired, navigation, accessibility, Open Street Map, usability}}
 \usepackage[english]{babel}
 \usepackage{alltt}
@@ -55,11 +55,11 @@ To help in creating tactile maps, Mapy.cz now allows export to a format which is
 Another system allowing to create a tactile map from OpenStreetMap data is \parencite{tactile_osm_maps}. It also allows to specify the starting point of the map and also the zoom level used for rendering. The rendering tries to show important features for the visually impaired, such as tactile paving.
 \section{Mobile phone apps}
 As smartphones started being ubiquitous in the population of visually impaired people, some special applications for the respective operating systems were created. Also, the standard navigation applications developers did not completely forget accessibility, so this section describes the most common applications used by visually impaired people on the two major smartphone operating systems.
-\subsection{Google maps}
+\subsection{Google Maps}
 Google Maps \parencite{googlemaps} is a map application created by Google. It started as a web application and was also ported to various smartphone operating systems, including Android and iOS. The application supports displaying the map, searching for nearby places in various categories, navigation features, and other related functions, such as adding place reviews and location sharing between users. Google had a somewhat longer time to get good coverage of the world, so the data are generally regarded as better than Apple's, but it processes more personal data from the users \parencite{mapcomp}.
 
 From a visually impaired user perspective, the interface is quite accessible, except for the area displaying the actual graphical map. The navigation functionality is also usable well, thanks to quite specific voice prompts along the planned route.
-\subsection{Apple maps}
+\subsection{Apple Maps}
 Apple Maps \parencite{applemaps} is a mapping application used by Apple in their operating systems. The basic features - map exploration, searching by name or category, exploring the graphical map, are there as well.
 
 For visually impaired users, the application is fully accessible. It even allows the visually impaired user to look around the map to get a feel about the spatial relationships of streets. This feature allows a visually impaired user to slide the finger on the screen and be notified about the current street under it.
@@ -70,7 +70,7 @@ The application supports reporting the current address based on the user's GPS l
 \subsection{Lazarillo}
 Lazarillo \parencite{lazarillo} is somewhat similar to BlindSquare. However, Lazarillo is available for Android and iOS operating systems. The basic BlindSquare features like near places discovery, search, favorite places are there. In addition to these features, Lazarillo allows you to set a tracked object and monitor your distance to it in real-time. It also has some business-related features for indoor navigation, sharing accessibility-related information, and it also has related features to help the users navigate.
 \subsection{Where Am I}
-Where am I \parencite{whereami} is an Android application allowing the user to determine his location, copy his GPS coordinates and calculate distances between arbitrary two locations.
+Where Am I \parencite{whereami} is an Android application allowing the user to determine his location, copy his GPS coordinates and calculate distances between arbitrary two locations.
 \subsection{Naviterier}
 Naviterier \parencite{naviterier} is an application that provides specially tailored routes for visually impaired users. These routes contain many more details (crossing and corner descriptions, curb information, and similar hints), allowing the visually impaired to walk the planned route with fewer surprises than with a traditional navigation application. The application is available as a web application that can show the entire planned route and as a mobile application for Android and iOS.
 
@@ -84,9 +84,9 @@ Dotwalker \parencite{dotwalker} is an Android application helping visually impai
 
 The application also shows the current compass direction and allows sharing the current location between users.
 \subsection{Right Hear}
-RightHear \parencite{righthear} is an application for Android and iOS that is primarily designated to help visually impaired people navigate buildings. That is accomplished using a network of Bluetooth beacons that contain information relevant to the user in a particular place. The application also supports outdoor navigation. It very likely uses OpenStreetMap data because the website specifies that it uses open-source map data.
+Right Hear \parencite{righthear} is an application for Android and iOS that is primarily designated to help visually impaired people navigate buildings. That is accomplished using a network of Bluetooth beacons that contain information relevant to the user in a particular place. The application also supports outdoor navigation. It very likely uses OpenStreetMap data because the website specifies that it uses open-source map data.
 \subsection{Ariadne GPS}
-AriadneGPS \parencite{ariadnegps} is a paid iOS application that allows a visually impaired user to explore his surroundings and save points of interest and navigate to them or be notified when the points are in range. The application allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only shows streets, addresses, and intersections. However, the user can turn on a mode that shows more features, for example, parks. A cursory personal analysis shows that AriadneGPS uses both Apple Maps and Google Maps as its sources. Unfortunately, it does not allow displaying more details about the places and does not allow searching for known points of interest (shops, restaurants, and similar).
+Ariadne GPS \parencite{ariadnegps} is a paid iOS application that allows a visually impaired user to explore his surroundings and save points of interest and navigate to them or be notified when the points are in range. The application allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only shows streets, addresses, and intersections. However, the user can turn on a mode that shows more features, for example, parks. A cursory personal analysis shows that AriadneGPS uses both Apple Maps and Google Maps as its sources. Unfortunately, it does not allow displaying more details about the places and does not allow searching for known points of interest (shops, restaurants, and similar).
 \section{Desktop apps}
 Despite the Usage of desktops being quite common, not many navigation-related applications are accessible on desktop operating systems. The web interfaces of various services can be used with various degrees of success. However, the functional features are limited to route searches.
 
@@ -95,7 +95,7 @@ This section thus describes the single application mentioned in the research.
 This Czech-only application \parencite{ptg} allows the users to do a route search using Google's route search API. The route is then displayed as an accessible list of individual route steps. The search can be constrained by the mode of transport, whether public transport can be used, and similar parameters. The application also allows displaying the known places around a location using Google's places API.
 \section{Summary}
 As was shown in this chapter, navigation applications for smartphone operating systems are usable. The user can perform basic operations like searching for a route, browsing near by places and in some cases it is also possible to get a basic understanding of the spatial relationships of the area shown by the map. However, presenting the actual map is nonetheless a challenge. The data source is often a commercial offering, which might be an issue for some users.
-\chapter{Feel the streets} \label{ref:fts}
+\chapter{Feel the Streets} \label{ref:fts}
 As can be seen from the previous chapter, when a visually impaired user wants to browse a map on a desktop operating system accessibly and use features more advanced than route planning, the choices are not good, or the applications are somewhat hard to use.
 
 That is the reason why Feel the Streets was born, and I spent quite a lot of time writing it. Therefore this chapter describes the application features and then describes the development history and the various architectural changes along the way.
@@ -155,7 +155,7 @@ The window also allows performing additional actions on some of the objects. The
 \subsection{Navigational sounds}
 During navigation, the application plays some sounds to help the user visualize the relationships between the object positions and distances.
 
-As a first clue, it plays sounds for some objects, currently for land areas, shops, and trash cans. These sounds are played on the correct 3d cartesian coordinates, so the relationships between them are preserved.
+As a first clue, it plays sounds for some objects, currently for land areas, shops, and trash cans. These sounds are played on the correct 3D cartesian coordinates, so the relationships between them are preserved.
 
 In addition to these sounds, the application also plays sounds for crossings.
 
@@ -167,7 +167,7 @@ These announcements can, of course, be turned off using a configuration option.
 \section{Technical overview}
 This section describes the currently used technologies which are used by the Feel the Streets client and server. The technologies have changed quite extensively during the development, so the Development history section then presents the various choices which were made during the lifetime of the application.
 
-As of now - commit f316b17d63, which can be found along with the entire development history at \parencite{fts_repo}, the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through python bindings.
+As of now - commit f316b17d63, which can be found along with the entire development history at \parencite{fts_repo}, the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through Python bindings.
 \subsection{The client}
 The client is the main application with which all the users interact. It handles downloading of the area databases, applying updates, and browsing the respective areas.
 
@@ -185,21 +185,21 @@ For storage of the area databases, the SQLite3 library \parencite{sqlite} is use
 
 For communication with the client application, the server exposes an HTTP API for area lists, download requests, and similar functionality. 
 
-For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the Rabbitmq server when connecting, they are limited by an access control list, and the connection is also secured using Transport layer security.
+For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the RabbitMQ server when connecting, they are limited by an access control list, and the connection is also secured using Transport layer security.
 
 To keep the number of additional components as low as possible, RabbitMQ is also used for background task storage and for background task scheduling. The scheduling uses the message's time to live, and it instructs RabbitMQ to put the message to the ready messages queue after the TTL expires.
 
-The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them in the Rabbitmq queue. The compression uses the Zstdandard compression algorithm \parencite{zstd} which allows, among other things, to use a pre-trained compression dictionary for compression, which gives much better results than compressing the individual messages on its own - it gave an improvement of at least of 50\% in message sizes on average.
+The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them in the RabbitMQ queue. The compression uses the Zstdandard compression algorithm \parencite{zstd} which allows, among other things, to use a pre-trained compression dictionary for compression, which gives much better results than compressing the individual messages on its own - it gave an improvement of at least of 50\% in message sizes on average.
 
 To help discover new kinds of amenities and another enum like tags during the processing of areas and to find other anomalies in the assumed schema of the OSM data (type violations, unknown properties, and others), a record of these events is logged during the operation and it is stored for further analysis. The processing application, however, is not implemented yet. Or, more correctly, the features were lost during the Rust rewrite, which is described in the following section.
 \subsection{The shared library}
-The handling of area databases is actually implemented in a shared library, called osm\_db, which is called from the server code and from Python as well. To allow calling the library from Python, creating a binding library was necessary. Fortunately, by using the Pyo3 Rust library \parencite{pyo3}, that effort was relatively straightforward. The Python library does not expose the entire public API of osm\_db, only the parts which the client application requires, which means basically the complete query API and a way to apply database changes.
+The handling of area databases is actually implemented in a shared library, called osm\_db, which is called from the server code and from Python as well. To allow calling the library from Python, creating a binding library was necessary. Fortunately, by using the PyO3 Rust library \parencite{pyo3}, that effort was relatively straightforward. The Python library does not expose the entire public API of osm\_db, only the parts which the client application requires, which means basically the complete query API and a way to apply database changes.
 \subsection{The administrative command-line application}
 To allow performing some maintenance and related tasks for the server, such as requesting clients to perform redownload of an area, making a rename of a field, and some more actions, a command-line application that interacted with the server-side area databases and queues was implemented.
 \section{Development history} \label{ref:devhistory}
 This section presents the development history of Feel the Streets, the various approaches used, and their advantages and disadvantages. It also mentions some of the accessibility issues, which are further described in the issues encountered along the way section. This section does not describe each commit of the Feel the Streets repository. It mentions only the more important ones.
 \subsection{The beginnings}
-The first commit of the Feel the Streets project occurred on the 18th of August 2017. At this time, the application's GUI used the wxWidgets library \parencite{wx}, and there was no server component. The area database access was handled using the SQLAlchemy library, and it used the sqlalchemy's table inheritance features, so there was a separate table for each entity class.
+The first commit of the Feel the Streets project occurred on the 18th of August 2017. At this time, the application's GUI used the wxWidgets library \parencite{wx}, and there was no server component. The area database access was handled using the SQLAlchemy library, and it used the SQLAlchemy's table inheritance features, so there was a separate table for each entity class.
 
 The initial implementation of the database update logic was added in the next commit.
 
@@ -219,7 +219,7 @@ In commit 62a1454247, the framework for executing actions on objects was introdu
 \subsection{The rustification efford}
 Because of the languages used, the server memory consumption and speed were not ideal. To improve the situation, a quite drastic measurement was taken starting from commit 67b194c60a. The entire server component was a small piece at a time rewritten into Rust. That required rethinking the way how the entity properties and generator property mappings are stored, so the server used a few YAML files to store the entity classes and their properties, the enums inherent in the data, and the translation transformations. The server rewrite effort was merged into master in commit 42a9e4762a.
 
-In commit b5b9ea13a1, the creation of python bindings of osm\_db has started. That allowed getting rid of the python entity classes, and access to the area database was unified at last.
+In commit b5b9ea13a1, the creation of Python bindings of osm\_db has started. That allowed getting rid of the Python entity classes, and access to the area database was unified at last.
 
 Along with the rewrite, the administrative application was rewritten as well. However, not all features were implemented. For example, generating missing OSM enum members from a record of the missing values was not yet implemented despite the support for logging the schema violations during creation and update requests is in place.
 \subsection{Area names are not enough}
@@ -231,7 +231,7 @@ In commit 21d703b0e4, the entire sound subsystem was changed from using the FMOD
 
 The previously mentioned HRTF support was not used until commit 7f6997cd54, however.
 \subsection{Changing the GUI library}
-While doing Linux testing of Feel the Streets, it turned out that the Wx widgets tree control completely lacks accessibility on that platform. Rather than trying to fix it and push that change through review, a change to a different GUI library was chosen as the solution. Qt was chosen as it was reasonably accessible on all platforms. The rewrite started in commit 864a478d3e and was mainly finished a commit after.
+While doing Linux testing of Feel the Streets, it turned out that the wxWidgets tree control completely lacks accessibility on that platform. Rather than trying to fix it and push that change through review, a change to a different GUI library was chosen as the solution. Qt was chosen as it was reasonably accessible on all platforms. The rewrite started in commit 864a478d3e and was mainly finished a commit after.
 \subsection{Continuous integration and deployment}
 During the Rust rewrite, a continuous integration configuration was started in commit 78cb752449. It only built the source code when it was created, but deployment was also added, so after a successful build, the binaries were pushed to the server where the API ran. This work was finished in commit 90d4e4afec. This version of the CI process was running only on Linux, however.
 
@@ -255,7 +255,7 @@ To be as helpful as possible, in commit 58f932d6a4 the application started descr
 
 To help the user find them more easily, in commit 3348fc5772, a sound that played on their positions was added.
 \subsection{Getting rid of one object-relational mapper}
-When profiling the startup times of the Feel the Streets client, it turned out that using the Sqlalchemy library for interactions with the database that stored bookmarks and last locations added a significant startup time cost. So in commit 2e5e6438ea, Sqlalchemy was replaced by direct database calls.
+When profiling the startup times of the Feel the Streets client, it turned out that using the SQLAlchemy library for interactions with the database that stored bookmarks and last locations added a significant startup time cost. So in commit 2e5e6438ea, Sqlalchemy was replaced by direct database calls.
 \subsection{Avoiding footways}
 Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section in more detail.
 \subsection{Making things smaller}
@@ -299,7 +299,7 @@ Despite it not being as common, some accessibility issues were discovered along 
 
 The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling, which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments. To help fix the problem, communication with the Qt developers was started. However, no implementation work related to this issue happened as of May. The issue will not be a one-line fix. It will require some additions to Qt's internal accessibility framework as it has no notion of an expansion or collapse action.
 
-During the user study, a pretty weird behavior of a QT application was discovered. When a QT application had a console window (e., g. it was not marked as a GUI-only app) and you launched it from file explorer or another way when a separate console window could not be reused, it behaved quite differently in some aspects regarding the accessibility support. The main issues of this behavior were that screen readers did not announce any movement inside a text field, the user had to first expand a combo box before interacting with the items (so it behaved like a combo box under Linux), and screen readers did not announce the content of QMessageBox windows. The root cause of this issue was not investigated further because it was much easier to remove the console window for the application.
+During the user study, a pretty weird behavior of a Qt application was discovered. When a Qt application had a console window (e., g. it was not marked as a GUI-only app) and you launched it from file explorer or another way when a separate console window could not be reused, it behaved quite differently in some aspects regarding the accessibility support. The main issues of this behavior were that screen readers did not announce any movement inside a text field, the user had to first expand a combo box before interacting with the items (so it behaved like a combo box under Linux), and screen readers did not announce the content of QMessageBox windows. The root cause of this issue was not investigated further because it was much easier to remove the console window for the application.
 \subsection{Sound positioning issues}
 During the first day of testing, one of the testers discovered a set of serious issues related to the sound cue positioning and behavior of the sounds in general. Firstly, the sounds did not keep the relative angles to each other when transformed from GPS coordinate to cartesian space. It turned out that using the ECEF projection was usable, but it did not keep spatial relationships. To fix this, commit f204bc8c02 changed the used projection to an exact transverse Mercator one. This rewrite also allowed untangling the weird coordinate system mapping.
 
@@ -311,7 +311,7 @@ The study's main goals were to analyze the usability of various parts of the app
 \section{About the participants}
 The study was undertaken on a group of visually impaired people from the Czech Republic. The people were all practically or totally blind, and their ages ranged from approximately 15 to 40 years. The people were contacted first around July of 2020. However, further needed changes required moving the start of the study to the march of 2021. Out of 15 confirmed subjects from the July inquiry, 10 actually managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
 \section{Methodology}
-The study consisted of two parts. In the first, the participants who agreed with their participation were sent an e-mail with some user documentation and scenarios to try while testing Feel the streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else they wanted to. The testing scenarios required the users to launch the application, select a particular area and go through a specified route. Note that the users did not have to go anywhere physically. Working with the application was sufficient to complete the scenarios.
+The study consisted of two parts. In the first, the participants who agreed with their participation were sent an e-mail with some user documentation and scenarios to try while testing Feel the Streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else they wanted to. The testing scenarios required the users to launch the application, select a particular area and go through a specified route. Note that the users did not have to go anywhere physically. Working with the application was sufficient to complete the scenarios.
 
 Both of the testing scenarios started in the same location. The first scenario let the user on a straight line from the starting location until a crossing was reached. The second scenario let the user through a few crossings where they had to change their direction, and it ended nearby a restaurant, which was a few hundred meters distant.
 
@@ -350,7 +350,7 @@ Because of the source of the candidates, the data show an above-average number o
 \subsection{Usage of other navigation applications}
 In this section, the subjects were asked which other navigation applications they use and how often and how.
 
-When asked which navigation applications the subjects used, only 4 of the participants responded that they use only a single navigation application, namely P1, P2, P3, and P9. The applications which were used alone were Google and Apple maps, Blindsquare and Lazarillo. Other mentioned applications included Where am I, Dotwalker, OsmAnd, right hear, Naviterier, Ariadne GPS, and Plánovač tras Google. The applications with the subjects who used them are shown in the following table.
+When asked which navigation applications the subjects used, only 4 of the participants responded that they use only a single navigation application, namely P1, P2, P3, and P9. The applications which were used alone were Google and Apple Maps, BlindSquare and Lazarillo. Other mentioned applications included Where Am I, Dotwalker, OsmAnd, Right Hear, Naviterier, Ariadne GPS, and Plánovač tras Google. The applications with the subjects who used them are shown in the following table.
 
 \vspace*{0.5 cm}
 \begin{table}
@@ -365,11 +365,11 @@ Apple Maps \parencite{applemaps} & P5, P6, P9 and P10 \\
 Lazarillo \parencite{lazarillo} & P1, P7 and P10 \\
 Plánovač tras Google \parencite{ptg} & P6 and P8 \\
 OsmAnd \parencite{osmand} & P6 \\
-Right hear \parencite{righthear} & P6 \\
+Right Hear \parencite{righthear} & P6 \\
 Dotwalker \parencite{dotwalker} & P6 \\
 Naviterier \parencite{naviterier} & P4 \\
-Where am I \parencite{whereami} & P4 \\
-AriadneGPS \parencite{ariadnegps} & P10 \\
+Where Am I \parencite{whereami} & P4 \\
+Ariadne GPS \parencite{ariadnegps} & P10 \\
 \hline
 \end{tabularx}
 \end{table}
