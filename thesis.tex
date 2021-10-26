@@ -19,6 +19,7 @@
 \SetAlCapSkip{3mm}
 \usepackage{graphicx}
 \graphicspath{{./images/}}
+\hyphenation{OsmAnd}
 \thesislong{abstract}{
 
 }
@@ -42,7 +43,7 @@ In the second chapter, this thesis explores the choices for a visually impaired 
 
 The third chapter presents Feel the Streets, the main reason for the existence of this thesis. It explores the motivations, implemented features, used technologies, and the history which led to the current state. It also talks about some issues which were encountered during the development.
 
-Having a potentially useful application is not enough, however. Every potential user has different needs and expectations, so it is important to discover what exactly the users think. To accomplish this goal, a study was performed withing a group of visually impaired people. The main goal of the study was to discover any usability issues which might exist. This study is described in chapter four.
+Having a potentially useful application is not enough, however. Every potential user has different needs and expectations, so it is important to discover what exactly the users think. To accomplish this goal, a study was performed within a group of visually impaired people. The main goal of the study was to discover any usability issues which might exist. This study is described in chapter four.
 
 The fifth chapter summarizes the conclusions and presents the future work which is necessary to make the application more successful than a one-person project for hobby purposes. The last part of the thesis presents the appendices which did not fit into the structure but are nonetheless useful in understanding the results of the work.
 \chapter{Map presentation approaches}
@@ -88,13 +89,13 @@ Right Hear \parencite{righthear} is an application for Android and iOS that is p
 \subsection{Ariadne GPS}
 Ariadne GPS \parencite{ariadnegps} is a paid iOS application that allows a visually impaired user to explore his surroundings and save points of interest and navigate to them or be notified when the points are in range. The application allows the user to explore spatial relationships on the map by touching the map area. By default, the exploration mode only shows streets, addresses, and intersections. However, the user can turn on a mode that shows more features, for example, parks. A cursory personal analysis shows that AriadneGPS uses both Apple Maps and Google Maps as its sources. Unfortunately, it does not allow displaying more details about the places and does not allow searching for known points of interest (shops, restaurants, and similar).
 \section{Desktop applications}
-Despite the Usage of desktops being quite common, not many navigation-related applications are accessible on desktop operating systems. The web interfaces of various services can be used with various degrees of success. However, the functional features are limited to route searches.
+Despite the usage of desktops being quite common, not many navigation related applications are accessible on desktop operating systems. The web interfaces of various services can be used with various degrees of success. However, the functional features are limited to route searches.
 
 This section thus describes the single application mentioned in the research.
 \subsection{Plánovač tras Google}
 This Czech-only application \parencite{ptg} allows the users to do a route search using Google's route search API. The route is then displayed as an accessible list of individual route steps. The search can be constrained by the mode of transport, whether public transport can be used, and similar parameters. The application also allows displaying the known places around a location using Google's places API.
 \section{Summary}
-As was shown in this chapter, navigation applications for smartphone operating systems are usable. The user can perform basic operations like searching for a route, browsing near by places and in some cases it is also possible to get a basic understanding of the spatial relationships of the area shown by the map. However, presenting the actual map is nonetheless a challenge. The data source is often a commercial offering, which might be an issue for some users.
+As was shown in this chapter, navigation applications for smartphone operating systems are usable. The user can perform basic operations like searching for a route, browsing nearby places and in some cases it is also possible to get a basic understanding of the spatial relationships of the area shown by the map. However, presenting the actual map is nonetheless a challenge. The data source is often a commercial offering, which might be an issue for some users.
 \chapter{Feel the Streets} \label{ref:fts}
 As can be seen from the previous chapter, when a visually impaired user wants to browse a map on a desktop operating system accessibly and use features more advanced than route planning, the choices are not good, or the applications are somewhat hard to use.
 
@@ -104,14 +105,14 @@ The main reasons for writing Feel the Streets were that none of the applications
 \section{Feature overview}
 From the user's perspective, Feel the Streets is a desktop application that, when launched, allows the user to browse OpenStreetMap maps without sight.
 \subsection{Area selection}
-After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This window is shown in the below figure.
+After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This window is shown in the figure below.
 \begin{figure}[h]
 \caption{The area selection window of Feel the Streets}
 \includegraphics{fts-areas}
 \end{figure}
 The areas list is usually retrieved from the Feel the Streets server, so it includes all the available areas. Still, when there is no network connectivity, the locally available areas are shown instead.
 
-The areas list shows the area's name, last modification, and creation times formatted according to the user's locale preferences, the area size, and its state. The state represents the status of the area's database, and it usually reports that the area is updated. Other states exist as well, namely states for an area that is just being created, for which we are just now retrieving the incremental changes, or we are applying them. A  concept of frozen areas exists, these areas can be downloaded, but after creation, no changes are applied to them, which is helpful for research reproducibility.
+The areas list shows the area's name, last modification and creation times formatted according to the user's locale preferences, the area size, and its state. The state represents the status of the area's database, and it usually reports that the area is updated. Other states exist as well, namely states for an area that is just being created, for which we are just now retrieving the incremental changes, or we are applying them. A  concept of frozen areas exists, these areas can be downloaded, but after creation, no changes are applied to them, which is helpful for research reproducibility.
 
 From the area selection window, the user can also request an area that is not yet available. If he does so, he is prompted for the area's name, and if there are multiple candidates, he is then offered the list of the areas to specify which one he actually means. This selection process is helped by including all the area properties in the candidate details window.
 
@@ -139,17 +140,17 @@ The application also allows performing searches in the data. There are two searc
 
 The first is a simple search based on a partial name match. The user can enter a part of the desired name, and every object with that particular substring in its name tag is returned.
 
-When the name search is not sufficiently detailed, the user can use the advanced search. In this mode, he is first required to select which kind of object he wants to search --- everything with an address, shops, buildings, and more. After the selection, he can specify additional conditions based on the selected entity's fields. For strings, it is possible to use exact or partial matches. For numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical and operator between them. This window is shown in the next figure.
+When the name search is not sufficiently detailed, the user can use the advanced search. In this mode, he is first required to select which kind of object he wants to search --- everything with an address, shops, buildings, and more. After the selection, he can specify additional conditions based on the selected entity's fields. For strings, it is possible to use exact or partial matches. For numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical \emph{and} operator between them. This window is shown in the next figure.
 \begin{figure}
 \caption{Advanced search of amenities filtered to universities}
-\includegraphics{fts-amenity-university}
+\includegraphics[width=\textwidth]{fts-amenity-university}
 \end{figure}
 
 In both of the search modes, the results are displayed using the same window which is used for the nearby objects.
 \subsection{The objects list window}
 This window is used for displaying a list of objects. This list can come from a nearby query, a search, or it can be a result of a parent/child query as well. It is shown in figure \ref{fig:fts}.
 
-The window shows a list of objects represented as short descriptions of them. In each case, it contains the entity class of it and some details (like the name, amenity type) for some of the classes. In addition, when an object is selected, all the properties (basically OpenStreetMap tags when not counting some renaming of the tag names) are displayed. In addition, the user can expand a part of the properties that contain the revision information, including the last changed date, the user who did the change, the changeset number. This section also shows the object's id, which is the OpenStreetMap id prefixed by a letter (n for nodes, w for ways, and r for relations) to allow the user to communicate precisely which object might require some fixes, for example.
+The window shows a list of objects represented as short descriptions of them. In each case, it contains the entity class of it and some details (like the name, amenity type) for some of the classes. In addition, when an object is selected, all the properties (basically OpenStreetMap tags when not counting some renaming of the tag names) are displayed. In addition, the user can expand a part of the properties that contain the revision information, including the last changed date, the user who did the change, the changeset number. This section also shows the object's id, which is the OpenStreetMap id prefixed by a letter (\emph{n} for nodes, \emph{w} for ways, and \emph{r} for relations) to allow the user to communicate precisely which object might require some fixes, for example.
 
 The window also allows performing additional actions on some of the objects. The more useful of these actions include opening a website related to the object or opening its Wikipedia entry. The actions also allow viewing the parents (e. g., the relations or ways that contain the given object) or the object's children. The parent object might be helpful to, for example, determine the railway line for a part of its tracks.
 \subsection{Navigational sounds}
@@ -207,7 +208,7 @@ In commit 683215bbe1, the search functionality was added.
 \subsection{Table inheritance removal}
 It turned out, mainly because of the search functionality, which required quite huge joins, and it managed to cross the Sqlite3's maximum column count for a query result as well, that the approach which used a separate table for each entity was not sustainable. As a result, in commit 3a02c10710, the area database structure was changed, so all the entities were stored in a single table with the entity properties stored in a JSON object. This storage approach survived the current version of Feel the Streets, except for some minor modifications. The application representation stayed largely similar, the entity classes kept a Python class, but these classes existed only for the application and used the Pydantic data validation library.
 \subsection{Bookmarks appear}
-In commit dbb8a71b2b, the initial support for bookmarks was added. The bookmarks were stored in the area database, which was changed in commit 30d56506d9 to allow safe area redownloads. To accomplish this, a database stored in the user's application data directory was introduced. The last change of the bookmark representation occurred in commit 49bc7331ae, which added the user's direction when creating the bookmark that was not stored before.
+In commit dbb8a71b2b, the initial support for bookmarks was added. The bookmarks were stored in the area database, which was changed in commit 30d56506d9 to allow safe area redownloads. To accomplish this, a database stored in the user's application data directory was introduced. The last change of the bookmark representation occurred in commit 49bc7331ae, which added the user's direction to the database. That change allowed restoring the user's direction as that was not possible before.
 \subsection{The server is born}
 Because of the need to update the area databases incrementally and not downloading them each time, commit 8fe9a7548f introduced a concept of semantic changes of OSM objects. The following commit introduced the server component and moved the update logic there, and in commit fab61d9f61, the server API was introduced.
 
@@ -225,9 +226,9 @@ Along with the rewrite, the administrative application was rewritten as well. Ho
 \subsection{Area names are not enough}
 Up until commit acf47daa00, the server assumed that areas would have unique names. The fact that it might not be true was not the reason for the changes in the mentioned commit. The reason was just a curiosity about whether it is possible to generate an area database for Antwerpen and finding out that the previous entity retrieval query chose the wrong area for it. As a result, the ids of the OSM areas began to be stored instead.
 
-This was then used in commit ab8940113c, which allowed the user to select an area when the requested area name was not unambiguous.
-\subsection{move to OpenAL}
-In commit 21d703b0e4, the entire sound subsystem was changed from using the FMOD library \parencite{fmod} to OpenAL. The reasons for the change included much easier installations under Linux --- the OpenAL library was in all the needed package repositories, and Usage of the OpenAL's HRTF capabilities became possible as well.
+This was then used in commit ab8940113c, which allowed the user to select an area when the requested area name was ambiguous.
+\subsection{Move to OpenAL}
+In commit 21d703b0e4, the entire sound subsystem was changed from using the FMOD library \parencite{fmod} to OpenAL. The reasons for the change included much easier installations under Linux --- the OpenAL library was in all the needed package repositories, and usage of the OpenAL's HRTF capabilities became possible as well.
 
 The previously mentioned HRTF support was not used until commit 7f6997cd54, however.
 \subsection{Changing the GUI library}
@@ -257,9 +258,9 @@ To help the user find them more easily, in commit 3348fc5772, a sound that playe
 \subsection{Getting rid of one object-relational mapper}
 When profiling the startup times of the Feel the Streets client, it turned out that using the SQLAlchemy library for interactions with the database that stored bookmarks and last locations added a significant startup time cost. So in commit 2e5e6438ea, Sqlalchemy was replaced by direct database calls.
 \subsection{Avoiding footways}
-Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section in more detail.
+Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. The main main motivation was that navigating on footways is still somewhat confusing, see section \ref{ref:footways} for more thorough discussion of the relevant issues. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section in more detail.
 \subsection{Making things smaller}
-To be as space-efficient as possible, commit 18cf5ad1bd added compression for raw OSM objects which resulted from a query. It also disabled removing this cache. That allowed update times to shorter because when computing a geometry of an object, we did not need to request the entities that comprised the parent's geometry (e., g. all nodes for a way and for relations all the dependent objects) when these objects did not change.
+To be as space-efficient as possible, commit 18cf5ad1bd added compression for raw OSM objects which resulted from a query. It also disabled removing this cache. That allowed update times to shorten because when computing a geometry of an object, we did not need to request the entities that comprised the parent's geometry (e. g. all nodes for a way and for relations all the dependent objects) when these objects did not change.
 
 To make some more things smaller, commit e3894ed98a introduced compression for the semantic changes, so they weren't published uncompressed to the change queues.
 \subsection{Frozen areas}
@@ -267,7 +268,7 @@ To help the upcoming usability study be as reproducible as possible, commit 7f17
 \subsection{Message of the day}
 To allow informing the testers of a possible important update, commit de86753ebe added a concept of a message of the day, and the next one added the client capabilities.
 \subsection{Fixing the sound positioning}
-Just after starting the user study, one of the testers discovered a pretty serious sound positioning-related issue which sparked a chain of commit starting with commit a9b92a9704 and ending by commit 0930afcecb. As this issue deserve a more thorough description, it is described in the encountered issues section as well.
+Just after starting the user study, one of the testers discovered a pretty serious sound positioning-related issue which sparked a chain of commit starting with commit a9b92a9704 and ending by commit 0930afcecb. As this issue deserves a more thorough description, it is described in the encountered issues section as well.
 \section{Issues encountered along the way}
 This section describes the various issues encountered during the development of Feel the Streets. Many of them were related to the OSM data or the data model, but there were some accessibility-related issues as well.
 \subsection{Representing crossings} \label{ref:crossings}
@@ -291,7 +292,7 @@ Until commit 1ecfecb491, the Feel the Streets user did not have a way how to kno
 \subsection{Footways} \label{ref:footways}
 Another area of behavior that changed quite a lot was footway handling. As footways do not usually have names in the OpenStreetMap data, they were quite confusing, at least for the thesis supervisor, so the footway avoidance logic was added --- see the development history for more details.
 
-It turned out that disallowing entering of all footways was not the right move, so commit 539f09b71e allowed entering footways when the current object was a footway. That was not enough, unfortunately. It turned out that roads sometimes can cross footways, so it is not uncommon to be on the road and a parallel footway at the same time, so commit 6662cd7da0 added this exception. The last movement behavior, which was complicated by a footway, was fixed in commit 3c9656a20e. In this case, when the user had to cross a footway because he was nearing a crossing, for example, this was not previously allowed even if the user's intent was clear. SO in this commit, it was allowed when the user was near enough to the center of some road which was not a footway.
+It turned out that disallowing entering of all footways was not the right move, so commit 539f09b71e allowed entering footways when the current object was a footway. That was not enough, unfortunately. It turned out that roads sometimes can cross footways, so it is not uncommon to be on the road and a parallel footway at the same time, so commit 6662cd7da0 added this exception. The last movement behavior, which was complicated by a footway, was fixed in commit 3c9656a20e. In this case, when the user had to cross a footway because he was nearing a crossing, for example, this was not previously allowed even if the user's intent was clear. So in this commit, it was allowed when the user was near enough to the center of some road which was not a footway.
 
 To help the user in making sense of the footway situation, commit babb5deff8 added a capability to announce the closest road or address.
 \subsection{Accessibility issues} \label{ref:accessibility}
@@ -299,13 +300,13 @@ Despite it not being as common, some accessibility issues were discovered along 
 
 The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling, which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments. To help fix the problem, communication with the Qt developers was started. However, no implementation work related to this issue happened as of May. The issue will not be a one-line fix. It will require some additions to Qt's internal accessibility framework as it has no notion of an expansion or collapse action.
 
-During the user study, a pretty weird behavior of a Qt application was discovered. When a Qt application had a console window (e., g. it was not marked as a GUI-only app) and you launched it from file explorer or another way when a separate console window could not be reused, it behaved quite differently in some aspects regarding the accessibility support. The main issues of this behavior were that screen readers did not announce any movement inside a text field, the user had to first expand a combo box before interacting with the items (so it behaved like a combo box under Linux), and screen readers did not announce the content of QMessageBox windows. The root cause of this issue was not investigated further because it was much easier to remove the console window for the application.
+During the user study, a pretty weird behavior of a Qt application was discovered. When a Qt application had a console window (e. g. it was not marked as a GUI-only app) and you launched it from file explorer or another way when a separate console window could not be reused, it behaved quite differently in some aspects regarding the accessibility support. The main issues of this behavior were that screen readers did not announce any movement inside a text field, the user had to first expand a combo box before interacting with the items (so it behaved like a combo box under Linux), and screen readers did not announce the content of QMessageBox windows. The root cause of this issue was not investigated further because it was much easier to remove the console window for the application.
 \subsection{Sound positioning issues}
 During the first day of testing, one of the testers discovered a set of serious issues related to the sound cue positioning and behavior of the sounds in general. Firstly, the sounds did not keep the relative angles to each other when transformed from GPS coordinate to cartesian space. It turned out that using the ECEF projection was usable, but it did not keep spatial relationships. To fix this, commit f204bc8c02 changed the used projection to an exact transverse Mercator one. This rewrite also allowed untangling the weird coordinate system mapping.
 
-Another issue was audio artifacts which manifested when turning around or approaching a sound source. The sound position was jumping in audibly bigger steps than anticipated, and it could even jump in the opposite direction than the user expected. It turned out that the Usage of coordinates ranging around three or four million caused some internal rounding issues in the OpenAL library. The first attempt at fixing these was commit 49cf08e235, which rounded them to a few decimal places. However, that did not help. Even if one of the coordinates was small as a result of the Mercator projection being centered on the point of the default start location, that did not help in fixing the issues. The one large coordinate was likely still causing the same rounding problems. The final solution was implemented in commit e67526d984, which took the default start location as the coordinate system's origin, so the coordinates were quite small, at least at reasonable distances from the origin.
+Another issue was audio artifacts which manifested when turning around or approaching a sound source. The sound position was jumping in audibly bigger steps than anticipated, and it could even jump in the opposite direction than the user expected. It turned out that the sage of coordinates ranging around three or four million caused some internal rounding issues in the OpenAL library. The first attempt at fixing these was commit 49cf08e235, which rounded them to a few decimal places. However, that did not help. Even if one of the coordinates was small as a result of the Mercator projection being centered on the point of the default start location, that did not help in fixing the issues. The one large coordinate was likely still causing the same rounding problems. The final solution was implemented in commit e67526d984, which took the default start location as the coordinate system's origin, so the coordinates were quite small, at least at reasonable distances from the origin.
 \chapter{Usability testing}
-Having an application that offers some great functions but is only usable by the application's author is not something that this application did not have as a goal. To discover the usability of the application and what improvements could be made, a study was performed on a group of visually impaired users.
+Having an application that offers some great functions but is only usable by the application's author is not something that this application did have as a goal. To discover the usability of the application and what improvements could be made, a study was performed on a group of visually impaired users.
 
 The study's main goals were to analyze the usability of various parts of the application and to gather possible improvement suggestions.
 \section{About the participants}
@@ -340,12 +341,13 @@ Because Feel the Streets is not one of the simplest applications, the overall us
 Classification & Number of participants \\
 \hline
 Advanced & 6 \\
-averagely advanced & 2 \\
-above average & 1 \\
+Averagely advanced & 2 \\
+Above average & 1 \\
 I can Google anything I need & 1 \\
 \hline
 \end{tabularx}
 \end{table}
+
 Because of the source of the candidates, the data show an above-average number of advanced computer users. However, this does not have any correlation with how positively the users rated the application.
 \subsection{Usage of other navigation applications}
 In this section, the subjects were asked which other navigation applications they use and how often and how.
@@ -384,7 +386,7 @@ These questions explored what the participants tried with Feel the Streets and a
 
 When asked about the things which the subjects tried, it turned out that each of the participants successfully managed to walk along both example routes.
 
-Also, every participant tried something else. What they tried was somewhat diverse, but all of them tried to find their home address. In addition to that, mainly participants P2 and PP8 explored more areas which they knew well.
+Also, every participant tried something else. What they tried was somewhat diverse, but all of them tried to find their home address. In addition to that, mainly participants P2 and P8 explored more areas which they knew well.
 
 When asked what the participants generally think without going into any details, the opinions were largely positive. Three users (P1, P3, and P6) mentioned that fixing some things would make the application even better. One respondent even called the application a great innovation (P4). Two of the users called the application great (P3 and P10). However, one of them was afraid about the continued development of the application, namely participant P10,  which is, in his opinion, needed. One user mentioned that such an application was missing on the market (also P4), to which a different user added that the application would surely help the visually impaired in showing an unknown area (P2). Every opinion was not so much optimistic, however. One user called the application a nice project (P1), and one user mentioned a missing documentation clarification even in this preliminary question (P6).
 \subsection{Area selection}
@@ -406,7 +408,7 @@ The same user also thought about a much more sophisticated download management u
 
 He also noticed that the area states should be localized, which is true but was not done due to the fact that getting the translation template generation machinery to pick up these strings is not straightforward.
 
-The last suggestion was more related to the sound design and noted that because the numbering of areas in the list is not announced, the user is not notified when he reached the end of the areas list. To remedy this, adding a sound when the user reaches the edge of the list was offered as a solution. This was noticed by the participant 
+The last suggestion was more related to the sound design and noted that because the numbering of areas in the list is not announced, the user is not notified when he reached the end of the areas list. To remedy this, adding a sound when the user reaches the edge of the list was offered as a solution. This was noticed by the participant P5.
 
 According to the responses, there was not any issue remembering this window.
 
@@ -450,7 +452,7 @@ There was even a user, namely participant P10, who classified the window's learn
 \subsubsection{How could this area be made easier to use}
 For this window, the number of suggestions was much numerous, some of these even repeated.
 
-Three users (P1, P2, and P5) requested a way how to make a side step, e., g., a step in the perpendicular direction without turning.
+Three users (P1, P2, and P5) requested a way how to make a side step, e. g., a step in the perpendicular direction without turning.
 
 There were three users (P1, P8, and P10) for whom the second window with the console output was confusing. As it turned out, the window was not only a nuisance for some, but it also caused (maybe indirectly) some accessibility-related issues; see details in the accessibility issues section.
 
@@ -504,7 +506,7 @@ One user was confused why the map contains multiple stop entities for a stop tha
 
 When asked whether the participant used the ctrl+shift+l command, e. g. the slow version of the show the current location in the objects browser window command, it turned out that six users did not use it and, when presented with it, did not find it missing. Four others tried it (P2, P6, P9, and P10), but only because they were testing everything they could. That implies that removing this particular shortcut would not be missed much.
 \subsection{Objects browser}
-The next set of questions was related to the window, which shows a list of objects.
+The next set of questions was related to the window that shows a list of objects.
 
 The answers showed that learning this particular window was not hard. Three users called it easy (P1, P3, and P7), four called it okay (P4, P5, P6, and P8). One of these users had to learn a little before he could call it that, however, namely participant P8. Two users called it pretty easy, even (P1 and P9). The last user just said that he liked the window (P10).
 
@@ -574,7 +576,7 @@ This section presents a few notes which did not fit anywhere else.
 
 Six users (P2, P3, P4, P5, P8, and P10) were annoyed about the behavior of the Qt spin boxes.
 
-One user, namely P9, noted that he likes benches in the map data; another one liked bookmarks instead, which was a participant.
+One user, namely P9, noted that he likes benches in the map data; another one liked bookmarks instead, which was the participant P10.
 
 One user noted that it would be useful to document the default step length, namely participant P9.
 
