@@ -2,7 +2,7 @@
 \thesissetup{faculty=fi}
 \thesissetup{author=Bc. Lukáš Tyrychtr,id=422294, departmentEn = Faculty of Informatics, programmeEn = Applied Informatics, fieldEn = Applied Informatics, assignment = {}}
 \thesissetup{type= mgr}
-\thesissetup{title=Feel the Streets - a visually impaired user access to OSM maps}
+\thesissetup{title=Feel the Streets --- a visually impaired user access to OSM maps}
 \thesissetup{keywords = {visually impaired, navigation, accessibility, Open Street Map, usability}}
 \usepackage[english]{babel}
 \usepackage{alltt}
@@ -60,7 +60,7 @@ Google Maps \parencite{googlemaps} is a map application created by Google. It st
 
 From a visually impaired user perspective, the interface is quite accessible, except for the area displaying the actual graphical map. The navigation functionality is also usable well, thanks to quite specific voice prompts along the planned route.
 \subsection{Apple Maps}
-Apple Maps \parencite{applemaps} is a mapping application used by Apple in their operating systems. The basic features - map exploration, searching by name or category, exploring the graphical map, are there as well.
+Apple Maps \parencite{applemaps} is a mapping application used by Apple in their operating systems. The basic features --- map exploration, searching by name or category, exploring the graphical map, are there as well.
 
 For visually impaired users, the application is fully accessible. It even allows the visually impaired user to look around the map to get a feel about the spatial relationships of streets. This feature allows a visually impaired user to slide the finger on the screen and be notified about the current street under it.
 \subsection{BlindSquare}
@@ -118,7 +118,7 @@ From the area selection window, the user can also request an area that is not ye
 By selecting an area, a set of steps starts. If the selected area is not yet downloaded to the user's computer, the download is performed. If it is, the application checks for all the changes which occurred to the area between the last check and now and applies them. After these steps, the user ends up in the main window.
 \subsection{The main window}
 
-The application's main window is seemingly simple - just an empty window with a menubar on top. Despite this, it is the central piece of the user interface of the application. It is shown, along with the nearby objects window, which is described in the next section, in the following figure.
+The application's main window is seemingly simple --- just an empty window with a menubar on top. Despite this, it is the central piece of the user interface of the application. It is shown, along with the nearby objects window, which is described in the next section, in the following figure.
 \begin{figure}[h]
 \caption{The main window of Feel the Streets along with the nearby objects window}
 \includegraphics[width=\textwidth]{feel-the-streets}
@@ -139,7 +139,7 @@ The application also allows performing searches in the data. There are two searc
 
 The first is a simple search based on a partial name match. The user can enter a part of the desired name, and every object with that particular substring in its name tag is returned.
 
-When the name search is not sufficiently detailed, the user can use the advanced search. In this mode, he is first required to select which kind of object he wants to search - everything with an address, shops, buildings, and more. After the selection, he can specify additional conditions based on the selected entity's fields. For strings, it is possible to use exact or partial matches. For numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical and operator between them. This window is shown in the next figure.
+When the name search is not sufficiently detailed, the user can use the advanced search. In this mode, he is first required to select which kind of object he wants to search --- everything with an address, shops, buildings, and more. After the selection, he can specify additional conditions based on the selected entity's fields. For strings, it is possible to use exact or partial matches. For numbers, all the usual operators are available. The user can specify any number of conditions which are then combined into the final query as if there was a logical and operator between them. This window is shown in the next figure.
 \begin{figure}
 \caption{Advanced search of amenities filtered to universities}
 \includegraphics{fts-amenity-university}
@@ -167,7 +167,7 @@ These announcements can, of course, be turned off using a configuration option.
 \section{Technical overview}
 This section describes the currently used technologies which are used by the Feel the Streets client and server. The technologies have changed quite extensively during the development, so the Development history section then presents the various choices which were made during the lifetime of the application.
 
-As of now - commit f316b17d63, which can be found along with the entire development history at \parencite{fts_repo}, the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through Python bindings.
+As of now --- commit f316b17d63, which can be found along with the entire development history at \parencite{fts_repo}, the application is comprised of two major components and some supporting libraries and utilities. The major components are the client and server applications, respectively. They share the area database access layer through Python bindings.
 \subsection{The client}
 The client is the main application with which all the users interact. It handles downloading of the area databases, applying updates, and browsing the respective areas.
 
@@ -189,7 +189,7 @@ For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It
 
 To keep the number of additional components as low as possible, RabbitMQ is also used for background task storage and for background task scheduling. The scheduling uses the message's time to live, and it instructs RabbitMQ to put the message to the ready messages queue after the TTL expires.
 
-The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them in the RabbitMQ queue. The compression uses the Zstdandard compression algorithm \parencite{zstd} which allows, among other things, to use a pre-trained compression dictionary for compression, which gives much better results than compressing the individual messages on its own - it gave an improvement of at least of 50\% in message sizes on average.
+The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them in the RabbitMQ queue. The compression uses the Zstdandard compression algorithm \parencite{zstd} which allows, among other things, to use a pre-trained compression dictionary for compression, which gives much better results than compressing the individual messages on its own --- it gave an improvement of at least of 50\% in message sizes on average.
 
 To help discover new kinds of amenities and another enum like tags during the processing of areas and to find other anomalies in the assumed schema of the OSM data (type violations, unknown properties, and others), a record of these events is logged during the operation and it is stored for further analysis. The processing application, however, is not implemented yet. Or, more correctly, the features were lost during the Rust rewrite, which is described in the following section.
 \subsection{The shared library}
@@ -227,7 +227,7 @@ Up until commit acf47daa00, the server assumed that areas would have unique name
 
 This was then used in commit ab8940113c, which allowed the user to select an area when the requested area name was not unambiguous.
 \subsection{move to OpenAL}
-In commit 21d703b0e4, the entire sound subsystem was changed from using the FMOD library \parencite{fmod} to OpenAL. The reasons for the change included much easier installations under Linux - the OpenAL library was in all the needed package repositories, and Usage of the OpenAL's HRTF capabilities became possible as well.
+In commit 21d703b0e4, the entire sound subsystem was changed from using the FMOD library \parencite{fmod} to OpenAL. The reasons for the change included much easier installations under Linux --- the OpenAL library was in all the needed package repositories, and Usage of the OpenAL's HRTF capabilities became possible as well.
 
 The previously mentioned HRTF support was not used until commit 7f6997cd54, however.
 \subsection{Changing the GUI library}
@@ -289,7 +289,7 @@ Commit 66f6813d78 fixed another set of crossing reporting issues. The first was 
 
 Until commit 1ecfecb491, the Feel the Streets user did not have a way how to know, except for a manual exploration, that the road he used to get to the crossing ends on it. In commit 93443975d8, the message was made more specific and mentioned the road that was ending on the crossing.
 \subsection{Footways} \label{ref:footways}
-Another area of behavior that changed quite a lot was footway handling. As footways do not usually have names in the OpenStreetMap data, they were quite confusing, at least for the thesis supervisor, so the footway avoidance logic was added - see the development history for more details.
+Another area of behavior that changed quite a lot was footway handling. As footways do not usually have names in the OpenStreetMap data, they were quite confusing, at least for the thesis supervisor, so the footway avoidance logic was added --- see the development history for more details.
 
 It turned out that disallowing entering of all footways was not the right move, so commit 539f09b71e allowed entering footways when the current object was a footway. That was not enough, unfortunately. It turned out that roads sometimes can cross footways, so it is not uncommon to be on the road and a parallel footway at the same time, so commit 6662cd7da0 added this exception. The last movement behavior, which was complicated by a footway, was fixed in commit 3c9656a20e. In this case, when the user had to cross a footway because he was nearing a crossing, for example, this was not previously allowed even if the user's intent was clear. SO in this commit, it was allowed when the user was near enough to the center of some road which was not a footway.
 
@@ -512,7 +512,7 @@ This window did not receive as many suggestions as the main window. Six users di
 
 One wanted to be able to browse object description, distance, and direction separately, namely participant P4.
 
-Another user wanted to be able to perform a context-dependent ctrl+c command depending on the focused control - either the object description or a single property. This particular suggestion came from participant P10.
+Another user wanted to be able to perform a context-dependent ctrl+c command depending on the focused control --- either the object description or a single property. This particular suggestion came from participant P10.
 
 The last suggestion was related to the behavior of the object's actions. For now, only actions that are applicable to the currently selected objects are shown. Participant P9 would rather want to see all of them but disabled when not applicable.
 
@@ -524,7 +524,7 @@ When asked how the users would make the menu more obvious, four of them (P1, P5,
 
 Another four users (P2, P6, P9, and P10, would rather remove the main menu and add context menus to the appropriate places instead.
 
-Participant P2, who also suggested the context menu, offered another way - add the actions as buttons after the properties tree view.
+Participant P2, who also suggested the context menu, offered another way --- add the actions as buttons after the properties tree view.
 
 The last way how to handle the discoverability situation, which was suggested, was that a button would be added which, when pressed, would show the object's actions. This particular way was suggested by participant P10.
 
