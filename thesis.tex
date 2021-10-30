@@ -28,7 +28,7 @@ The following chapter then presents a survey within the group of visually impair
 And the last one presents conclusions and possible future directions.
 
 }
-\thesissetup{advisor=Ing. Milan Brož\, Ph.D.}
+\thesissetup{advisor={Ing.\,Milan Brož,\,Ph.D.}}
 \thesislong{thanks}{
 I would like to thank all my thesis advisors for their beneficial tips and for their time in general. I would also like to thank all the testers, and, with his permission, special thanks go to Martin Jozífek, who helped track many nasty issues and dedicated a lot of his time which allowed the application to be in much better shape than it was before.
 }
@@ -153,7 +153,7 @@ When the name search is not sufficiently detailed, the user can use the advanced
 
 In both of the search modes, the results are displayed using the same window which is used for the nearby objects.
 \subsection{The objects list window}
-This window is used for displaying a list of objects. This list can come from a nearby query, a search, or it can be a result of a parent/child query as well. It is shown in figure \ref{fig:fts}.
+This window is used for displaying a list of objects. This list can come from a nearby query, a search, or it can be a result of a parent/child query as well. It is shown in Figure \ref{fig:fts}.
 
 The window shows a list of objects represented as short descriptions of them. In each case, it contains the entity class of it and some details (like the name, amenity type) for some of the classes. In addition, when an object is selected, all the properties (basically OpenStreetMap tags when not counting some renaming of the tag names) are displayed. In addition, the user can expand a part of the properties that contain the revision information, including the last changed date, the user who did the change, the changeset number. This section also shows the object's id, which is the OpenStreetMap id prefixed by a letter (\emph{n} for nodes, \emph{w} for ways, and \emph{r} for relations) to allow the user to communicate precisely which object might require some fixes, for example.
 
@@ -191,7 +191,7 @@ For storage of the area databases, the SQLite3 library \parencite{sqlite} is use
 
 For communication with the client application, the server exposes an HTTP API for area lists, download requests, and similar functionality. 
 
-For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the RabbitMQ server when connecting, they are limited by an access control list, and the connection is also secured using Transport layer security.
+For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the RabbitMQ server when connecting, they are limited by an access control list, and the connection is also secured using Transport Layer Security.
 
 To keep the number of additional components as low as possible, RabbitMQ is also used for background task storage and for background task scheduling. The scheduling uses the message's time to live, and it instructs RabbitMQ to put the message to the ready messages queue after the TTL expires.
 
@@ -263,7 +263,7 @@ To help the user find them more easily, in commit 3348fc5772, a sound that playe
 \subsection{Getting rid of one object-relational mapper}
 When profiling the startup times of the Feel the Streets client, it turned out that using the SQLAlchemy library for interactions with the database that stored bookmarks and last locations added a significant startup time cost. So in commit 2e5e6438ea, Sqlalchemy was replaced by direct database calls.
 \subsection{Avoiding footways}
-Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. The main main motivation was that navigating on footways is still somewhat confusing, see section \ref{ref:footways} for more thorough discussion of the relevant issues. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section in more detail.
+Because of some more discussions during the previews of the state of Feel the Streets during that time period, it was decided that it would be useful to allow the user to avoid footways as much as possible. The main motivation was that navigating on footways is still somewhat confusing, see section \ref{ref:footways} for more thorough discussion of the relevant issues. That started in commit 6ccdbe9522. There were some fixes needed to make this functionality work, but they will be described in the encountered issues section in more detail.
 \subsection{Making things smaller}
 To be as space-efficient as possible, commit 18cf5ad1bd added compression for raw OSM objects which resulted from a query. It also disabled removing this cache. That allowed update times to shorten because when computing a geometry of an object, we did not need to request the entities that comprised the parent's geometry (e. g. all nodes for a way and for relations all the dependent objects) when these objects did not change.
 
@@ -315,7 +315,7 @@ Having an application that offers some great functions but is only usable by the
 
 The study's main goals were to analyze the usability of various parts of the application and to gather possible improvement suggestions.
 \section{About the participants}
-The study was undertaken on a group of visually impaired people from the Czech Republic. The people were all practically or totally blind, and their ages ranged from approximately 15 to 40 years. The people were contacted first around July of 2020. However, further needed changes required moving the start of the study to the march of 2021. Out of 15 confirmed subjects from the July inquiry, 10 actually managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
+The study was undertaken on a group of visually impaired people from the Czech Republic. The people were all practically or totally blind, and their ages ranged from 15 to 40 years. The people were contacted first around July of 2020. However, further needed changes required moving the start of the study to the march of 2021. Out of 15 confirmed subjects from the July inquiry, 10 actually managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
 \section{Methodology}
 The study consisted of two parts. In the first, the participants who agreed with their participation were sent an e-mail with some user documentation and scenarios to try while testing Feel the Streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else they wanted to. The testing scenarios required the users to launch the application, select a particular area and go through a specified route. Note that the users did not have to go anywhere physically. Working with the application was sufficient to complete the scenarios.
 
