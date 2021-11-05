@@ -191,7 +191,7 @@ For storage of the area databases, the SQLite3 library \parencite{sqlite} is use
 
 For communication with the client application, the server exposes an HTTP API for area lists, download requests, and similar functionality. 
 
-For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the RabbitMQ server when connecting, they are limited by an access control list, and the connection is also secured using Transport Layer Security.
+For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the RabbitMQ server when connecting, they are limited by an access control list, and the connection is also secured using Transport Layer Security. Transport Layer Security is primaril used to guarantee integrity of the received data.
 
 To keep the number of additional components as low as possible, RabbitMQ is also used for background task storage and for background task scheduling. The scheduling uses the message's time to live, and it instructs RabbitMQ to put the message to the ready messages queue after the TTL expires.
 
