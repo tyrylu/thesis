@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Dokumentace Feel the Streets</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dokumentace-feel-the-streets">Dokumentace Feel the Streets</h1>
+<p>Ještě jednou díky za ochotu. A abyste se úplně neztratili, tak tady máte pár informací, které by se mohly hodit.</p>
+<h2 id="stažení">Stažení</h2>
+<ul>
+<li>Binárka pro Windows: <a href="https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/47181451.zip">https://nightly.link/tyrylu/feel-the-streets/actions/artifacts/39492398.zip</a></li>
+<li>A pro Linux: <a href="https://oc.trycht.cz/index.php/s/mtf325GGZajYYGX">https://oc.trycht.cz/index.php/s/mtf325GGZajYYGX</a></li>
+</ul>
+<h2 id="požadavky-na-systém">Požadavky na systém</h2>
+<p>Aplikace aspoň při prvním spuštění vyžaduje připojení k internetu, při následných (pokud tedy nechcete stáhnout aktuální data oblasti nebo novou oblast) už ne.</p>
+<h3 id="windows">Windows</h3>
+<p>Aplikace funguje na Windows 10 64-bit. Na starších Windows fungovat může, ale nebylo to testované, 64-bitový operační systém je ale vyžadován v každém případě.</p>
+<p>Pokud se při spuštění najde běžící odečítač, použije se pro vyslovování hlášek ten, jinak se použije výchozí Sapi 5 hlas. Ten lze změnit, ale dostat se do toho správného okna není úplně triviální, nejjednodušší je asi do dialogu spustit nebo do vyhledávacího pole ve start menu vložit následující cestu: C:\Windows\System32\Speech\SpeechUX\sapi.cpl</p>
+<h3 id="linux">Linux</h3>
+<p>Aplikace byla testována na Fedoře 33, na jiných distribucích může, ale nemusí binární verze fungovat. Dodávaná binárka vyžaduje běžící X server, t. j. pod Waylandem fungovat nebude.</p>
+<p>Jako hlasový výstup se používá Speech dispatcher.</p>
+<h2 id="pár-klávesových-zkratek-do-začátku">Pár klávesových zkratek do začátku</h2>
+<p>Obecně jich není vůbec málo, ale tyto by měly do začátku bohatě stačit. Zkratky dalších funkcí jsou pochopitelně u příslušných položek v menu.</p>
+<h3 id="pohyb">Pohyb</h3>
+<ul>
+<li>Šipky nahoru a dolů - chůze vpřed a vzad</li>
+<li>ctrl+šipka nahoru a dolů - automatická chůze do nalezení dalšího resp. předchozího zajímavého objektu nebo křižovatky</li>
+<li>Šipky vlevo a vpravo - změna směru o 5 stupňů</li>
+<li>Tytéž šipky spolus CTRL - změna směru o 90 stupňů</li>
+<li>J - skok na zadané GPS souřadnice</li>
+</ul>
+<h3 id="informace">Informace</h3>
+<ul>
+<li>L - oznámí aktuální pozici</li>
+<li>N - seznam nejbližších objektů</li>
+</ul>
+<h2 id="pár-poznámek-k-pohybu">Pár poznámek k pohybu</h2>
+<p>Pohyb se na první pohled může zdát jako jednoduchá věc, ale je zde pár voleb, které ho poměrně ovlivňují.</p>
+<p>Ve výchozím stavu není při chůzi dovoleno vejít na chodník, který je plus minus rovnoběžný s aktuální silnicí (přecházení chodníků napříč nevadí). Důvodem této volby je, že pojmenovávání chodníků je přinejmenším velmi matoucí a ztratit se na nich není vůbec složité ani pro samotného autora aplikace.</p>
+<p>Někdy ovšem může být užitečné na takový chodník vejít, proto lze volbu "Pokusit se vyhýbat chodníkům" vypnout.</p>
+<p>Další pohyb podstatně ovlivňující volbou je volba "Zakázat opuštění cesty". Tato volba je rovněž ve výchozím stavu zapnuta a snaží se bránit opušění cest, po kterém by vaše pozice byla nejspíš neznámá, což by mohlo být do začátku trochu nepřehledné.</p>
+<p>I tuto volbu lze vypnout, což se může hodit, pokud chcete například dojít do budovy, nebo někam, kde nejsou žádné cesty (trávníky, řeky atd.).</p>
+<p>Poslední volbou ovlivňující pohyb jako takový je "Automaticky opravit směr, pokud se pokusíte opustit poslední cestu". Pokud je tato volba zapnuta, což ve výchozím stavu je, bude při pokusu o opuštění poslední cesty opraven váš směr tak, aby odpovídal cestě, na které se nacházíte.</p>
+<h2 id="počáteční-pozice">Počáteční pozice</h2>
+<p>Samozřejmě se můžete podívat, kamkoliv chcete, ale aby rozhovor probíhal tak nějak srovnatelně, ocenil bych projití pár testovacích scénářů. Jejich popis následuje:</p>
+<ul>
+<li>V seznamu oblastí vybereme "Brno - testovací"</li>
+<li>Po stažení provedeme skok na souřadnice (klávesa j), a to na: Zeměpisná délka: 16,5929657, zeměpisná šířka: 49,2117972 (ctrl+v v oknech pro zadání souřadnic funguje)</li>
+<li>Otočíme se pomocí ctrl+r o 67 stupňů</li>
+<li>Pro zjednodušení návratu na dané místo si tam můžeme vytvořit záložku, pokud záložku dělat nechceme, skok podle GPS souřadnic je možný vždy (pozor, že skok na souřadnice neotáčí uživatele)</li>
+</ul>
+<h2 id="kde-jsme-se-to-octli">Kde jsme se to octli?</h2>
+<ul>
+<li>Nacházíme se na křižovatce Kounicovy a Klusáčkovy, což lze ověřit i příkazem oznamujícím aktuální pozici</li>
+<li>Kolem jsou ulice, nějaké tramvajové koleje, zastávka MHD, a tak, viz blízké objekty (klávesa n)</li>
+<li>Pokud půjdeme rovně, projdeme poklidnou ulicí, potkáme pár křižovatek a po ne úplně dlouhé době dojdeme na konec, resp. na rozcestí, kde už odbočit musíme</li>
+</ul>
+<h2 id="něco-málo-o-zvucích">Něco málo o zvucích</h2>
+<p>Jak jste si určitě všimli, ticho je něco, s čím se při používání této aplikace rozhodně počítat nedá. Už na počáteční pozici je jich pár slyšet, hlavně cinkání oznamující křižovatky. Všechny zvuky se ozývají ze směru, kde se nachází objekt, který ho vydává, takže pokud můžete, rozhodně použijte nějaká sluchátka.</p>
+<p>Dalšími zvuky, se kterými je možné se setkat je zvuk reprezentující trávníky a jim podobné objekty (ptáci a tak) a zvuk pro obchody (v zásadě jakýsi dav + nějaké cinkavé zvuky, které by se v obchodě mohly objevit).</p>
+<h2 id="zajímavější-scénář---plzeňský-dvůr">Zajímavější scénář - Plzeňský dvůr</h2>
+<ul>
+<li>Začneme na počáteční pozici</li>
+<li>Jdeme rovně, až do doby, kdy přijdeme na křižovatku s ulicí Chlupova</li>
+<li>Tam odbočíme vpravo</li>
+<li>Dojdeme na křižovatku s ulicí Šumavská, kde odbočíme vpravo</li>
+<li>Poznámka pro Brna znalé - ano, pochopitelně existuje přímější cesta - po Kounicově směrem, kde je z této křižovatky delší, a pak vlevo po Šumavské, ale přes Chlupovu to je zajímavější. :-)</li>
+</ul>
+</body>
+</html>
