@@ -27,11 +27,10 @@ This thesis first explores the currently available applications for mobile opera
 The next chapter introduces Feel the Streets, an application which intents to help visually impaired people in exploring new areas.
 The following chapter then presents a survey within the group of visually impaired people which ries to answer the question how usable the application actually is.
 And the last one presents conclusions and possible future directions.
-
 }
 \thesissetup{advisor={Ing.\,Milan Brož,\,Ph.D.}}
 \thesislong{thanks}{
-I would like to thank all my thesis advisors for their beneficial tips and for their time in general. I would also like to thank all the testers, and, with his permission, special thanks go to Martin Jozífek, who helped track many nasty issues and dedicated a lot of his time which allowed the application to be in much better shape than it was before.
+I would like to thank all my thesis advisors for their beneficial tips and for their time in general. Namely, my thanks go to Bohdan Milar who spend immense amounts of time going through almost any of the many application versions with a lot of bugs. I would also like to thank Agáta Kružíková, who helped immensely with formulation with the research questions and with all the required methodology and other formalities which bring the research up-to the required standards. I would also like to thank all the testers, and, with his permission, special thanks go to Martin Jozífek, who helped track many nasty issues and dedicated a lot of his time which allowed the application to be in much better shape than it was before.
 }
 \thesisload
 \setcounter{tocdepth}{2}
@@ -109,7 +108,7 @@ That is the reason why Feel the Streets was born, and I spent quite a lot of tim
 
 The main reasons for writing Feel the Streets were that none of the applications mentioned in the previous chapter could provide the desired map exploration experience on a desktop operating system. To add to that, making the application cross-platform could expand the userbase as well. And the last reason was that the presentation of OpenStreetMap data for a visually impaired person was not much helpful, so this application changes that and makes the data accessible.
 \section{Feature overview}
-From the user's perspective, Feel the Streets is a desktop application that, when launched, allows the user to browse OpenStreetMap maps without sight.
+From the user's perspective, Feel the Streets is a cross-platform desktop application for Windows and Linux operating systems that, when launched, allows the user to browse OpenStreetMap maps without sight.
 \subsection{Area selection}
 After startup, the application presents a list of the available areas from which the user can choose one which he wants to browse. This window is shown in the figure below.
 \begin{figure}[h]
@@ -182,7 +181,7 @@ The client application is written in the Python programming language \parencite{
 
 For the user interface, the Qt library \parencite{qt} is being used as it has the best cross-platform accessibility story despite some mainly Windows-specific issues.
 
-For the sound engine, the client application uses OpenAL and the HRTF extension. That means that the OpenAL Soft library \parencite{openalsoft} is required.
+For the sound engine, the client application uses OpenAL and the HRTF (head-related transfer function) extension for more realistic 3D audio positioning. That means that the OpenAL Soft library \parencite{openalsoft} is required.
 \subsection{The server}
 The server mainly handles the management of area databases. It handles the area creation requests from the clients and helps the clients keep their local databases updated, and it also creates a list of changes that the clients can download afterward.
 
@@ -192,11 +191,11 @@ For storage of the area databases, the SQLite3 library \parencite{sqlite} is use
 
 For communication with the client application, the server exposes an HTTP API for area lists, download requests, and similar functionality. 
 
-For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the RabbitMQ server when connecting, they are limited by an access control list, and the connection is also secured using Transport Layer Security. Transport Layer Security is primaril used to guarantee integrity of the received data.
+For storing the area changes, a RabbitMQ \parencite{rabbitmq} server is used. It allows keeping the queue semantics quite easily. The clients do not have full administrative access to the RabbitMQ server when connecting, they are limited by an access control list, and the connection is also secured using Transport Layer Security. Transport Layer Security is primarily used to guarantee integrity of the received data.
 
 To keep the number of additional components as low as possible, RabbitMQ is also used for background task storage and for background task scheduling. The scheduling uses the message's time to live, and it instructs RabbitMQ to put the message to the ready messages queue after the TTL expires.
 
-The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them in the RabbitMQ queue. The compression uses the Zstdandard compression algorithm \parencite{zstd} which allows, among other things, to use a pre-trained compression dictionary for compression, which gives much better results than compressing the individual messages on its own --- it gave an improvement of at least of 50\% in message sizes on average.
+The server uses compression extensively to minimize the storage requirements. The main savings are by compressing the individual area database changes before putting them in the RabbitMQ queue. The compression uses the Zstandard compression algorithm \parencite{zstd} which allows, among other things, to use a pre-trained compression dictionary for compression, which gives much better results than compressing the individual messages on its own --- it gave an improvement of at least of 50\% in message sizes on average.
 
 To help discover new kinds of amenities and another enum like tags during the processing of areas and to find other anomalies in the assumed schema of the OSM data (type violations, unknown properties, and others), a record of these events is logged during the operation and it is stored for further analysis. The processing application, however, is not implemented yet. Or, more correctly, the features were lost during the Rust rewrite, which is described in the following section.
 \subsection{The shared library}
@@ -222,7 +221,7 @@ When the server API was in place, commit d791a35bad allowed the users to select 
 
 And some commits later, when the server's capability to run an update of all area databases was deemed stable enough, commit b2fd5c4943 implemented the client-side of area updates.
 \subsection{Object actions}
-In commit 62a1454247, the framework for executing actions on objects was introduced. Some commits later, the Wikipedia and wiki data open actions were implemented along with other website-like things which could be opened, like the RUIAN details of a Czech building.
+In commit 62a1454247, the framework for executing actions on objects was introduced. Some commits later, the Wikipedia and wiki data open actions were implemented along with other website-like things which could be opened, like the RUIAN (the Czech land register) details of a Czech building.
 \subsection{The rustification efford}
 Because of the languages used, the server memory consumption and speed were not ideal. To improve the situation, a quite drastic measurement was taken starting from commit 67b194c60a. The entire server component was a small piece at a time rewritten into Rust. That required rethinking the way how the entity properties and generator property mappings are stored, so the server used a few YAML files to store the entity classes and their properties, the enums inherent in the data, and the translation transformations. The server rewrite effort was merged into master in commit 42a9e4762a.
 
@@ -304,7 +303,7 @@ To help the user in making sense of the footway situation, commit babb5deff8 add
 \subsection{Accessibility issues} \label{ref:accessibility}
 Despite it not being as common, some accessibility issues were discovered along with the project's development. The first was fixed in commit b59c596555 and was related to some quite weird NVDA (Nonvisual desktop access, a Windows screen reader \parencite{nvda}) behavior related to announcements in a treeview when the treeview had all items removed. The reason for the issue was not sought further. The workaround was deemed sufficient.
 
-The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling, which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments. To help fix the problem, communication with the Qt developers was started. However, no implementation work related to this issue happened as of May. The issue will not be a one-line fix. It will require some additions to Qt's internal accessibility framework as it has no notion of an expansion or collapse action.
+The second was discovered after the switch to Qt. The issue was that on Windows, screen readers were not announcing the collapsed/expanded state of a treeview. The cause was discovered to be related to Qt's UI Automation handling, which did not expose this information. A bug report for this issue already existed in the Qt bug tracker, but it did not receive any useful comments. To help fix the problem, communication with the Qt developers was started. However, no implementation work related to this issue happened as of December. The issue will not be a one-line fix. It will require some additions to Qt's internal accessibility framework as it has no notion of an expansion or collapse action.
 
 During the user study, a pretty weird behavior of a Qt application was discovered. When a Qt application had a console window (e. g. it was not marked as a GUI-only app) and you launched it from file explorer or another way when a separate console window could not be reused, it behaved quite differently in some aspects regarding the accessibility support. The main issues of this behavior were that screen readers did not announce any movement inside a text field, the user had to first expand a combo box before interacting with the items (so it behaved like a combo box under Linux), and screen readers did not announce the content of QMessageBox windows. The root cause of this issue was not investigated further because it was much easier to remove the console window for the application.
 \subsection{Sound positioning issues}
@@ -316,7 +315,7 @@ Having an application that offers some great functions but is only usable by the
 
 The study's main goals were to analyze the usability of various parts of the application and to gather possible improvement suggestions.
 \section{About the participants}
-The study was undertaken on a group of visually impaired people from the Czech Republic. The people were all practically or totally blind, and their ages ranged from 15 to 40 years. The people were contacted first around July of 2020. However, further needed changes required moving the start of the study to the march of 2021. Out of 15 confirmed subjects from the July inquiry, 10 actually managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
+The study was undertaken on a group of visually impaired people from the Czech Republic. The people were all practically or totally blind, and their ages ranged from 15 to 40 years. The people were contacted first around July of 2020. However, further needed changes required moving the start of the study to the March of 2021. Out of 15 confirmed subjects from the July inquiry, 10 actually managed to undergo the testing and the survey. The rest either did not reply in time or lost interest.
 \section{Methodology}
 The study consisted of two parts. In the first, the participants who agreed with their participation were sent an e-mail with some user documentation and scenarios to try while testing Feel the Streets along with the download links. They were allowed at least a week so they could try the offered testing scenarios and anything else they wanted to. The testing scenarios required the users to launch the application, select a particular area and go through a specified route. Note that the users did not have to go anywhere physically. Working with the application was sufficient to complete the scenarios.
 
@@ -687,5 +686,5 @@ The following list of questions was used to get the numerical results for the Sy
 \item I needed to learn a lot of things before I could get going with Feel the Streets.
 \end{enumerate}
 \section{Attached appendices}
-This section describes the other attachments in the thesis archive. The file \emph{sus.xlsx} contains the results of the System usability scale survey along with the calculated scores and the relevant formulas. The file \emph{dp\_subject\_mail.txt} contains text of the email which was sent to the participants, note that the text is only in the Czech language. Also in Czech, the file \emph{user\_docs.html} contains the documentation which was available to the survey participants.
+This section describes the other attachments in the thesis archive. The file \emph{sus.xlsx} contains the results of the System usability scale survey along with the calculated scores and the relevant formulas. The file \emph{dp\_subject\_mail.txt} contains text of the email which was sent to the participants, note that the text is only in the Czech language and is highly informal, because I personally knew all of them. Also in Czech, the file \emph{user\_docs.html} contains the documentation which was available to the survey participants. To help all the future readers, the file \emph{fts_app.zip} is the Windows build of Feel the Streets used for testing. And, to allow introspection of the source code at that time, the file \emph{fts_src.zip} contains the source code as of commit f316b17d63.
 \end{document}
